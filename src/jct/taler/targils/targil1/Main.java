@@ -1,6 +1,7 @@
-import primitives.*;
+package jct.taler.targils.targil1;
+import jct.taler.targils.targil1.primitives.*;
 import static java.lang.System.out;
-import static primitives.Util.*;
+import static jct.taler.targils.targil1.primitives.Util.*;
 
 /**
  * Test program for the 1st stage

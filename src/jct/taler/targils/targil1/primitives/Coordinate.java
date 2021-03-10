@@ -1,6 +1,6 @@
-package primitives;
+package jct.taler.targils.targil1.primitives;
 
-import static primitives.Util.*;
+import static jct.taler.targils.targil1.primitives.Util.*;
 
 /**
  * Class Coordinate is the basic class representing a coordinate for Cartesian
