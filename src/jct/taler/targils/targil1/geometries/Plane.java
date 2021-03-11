@@ -11,6 +11,12 @@ public class Plane implements Geometry {
     {
         q0 = p1;
         //todo אמורים לשנות את זה מתישהו
+        /*
+        Vector v1 = p1.subtract(p2);
+        Vector v2 = p1.subtract(p3);
+        normal = v1.crossProduct(v2);
+        משהו כזה
+        */
         normal = null;
     }
 

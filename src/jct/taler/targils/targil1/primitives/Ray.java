@@ -7,4 +7,9 @@ public class Ray {
         p0 = point3D;
         dir = Vec.normalized();
     }
+
+    @Override
+    public String toString() {
+        return p0.toString() + " x" + dir.toString();
+    }
 }
