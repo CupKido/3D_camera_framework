@@ -71,11 +71,18 @@ public class Vector {
     }
 
     public Vector crossProduct(Vector Vec){
-        return new Vector(
-                (head.y.coord * Vec.head.z.coord) - (head.z.coord * Vec.head.y.coord),
-                (head.z.coord * Vec.head.x.coord) - (head.x.coord * Vec.head.z.coord),
-                (head.x.coord * Vec.head.y.coord) - (head.y.coord * Vec.head.x.coord)
-        );
+        try {
+            return new Vector(
+                    (head.y.coord * Vec.head.z.coord) - (head.z.coord * Vec.head.y.coord),
+                    (head.z.coord * Vec.head.x.coord) - (head.x.coord * Vec.head.z.coord),
+                    (head.x.coord * Vec.head.y.coord) - (head.y.coord * Vec.head.x.coord)
+            );
+        }catch (IllegalArgumentException ex)
+        {
+            throw new IllegalArgumentException("Invalid Plane - Vectors are dependable");
+        }
+
+
     }
 
     public double lengthSquared(){
