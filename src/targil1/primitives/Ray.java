@@ -1,4 +1,4 @@
-package jct.taler.targils.targil1.primitives;
+package targil1.primitives;
 
 public class Ray {
     Point3D p0;

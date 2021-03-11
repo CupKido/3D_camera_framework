@@ -1,8 +1,8 @@
-package jct.taler.targils.targil1.geometries;
+package targil1.geometries;
 
 import java.util.List;
-import jct.taler.targils.targil1.primitives.*;
-import static jct.taler.targils.targil1.primitives.Util.*;
+import targil1.primitives.*;
+import static targil1.primitives.Util.*;
 
 /**
  * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate

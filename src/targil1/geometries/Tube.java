@@ -1,15 +1,16 @@
-package jct.taler.targils.targil1.geometries;
-
-import jct.taler.targils.targil1.primitives.*;
+package targil1.geometries;
 
 
-public class Sphere implements Geometry
+import targil1.primitives.*;
+
+
+public class Tube implements Geometry
 {
-    Point3D q0;
+    Ray axisRay;
     double radius;
 
-    public Point3D getQ0() {
-        return q0;
+    public Ray getAxisRay() {
+        return axisRay;
     }
 
     public double getRadius() {
@@ -18,7 +19,7 @@ public class Sphere implements Geometry
 
     @Override
     public String toString() {
-        return "Center: " + q0.toString() + ", Radius: " + radius;
+        return "Ray: " + axisRay.toString() + ", Radius: " + radius;
     }
 
     public Vector getNormal(Point3D var1)

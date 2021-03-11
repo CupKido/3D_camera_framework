@@ -1,7 +1,6 @@
-package jct.taler.targils.targil1.geometries;
+package targil1.geometries;
 
-import java.util.List;
-import jct.taler.targils.targil1.primitives.*;
+import targil1.primitives.*;
 
 public class Plane implements Geometry {
     Point3D q0;
