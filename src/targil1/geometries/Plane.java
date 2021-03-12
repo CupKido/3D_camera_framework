@@ -3,8 +3,10 @@ package targil1.geometries;
 import targil1.primitives.*;
 
 public class Plane implements Geometry {
-    Point3D q0;
-    Vector normal;
+
+
+    private Point3D q0;
+    private Vector normal;
 
     //creates the normal vector and inserts one of the points in q0
     public Plane(Point3D p1, Point3D p2, Point3D p3)
@@ -13,9 +15,9 @@ public class Plane implements Geometry {
         normal = null;
         //todo לבדוק אם עדכני
 
-        Vector v1 = p1.subtract(p2);
-        Vector v2 = p1.subtract(p3);
-        normal = v1.crossProduct(v2);
+        Vector v1 = p2.subtract(p1);
+        Vector v2 = p3.subtract(p1);
+        normal = v2.crossProduct(v1);
         normal.normalize();
 
 
@@ -25,6 +27,10 @@ public class Plane implements Geometry {
     {
         q0 = p;
         normal = v.normalized();
+    }
+
+    public Point3D getQ0() {
+        return q0;
     }
 
     //checks if point is in-plane, then returns the normal vector

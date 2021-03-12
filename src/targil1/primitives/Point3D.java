@@ -23,11 +23,7 @@ public class Point3D {
 
     public Point3D add(Vector Vec)
     {
-        Point3D Added = new Point3D(x.coord + Vec.head.x.coord, y.coord + Vec.head.y.coord, z.coord + Vec.head.z.coord);
-      /* x = Added.x;
-        y = Added.y;
-        z = Added.z; */
-        return Added;
+        return new Point3D(x.coord + Vec.getHead().x.coord, y.coord + Vec.getHead().y.coord, z.coord + Vec.getHead().z.coord);
     }
 
     public Vector subtract(Point3D point)

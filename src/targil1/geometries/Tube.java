@@ -6,8 +6,14 @@ import targil1.primitives.*;
 
 public class Tube implements Geometry
 {
-    Ray axisRay;
-    double radius;
+    private Ray axisRay;
+    private double radius;
+
+    public Tube(Ray AR, double R)
+    {
+        axisRay = AR;
+        radius = R;
+    }
 
     public Ray getAxisRay() {
         return axisRay;

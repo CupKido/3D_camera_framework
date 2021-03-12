@@ -5,7 +5,13 @@ import targil1.primitives.*;
 
 public class Cylinder extends Tube
 {
-    double height;
+    private double height;
+
+    public Cylinder(Ray AR, double R, double H)
+    {
+        super(AR, R);
+        height = H;
+    }
 
     public double getHeight() {
         return height;

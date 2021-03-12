@@ -3,7 +3,7 @@ package targil1.primitives;
 import java.util.Objects;
 
 public class Vector {
-    Point3D head;
+    private Point3D head;
 
     public Vector(double X, double Y, double Z)
     {
