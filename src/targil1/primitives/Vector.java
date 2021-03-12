@@ -71,6 +71,7 @@ public class Vector {
         head.z.coord * Vec.head.z.coord;
     }
 
+    //todo make sure that fits the right hand rule
     public Vector crossProduct(Vector Vec){
         try {
             return new Vector(
@@ -80,7 +81,7 @@ public class Vector {
             );
         }catch (IllegalArgumentException ex)
         {
-            throw new IllegalArgumentException("Invalid Plane - Vectors are dependable");
+            throw new IllegalArgumentException("ERROR: Invalid Plane - Vectors are dependable");
         }
 
 

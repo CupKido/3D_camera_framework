@@ -13,11 +13,18 @@ public class Plane implements Geometry {
     {
         q0 = p1;
         normal = null;
-        //todo לבדוק אם עדכני
+
 
         Vector v1 = p2.subtract(p1);
         Vector v2 = p3.subtract(p1);
-        normal = v2.crossProduct(v1);
+        try
+        {
+            normal = v2.crossProduct(v1);
+        }catch(IllegalArgumentException ex)
+        {
+            throw ex;
+        }
+
         normal.normalize();
 
 
