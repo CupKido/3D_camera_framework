@@ -21,17 +21,23 @@ public class Point3D {
         z = Z;
     }
 
+    //adds a Vector to current point
     public Point3D add(Vector Vec)
     {
         return new Point3D(x.coord + Vec.getHead().x.coord, y.coord + Vec.getHead().y.coord, z.coord + Vec.getHead().z.coord);
     }
 
+    //returns Vector from given point to current point
+    //given point = A
+    //this = B
+    // returns new Vector AB
     public Vector subtract(Point3D point)
     {
             Vector Vec = new Vector(x.coord - point.x.coord, y.coord - point.y.coord, z.coord - point.z.coord);
             return Vec;
     }
 
+    //returns distance to given point ^2
     public double distanceSquared(Point3D point3D)
     {
         return
@@ -40,10 +46,12 @@ public class Point3D {
                 (z.coord - point3D.z.coord) * (z.coord - point3D.z.coord);
     }
 
+    //returns distance to given point
     public double distance(Point3D point3D)
     {
         return Math.sqrt(this.distanceSquared(point3D));
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,6 +65,7 @@ public class Point3D {
         return Objects.hash(x, y, z);
     }
 
+    //return point as string in "(x,y,z)" format
     @Override
     public String toString() {
         return "(" +

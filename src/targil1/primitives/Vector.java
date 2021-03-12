@@ -59,6 +59,7 @@ public class Vector {
         return head.subtract(Vec.head);
     }
 
+    //return current Vector * given double
     public Vector scale(double ScaleBy)
     {
         return new Vector(head.x.coord * ScaleBy, head.y.coord * ScaleBy, head.z.coord * ScaleBy);
@@ -98,12 +99,7 @@ public class Vector {
 
     public Vector normalize(){
         double length = this.length();
-        head = new Point3D(
-                head.x.coord / length,
-                head.y.coord / length,
-                head.z.coord / length
-        );
-
+        head = this.scale(1/length()).head;
         return this;
     }
 
