@@ -9,7 +9,6 @@ class VectorTest {
     @Test
     void getHead() {
         Vector v0 = new Vector(1,2,5);
-
     }
 
     @Test
