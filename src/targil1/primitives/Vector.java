@@ -62,6 +62,10 @@ public class Vector {
     //return current Vector * given double
     public Vector scale(double ScaleBy)
     {
+        if(ScaleBy == 0)
+        {
+            throw new IllegalArgumentException("Cannot Scale by 0");
+        }
         return new Vector(head.x.coord * ScaleBy, head.y.coord * ScaleBy, head.z.coord * ScaleBy);
     }
 

@@ -22,11 +22,6 @@ class PlaneTest {
             return;
         }
         System.out.println(p0.getNormal(Point3D.ZERO));
-
-        System.out.println((vec.length()));
-        vec.normalize();
-        System.out.println((vec.length()));
-        System.out.println(vec);
     }
 
     @Test
