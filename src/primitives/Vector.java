@@ -1,4 +1,5 @@
-package targil1.primitives;
+package primitives;
+
 
 import java.util.Objects;
 
@@ -103,8 +104,12 @@ public class Vector {
     }
 
     public Vector normalize(){
+
         double length = this.length();
-        head = this.scale(1/length()).head;
+        if(length == 0){
+            throw new IllegalArgumentException("Vector Normalize Vector 0");
+        }
+        head = this.scale(1/length).head;
         return this;
     }
 

@@ -1,9 +1,12 @@
-package targil1.geometries;
+package geometries;
 
 import org.junit.jupiter.api.Test;
-import targil1.primitives.Point3D;
+import primitives.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+/**
+ * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}.
+ */
+
 
 class TriangleTest {
 

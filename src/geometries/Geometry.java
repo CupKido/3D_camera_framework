@@ -1,6 +1,6 @@
-package targil1.geometries;
+package geometries;
 
-import targil1.primitives.*;
+import primitives.*;
 
 public interface Geometry {
     Vector getNormal();

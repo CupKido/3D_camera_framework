@@ -1,10 +1,10 @@
-package targil1.geometries;
+package geometries;
 
-import targil1.primitives.Point3D;
-import targil1.primitives.Vector;
+import primitives.*;
 
 public class Triangle extends Polygon{
-    public Triangle(Point3D p1, Point3D p2, Point3D p3){
+    public Triangle(Point3D p1, Point3D p2, Point3D p3)
+    {
         super(p1,p2,p3);
     }
 

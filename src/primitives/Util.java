@@ -1,4 +1,4 @@
-package targil1.primitives;
+package primitives;
 
 /**
  * Util class is used for some internal utilities, e.g. controlling accuracy

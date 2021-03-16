@@ -1,4 +1,4 @@
-package targil1.primitives;
+package primitives;
 
 import java.util.Objects;
 

@@ -1,9 +1,8 @@
-package targil1.primitives;
+package primitives;
+
+
 
 import org.junit.jupiter.api.Test;
-import targil1.primitives.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class Point3DTest {
 

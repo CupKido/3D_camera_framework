@@ -1,4 +1,5 @@
-package targil1.primitives;
+package primitives;
+
 
 public class Ray {
 

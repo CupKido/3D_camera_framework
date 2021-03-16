@@ -1,11 +1,8 @@
-package targil1.Tests;
+package geometries;
 
 import org.junit.jupiter.api.Test;
-import targil1.geometries.Plane;
-import targil1.primitives.Point3D;
-import targil1.primitives.Vector;
-
-import static org.junit.jupiter.api.Assertions.*;
+import geometries.Plane;
+import primitives.*;
 
 class PlaneTest {
 
