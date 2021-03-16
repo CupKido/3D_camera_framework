@@ -22,7 +22,7 @@ public class Sphere implements Geometry
 
     public Vector getNormal(Point3D var1)
     {
-        return null;
+        return q0.subtract(var1).normalized();
     }
     public Vector getNormal()
     {
