@@ -52,8 +52,6 @@ public class Plane implements Geometry {
         {
             throw new IllegalArgumentException("ERROR - Point is not in Plane");
         }
-
-        //if(point != null && false);//todo צריכים לבדוק כאן (במקום הפולס) אם צריכים להחזיר את המינוס של הנורמל ואם כן אז לשנות את רז
         return normal;
 
     }

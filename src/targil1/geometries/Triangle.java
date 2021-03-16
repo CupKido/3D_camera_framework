@@ -28,13 +28,11 @@ public class Triangle extends Polygon{
         double invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
         double u = (dot11 * dot02 - dot01 * dot12) * invDenom;
         double v = (dot00 * dot12 - dot01 * dot02) * invDenom;
-
 // Check if point is in triangle
         if((u >= 0) && (v >= 0) && (u + v < 1))
         {
             return plane.getNormal(point3D);
         }
         throw new IllegalArgumentException("Point not in triangle");
-
     }
 }
