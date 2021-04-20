@@ -33,8 +33,8 @@ public class Point3D {
     // returns new Vector AB
     public Vector subtract(Point3D point)
     {
-            Vector Vec = new Vector(x.coord - point.x.coord, y.coord - point.y.coord, z.coord - point.z.coord);
-            return Vec;
+        Vector Vec = new Vector(x.coord - point.x.coord, y.coord - point.y.coord, z.coord - point.z.coord);
+        return Vec;
     }
 
     //returns distance to given point ^2
@@ -42,8 +42,8 @@ public class Point3D {
     {
         return
                 (x.coord - point3D.x.coord) * (x.coord - point3D.x.coord) +
-                (y.coord - point3D.y.coord) * (y.coord - point3D.y.coord) +
-                (z.coord - point3D.z.coord) * (z.coord - point3D.z.coord);
+                        (y.coord - point3D.y.coord) * (y.coord - point3D.y.coord) +
+                        (z.coord - point3D.z.coord) * (z.coord - point3D.z.coord);
     }
 
     //returns distance to given point

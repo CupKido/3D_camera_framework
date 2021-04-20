@@ -4,39 +4,60 @@ package primitives;
 
 import org.junit.jupiter.api.Test;
 
+import static java.lang.System.out;
+import static org.junit.jupiter.api.Assertions.*;
+
 class Point3DTest {
 
     @Test
     void add() {
-        Point3D p0 = new Point3D(0,0,0);
-        Vector v0 = new Vector(7,9,4);
-        Point3D p1 = new Point3D(7,9,4);
-        System.out.println(p0.add(v0).toString());
+
     }
 
     @Test
     void subtract() {
-        Point3D p0 = new Point3D(0,0,0);
-        Vector v0 = new Vector(7,9,4);
-        Point3D p1 = new Point3D(7,9,4);
-        System.out.println(p0.subtract(p1).toString());
+        // Test operations with points and vectors
+        Point3D p1 = new Point3D(1, 2, 3);
+        assertTrue(Point3D.ZERO.equals(p1.add(new Vector(-1, -2, -3))),"ERROR: Point + Vector does not work correctly" );
+        assertTrue(new Vector(1, 1, 1).equals(new Point3D(2, 3, 4).subtract(p1)),"ERROR: Point - Point does not work correctly");
     }
 
     @Test
     void distanceSquared() {
-        Point3D p0 = new Point3D(0,0,0);
-        Vector v0 = new Vector(7,9,4);
-        Point3D p1 = new Point3D(7,9,4);
-        System.out.println(p0.distanceSquared(p1));
+
 
     }
 
     @Test
     void distance() {
-        Point3D p0 = new Point3D(0,0,0);
-        Vector v0 = new Vector(7,9,4);
-        Point3D p1 = new Point3D(7,9,4);
-        System.out.println(p0.distance(p1));
+
     }
 
+    @org.junit.Test
+    public void testAdd() {
+    }
+
+    @org.junit.Test
+    public void testSubtract() {
+    }
+
+    @org.junit.Test
+    public void testDistanceSquared() {
+    }
+
+    @org.junit.Test
+    public void testDistance() {
+    }
+
+    @org.junit.Test
+    public void testEquals() {
+    }
+
+    @org.junit.Test
+    public void testHashCode() {
+    }
+
+    @org.junit.Test
+    public void testToString() {
+    }
 }
