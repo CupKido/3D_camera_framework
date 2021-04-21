@@ -11,6 +11,9 @@ public class Triangle extends Polygon{
 
     @Override
     public Vector getNormal(Point3D point3D) {
+        if(point3D.equals(vertices.get(0)) || point3D.equals(vertices.get(1)) || point3D.equals(vertices.get(2))){
+            return plane.getNormal(point3D);
+        }
         try {
             plane.getNormal(point3D);
         }catch (Exception ex){

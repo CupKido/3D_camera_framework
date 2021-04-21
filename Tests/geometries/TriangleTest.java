@@ -3,6 +3,8 @@ package geometries;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}.
  */
@@ -17,14 +19,13 @@ class TriangleTest {
                 new Point3D(0,5,0),
                 new Point3D(5,0,0)
         );
-        System.out.println(Tri.getNormal(new Point3D(1,1,0)));
-        try{
-            System.out.println(Tri.getNormal(new Point3D(1,1,1)));
-        }catch(Exception ex)
-        {
-            System.out.println(ex.getMessage());
-        }
+        assertThrows(IllegalArgumentException.class, () -> { Tri.getNormal(new Point3D(-1,0,0));}, "getNormal() did return even though point is not on triangle");
 
+        assertDoesNotThrow(() -> { Tri.getNormal(new Point3D(0,0,0));}, "getNormal() did not return even though point is on triangle");
+        assertDoesNotThrow(() -> { Tri.getNormal(new Point3D(1,1,0));}, "getNormal() did not return even though point is on triangle");
+        assertDoesNotThrow(() -> { Tri.getNormal(new Point3D(1,0,0));}, "getNormal() did not return even though point is on triangle");
+
+        assertEquals(Tri.plane.getNormal(), Tri.getNormal(new Point3D(0,0,0)), "getNormal() for triangle didnt work");
 
     }
 }

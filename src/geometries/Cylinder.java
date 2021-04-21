@@ -23,7 +23,28 @@ public class Cylinder extends Tube
 
     public Vector getNormal(Point3D var1)
     {
-        return null;
+        Point3D P1 = getAxisRay().getP0().add(getAxisRay().getDir().scale(height));
+        if(P1.equals(var1))
+        {
+            return getAxisRay().getDir();
+        }
+        if(getAxisRay().getP0().equals(var1)){
+            return getAxisRay().getDir().scale(-1);
+        }
+        try {
+            if (var1.subtract(P1).dotProduct(getAxisRay().getDir()) == 0) {
+                return getAxisRay().getDir().normalized();
+            }
+
+
+
+            if (var1.subtract(getAxisRay().getP0()).dotProduct(getAxisRay().getDir()) == 0) {
+                return getAxisRay().getDir().scale(-1);
+            }
+        }catch (Exception e){
+            return getAxisRay().getDir();
+        }
+        return super.getNormal(var1);
     }
     public Vector getNormal()
     {

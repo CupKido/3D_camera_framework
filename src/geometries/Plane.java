@@ -19,7 +19,7 @@ public class Plane implements Geometry {
         Vector v2 = p3.subtract(p1);
         try
         {
-            normal = v2.crossProduct(v1);
+            normal = v1.crossProduct(v2);
         }catch(IllegalArgumentException ex)
         {
             throw ex;
@@ -43,7 +43,8 @@ public class Plane implements Geometry {
     //checks if point is in-plane, then returns the normal vector
     public Vector getNormal(Point3D point)
     {
-        if(point == null)
+
+        if(point == null || point.equals(q0))
         {
             return normal;
         }
