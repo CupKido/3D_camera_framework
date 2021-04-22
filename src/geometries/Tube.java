@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Tube implements Geometry
@@ -47,7 +48,7 @@ public class Tube implements Geometry
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public LinkedList<Point3D> findIntersections(Ray ray) {
         return null;
     }
 }

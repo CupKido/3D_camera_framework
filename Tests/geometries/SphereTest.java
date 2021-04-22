@@ -2,10 +2,9 @@ package geometries;
 
 import org.junit.jupiter.api.Test;
 import primitives.*;
+import primitives.Vector;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,6 +12,7 @@ class SphereTest {
 
     Sphere s0 = new Sphere(new Point3D( 0,0,0), 3);
     Sphere s1 = new Sphere(new Point3D( 5,5,5), 5);
+    LinkedList<Point3D> L = new LinkedList<Point3D>();
 
     @Test
     void getNormal() {
@@ -24,13 +24,33 @@ class SphereTest {
     @Test
     void findIntersections() {
         // ray in circle
+        L.clear();
+        L.add(new Point3D(5,5,0));
+        assertEquals(L, s1.findIntersections(new Ray(new Point3D(5,5,4), new Vector(0,0,-1))), "ERROR: FindIntersections() does not work well.");
 
         // ray on circle and goes in
+        L.clear();
+        L.add(new Point3D(5,5,0));
+        assertEquals(L, s1.findIntersections(new Ray(new Point3D(5,5,10), new Vector(0,0,-1))), "ERROR: FindIntersections() does not work well.");
+
         // ray on circle and goes out
+        L.clear();
+        assertEquals(L, s1.findIntersections(new Ray(new Point3D(5,5,0), new Vector(0,0,-1))) , "ERROR: FindIntersections() does not work well.");
+
         // ray out from circle and touches it
+        L.clear();
+        assertEquals(L, s1.findIntersections(new Ray(new Point3D(0,0,0), new Vector(1,1,0))) , "ERROR: FindIntersections() does not work well.");
+
         // ray out from circle and gets inside it
-        assertEquals(Arrays.asList(new Point3D(5,5,10), new Point3D(5,5,0)), s1.findIntersections(new Ray(new Point3D(5,5,11), new Vector(0,0,-1))), "ERROR: FindIntersections() does not work well.");
+        L.clear();
+
+        L.add(new Point3D(5,5,10));
+        L.add(new Point3D(5,5,0));
+        assertEquals(L, s1.findIntersections(new Ray(new Point3D(5,5,11), new Vector(0,0,-1))), "ERROR: FindIntersections() does not work well.");
+
         // ray out from circle and does not touch it
+        L.clear();
+        assertEquals(L, s1.findIntersections(new Ray(new Point3D(5,5,-1), new Vector(0,0,-1))) , "ERROR: FindIntersections() does not work well.");
 
     }
 }

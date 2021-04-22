@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Sphere implements Geometry
@@ -44,7 +45,26 @@ public class Sphere implements Geometry
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        return null;
+    public LinkedList<Point3D> findIntersections(Ray ray) {
+        LinkedList<Point3D> L = new LinkedList<Point3D>();
+        Vector u = q0.subtract(ray.getP0());
+        double Tm = ray.getDir().dotProduct(u);
+        double d = Math.sqrt(u.length() * u.length() - (Tm * Tm));
+        if(d > radius){
+            L.clear();
+            return L;
+        }
+        double Th = Math.sqrt(radius * radius - (d * d));
+        double T1 = Util.alignZero(Tm - Th);
+        double T2 = Util.alignZero(Tm + Th);
+        if(T1 > 0)
+        {
+            L.add(ray.getP0().add(ray.getDir().scale(T1)));
+        }
+        if(T2 > 0)
+        {
+            L.add(ray.getP0().add(ray.getDir().scale(T2)));
+        }
+        return L;
     }
 }

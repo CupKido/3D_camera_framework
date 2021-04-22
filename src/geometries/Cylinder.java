@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Cylinder extends Tube
@@ -54,7 +55,7 @@ public class Cylinder extends Tube
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public LinkedList<Point3D> findIntersections(Ray ray) {
         return null;
     }
 }

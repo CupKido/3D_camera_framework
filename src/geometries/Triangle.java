@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Triangle extends Polygon{
@@ -42,7 +43,7 @@ public class Triangle extends Polygon{
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public LinkedList<Point3D> findIntersections(Ray ray) {
         return null;
     }
 }
