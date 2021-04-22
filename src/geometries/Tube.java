@@ -50,6 +50,5 @@ public class Tube implements Geometry
     @Override
     public LinkedList<Point3D> findIntersections(Ray ray) {
         return null;
-
     }
 }
