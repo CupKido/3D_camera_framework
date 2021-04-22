@@ -28,4 +28,9 @@ class TriangleTest {
         assertEquals(Tri.plane.getNormal(), Tri.getNormal(new Point3D(0,0,0)), "getNormal() for triangle didnt work");
 
     }
+
+    @Test
+    void findIntersections() {
+
+    }
 }

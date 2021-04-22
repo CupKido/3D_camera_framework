@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 public class Cylinder extends Tube
 {
     private double height;
@@ -48,6 +50,11 @@ public class Cylinder extends Tube
     }
     public Vector getNormal()
     {
+        return null;
+    }
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
         return null;
     }
 }

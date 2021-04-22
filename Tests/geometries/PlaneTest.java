@@ -23,4 +23,8 @@ class PlaneTest {
     @Test
     void testGetNormal() {
     }
+
+    @Test
+    void findIntersections() {
+    }
 }

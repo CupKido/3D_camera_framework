@@ -20,4 +20,9 @@ class TubeTest {
         assertEquals(V0, T0.getNormal(new Point3D(0, 7, 3)), "Tube's getNormal() is not working properly");
         assertEquals(T0.getAxisRay().getDir().scale(-1), T0.getNormal(new Point3D(0,0,1)), "First Base Does not work in getNormal()");
     }
+
+    @Test
+    void findIntersections() {
+
+    }
 }

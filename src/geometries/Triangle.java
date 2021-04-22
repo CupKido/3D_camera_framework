@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 public class Triangle extends Polygon{
     public Triangle(Point3D p1, Point3D p2, Point3D p3)
     {
@@ -37,5 +39,10 @@ public class Triangle extends Polygon{
             return plane.getNormal(point3D);
         }
         throw new IllegalArgumentException("Point not in triangle");
+    }
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        return null;
     }
 }
