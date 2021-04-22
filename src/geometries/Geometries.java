@@ -21,7 +21,18 @@ public class Geometries implements Intersectable{
         L.addAll(Arrays.asList(geometries));
     }
     @Override
-    public LinkedList<Point3D> findIntersections(Ray ray) {
-        return null;
+    public LinkedList<Point3D> findIntersections(Ray ray)
+    {
+        LinkedList<Point3D> res = new LinkedList<Point3D>();
+        LinkedList<Point3D> intersects;
+        for (Intersectable G:
+             L) {
+            intersects = G.findIntersections(ray);
+            if(intersects != null){
+            res.addAll(intersects);
+            }
+        }
+        if(res.isEmpty()) return null;
+        return res;
     }
 }

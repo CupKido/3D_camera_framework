@@ -33,31 +33,31 @@ class Point3DTest {
 
     }
 
-    @org.junit.Test
+    @Test
     public void testAdd() {
     }
 
-    @org.junit.Test
+    @Test
     public void testSubtract() {
     }
 
-    @org.junit.Test
+    @Test
     public void testDistanceSquared() {
     }
 
-    @org.junit.Test
+    @Test
     public void testDistance() {
     }
 
-    @org.junit.Test
+    @Test
     public void testEquals() {
     }
 
-    @org.junit.Test
+    @Test
     public void testHashCode() {
     }
 
-    @org.junit.Test
+    @Test
     public void testToString() {
     }
 }

@@ -52,7 +52,7 @@ public class Plane implements Geometry {
             return normal;
         }
         Vector inPlane = q0.subtract(point);
-        if(inPlane.dotProduct(normal) != 0)
+        if(!Util.isZero(inPlane.dotProduct(normal)))
         {
             throw new IllegalArgumentException("ERROR - Point is not in Plane");
         }
