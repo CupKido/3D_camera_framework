@@ -27,6 +27,11 @@ class CylinderTest {
 
     @Test
     void findIntersections() {
-
+        // point in cylinder
+        // point on cylinder and gos out
+        // point on cylinder and gos in
+        // point out of cylinder and does not touch it
+        // point out of cylinder touches it
+        // point out of cylinder and gos inside it
     }
 }
