@@ -42,11 +42,11 @@ class PlaneTest {
 
         //ray parallel to plane in plane
         L.clear();
-        assertEquals(L, P2.findIntersections(new Ray(new Point3D(5,5,5), new Vector(0,1,0))),"ERROR: findIntersections() Does not work well.");
+        assertEquals(null, P2.findIntersections(new Ray(new Point3D(5,5,5), new Vector(0,1,0))),"ERROR: findIntersections() Does not work well.");
 
         //ray parallel to plane in outside
         L.clear();
-        assertEquals(L, P2.findIntersections(new Ray(new Point3D(5,5,4), new Vector(0,1,0))),"ERROR: findIntersections() Does not work well.");
+        assertEquals(null, P2.findIntersections(new Ray(new Point3D(5,5,4), new Vector(0,1,0))),"ERROR: findIntersections() Does not work well.");
 
         //ray is orthogonal to the plane
         L.clear();
@@ -55,10 +55,10 @@ class PlaneTest {
 
         //ray starts on plane to out
         L.clear();
-        assertEquals(L, P2.findIntersections(new Ray(new Point3D(5,4,5), new Vector(0,0,1))),"ERROR: findIntersections() Does not work well.");
+        assertEquals(null, P2.findIntersections(new Ray(new Point3D(5,4,5), new Vector(0,0,1))),"ERROR: findIntersections() Does not work well.");
 
         //ray q0 = plane q0
         L.clear();
-        assertEquals(L, P2.findIntersections(new Ray(new Point3D(5,5,5), new Vector(0,1,1))), "ERROR: findIntersections() Does not work well.");
+        assertEquals(null, P2.findIntersections(new Ray(new Point3D(5,5,5), new Vector(0,1,1))), "ERROR: findIntersections() Does not work well.");
     }
 }

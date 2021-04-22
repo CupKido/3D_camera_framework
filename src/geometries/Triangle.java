@@ -45,14 +45,13 @@ public class Triangle extends Polygon{
     @Override
     public LinkedList<Point3D> findIntersections(Ray ray) {
         LinkedList<Point3D> L = plane.findIntersections(ray);
-        if(L.isEmpty()){
-            return L;
+        if(L == null){
+            return null;
         }
         try{
             getNormal(L.get(0));
         }catch(Exception e){
-            L.clear();
-            return L;
+            return null;
         }
         return L;
     }

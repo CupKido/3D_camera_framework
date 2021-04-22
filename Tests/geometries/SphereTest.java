@@ -35,22 +35,21 @@ class SphereTest {
 
         // ray on circle and goes out
         L.clear();
-        assertEquals(L, s1.findIntersections(new Ray(new Point3D(5,5,0), new Vector(0,0,-1))) , "ERROR: FindIntersections() does not work well.");
+        assertEquals(null, s1.findIntersections(new Ray(new Point3D(5,5,0), new Vector(0,0,-1))) , "ERROR: FindIntersections() does not work well.");
 
         // ray out from circle and touches it
         L.clear();
-        assertEquals(L, s1.findIntersections(new Ray(new Point3D(0,0,0), new Vector(1,1,0))) , "ERROR: FindIntersections() does not work well.");
+        assertEquals(null, s1.findIntersections(new Ray(new Point3D(0,0,0), new Vector(1,1,0))) , "ERROR: FindIntersections() does not work well.");
 
         // ray out from circle and gets inside it
         L.clear();
-
         L.add(new Point3D(5,5,10));
         L.add(new Point3D(5,5,0));
         assertEquals(L, s1.findIntersections(new Ray(new Point3D(5,5,11), new Vector(0,0,-1))), "ERROR: FindIntersections() does not work well.");
 
         // ray out from circle and does not touch it
         L.clear();
-        assertEquals(L, s1.findIntersections(new Ray(new Point3D(5,5,-1), new Vector(0,0,-1))) , "ERROR: FindIntersections() does not work well.");
+        assertEquals(null, s1.findIntersections(new Ray(new Point3D(5,5,-1), new Vector(0,0,-1))) , "ERROR: FindIntersections() does not work well.");
 
     }
 }

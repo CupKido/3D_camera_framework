@@ -44,29 +44,30 @@ class TriangleTest {
 
         //Ray parallels to Triangle
         L.clear();
-        assertEquals(L, T1.findIntersections(new Ray(new Point3D(-1,0,0), new Vector(1,1,0))), "ERROR: findIntersections() Does not work well.");
+        assertEquals(null, T1.findIntersections(new Ray(new Point3D(-1,0,0), new Vector(1,1,0))), "ERROR: findIntersections() Does not work well.");
 
         //Ray does not intersects with Triangle and is not parallel
         L.clear();
-        assertEquals(L, T1.findIntersections(new Ray(new Point3D(3,3,0), new Vector(-1,0,-1))), "ERROR: findIntersections() Does not work well.");
+        assertEquals(null, T1.findIntersections(new Ray(new Point3D(3,3,0), new Vector(-1,0,-1))), "ERROR: findIntersections() Does not work well.");
 
         //Ray intersects with vertex
         L.clear();
         L.add(new Point3D(5,5,5));
         assertEquals(L, T1.findIntersections(new Ray(new Point3D(1,1,1), new Vector(1,1,1))), "ERROR: findIntersections() Does not work well.");
+
         //Ray starts from triangle and goes inside (Parallel)
         L.clear();
-        assertEquals(L, T1.findIntersections(new Ray(new Point3D(4,4,5), new Vector(1,1,0))), "ERROR: findIntersections() Does not work well.");
+        assertEquals(null, T1.findIntersections(new Ray(new Point3D(4,4,5), new Vector(1,1,0))), "ERROR: findIntersections() Does not work well.");
         //Ray starts from triangle and goes outside
         L.clear();
-        assertEquals(L, T1.findIntersections(new Ray(new Point3D(4,4,5), new Vector(1,0,1))), "ERROR: findIntersections() Does not work well.");
+        assertEquals(null, T1.findIntersections(new Ray(new Point3D(4,4,5), new Vector(1,0,1))), "ERROR: findIntersections() Does not work well.");
 
         //Ray starts from triangle and is orthogonal
         L.clear();
-        assertEquals(L, T1.findIntersections(new Ray(new Point3D(4,4,5), new Vector(0,0,1))), "ERROR: findIntersections() Does not work well.");
+        assertEquals(null, T1.findIntersections(new Ray(new Point3D(4,4,5), new Vector(0,0,1))), "ERROR: findIntersections() Does not work well.");
 
         //Ray starts from vertex
         L.clear();
-        assertEquals(L, T1.findIntersections(new Ray(new Point3D(5,5,5), new Vector(1,0,1))), "ERROR: findIntersections() Does not work well.");
+        assertEquals(null, T1.findIntersections(new Ray(new Point3D(5,5,5), new Vector(1,0,1))), "ERROR: findIntersections() Does not work well.");
     }
 }

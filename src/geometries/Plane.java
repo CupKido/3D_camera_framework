@@ -72,17 +72,17 @@ public class Plane implements Geometry {
         L.clear();
 
         if(Util.isZero(normal.dotProduct(ray.getDir()))){
-            return L;
+            return null;
         }
         try{
             double t = q0.subtract(ray.getP0()).dotProduct(normal);
             t = t / normal.dotProduct(ray.getDir());
             if(Util.isZero(t)){
-                return L;
+                return null;
             }
             L.add(ray.getP0().add(ray.getDir().scale(t)));
         }catch (Exception e){
-            return L;
+            return null;
         }
         return L;
     }

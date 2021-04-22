@@ -50,9 +50,8 @@ public class Sphere implements Geometry
         Vector u = q0.subtract(ray.getP0());
         double Tm = ray.getDir().dotProduct(u);
         double d = Math.sqrt(u.length() * u.length() - (Tm * Tm));
-        if(d > radius){
-            L.clear();
-            return L;
+        if(d >= radius){
+            return null;
         }
         double Th = Math.sqrt(radius * radius - (d * d));
         double T1 = Util.alignZero(Tm - Th);
@@ -64,6 +63,9 @@ public class Sphere implements Geometry
         if(T2 > 0)
         {
             L.add(ray.getP0().add(ray.getDir().scale(T2)));
+        }
+        if(L.isEmpty()){
+            return null;
         }
         return L;
     }
