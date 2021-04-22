@@ -58,11 +58,11 @@ public class Sphere implements Geometry
         double T2 = Util.alignZero(Tm + Th);
         if(T1 > 0)
         {
-            L.add(ray.getP0().add(ray.getDir().scale(T1)));
+            L.add(ray.getPoint(T1));
         }
         if(T2 > 0)
         {
-            L.add(ray.getP0().add(ray.getDir().scale(T2)));
+            L.add(ray.getPoint(T2));
         }
         if(L.isEmpty()){
             return null;

@@ -24,4 +24,13 @@ public class Ray {
     public String toString() {
         return p0.toString() + " x" + dir.toString();
     }
+
+    public Point3D getPoint(double t){
+        try {
+            return p0.add(dir.scale(t));
+        }catch (IllegalArgumentException e)
+        {
+            throw e;
+        }
+    }
 }

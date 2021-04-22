@@ -80,7 +80,7 @@ public class Plane implements Geometry {
             if(Util.isZero(t)){
                 return null;
             }
-            L.add(ray.getP0().add(ray.getDir().scale(t)));
+            L.add(ray.getPoint(t));
         }catch (Exception e){
             return null;
         }
