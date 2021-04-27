@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 import geometries.*;
 import primitives.*;
 
+import java.awt.*;
+import java.util.LinkedList;
+
 /**
  * Testing Polygons
  * 
@@ -91,6 +94,24 @@ public class PolygonTests {
     }
     @Test
     void findIntersections() {
+        LinkedList<Point3D> L = new LinkedList<Point3D>();
+        Polygon P1 = new Polygon(new Point3D(3,-3,1),new Point3D(-2,2,1),new Point3D(-5,-5,1),new Point3D(0,-2,1));
 
+        //ray intersects one with polygon
+        L.clear();
+        L.add(new Point3D(-1,-2,1));
+        assertEquals(L, P1.findIntersections(new Ray(new Point3D(-1,-1,0), new Vector(0,-1,1))));
+
+        //ray is parallel to Polygon and inside of it
+        L.clear();
+        assertNull(P1.findIntersections(new Ray(new Point3D(-1,-2,1), new Vector(0,-1,0))));
+
+        //ray is parallel to Polygon and outside of it
+        L.clear();
+        assertNull(P1.findIntersections(new Ray(new Point3D(-1,-2,0), new Vector(0,-1,0))));
+
+        //ray does not intersects with polygon
+        L.clear();
+        assertNull(P1.findIntersections(new Ray(new Point3D(2,2,0), new Vector(0,-1,1))));
     }
 }

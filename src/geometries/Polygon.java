@@ -92,6 +92,51 @@ public class Polygon implements Geometry {
 
 	@Override
 	public LinkedList<Point3D> findIntersections(Ray ray) {
+		LinkedList<Point3D> L = new LinkedList<Point3D>();
+		L = plane.findIntersections(ray);
+		if(L == null)
+		{
+			return null;
+		}
+		boolean inside = true;
+		Vector firstVn = null;
+		Vector firstN = null;
+		Vector LastVn = null;
+		double lastVN = 0;
+		double current = 0;
+
+		for (Point3D P:
+			 vertices) {
+			Vector Vn = P.subtract(ray.getP0());
+			if(firstVn != null && firstN == null)
+			{
+				firstN = firstVn.crossProduct(Vn).normalized();
+			}
+			if(firstVn == null)
+			{
+				firstVn = Vn;
+			}
+			if (LastVn != null){
+				Vector N = LastVn.crossProduct(Vn).normalized();
+				if(lastVN == 0)
+				{
+					lastVN = ray.getDir().dotProduct(N);
+				}
+				current = ray.getDir().dotProduct(N);
+				if(lastVN == 0 || lastVN > 0 && current < 0 || lastVN < 0 && current > 0)
+				{
+					inside = false;
+					break;
+				}
+
+			}
+			LastVn = Vn;
+
+		}
+		if(inside == true)
+		{
+			return L;
+		}
 		return null;
 	}
 }
