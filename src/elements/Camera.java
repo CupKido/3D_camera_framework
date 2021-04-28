@@ -11,6 +11,7 @@ public class Camera {
     double VPHeight = 0; //View Plane height
     double VPWidth = 0; //View Plane width
     double PDistance = 0; //Plane Distance
+    double MoveSize = 1;
     public Camera(Point3D position, Vector to, Vector up) {
         if(position == null || to == null || up == null)
         {
@@ -28,7 +29,53 @@ public class Camera {
         return Right;
     }
 
+    public void setMovementSize(double MS){
+        if(MS <= 0)
+        {
+            throw new IllegalArgumentException("ERROR: Movement size must be more than 0.");
+        }
+        MoveSize = MS;
+    }
 
+    public void MoveForward(double times){
+        if(times == 0)
+        {
+            return;
+        }
+        Position = Position.add(To.scale(MoveSize * times));
+    }
+
+    public void MoveBackwards(double times){
+        MoveForward(times * (-1));
+    }
+
+    public void MoveRight(double times){
+        if(times == 0)
+        {
+            return;
+        }
+        Position = Position.add(Right.scale(MoveSize * times));
+    }
+
+    public void MoveLeft(double times){
+        MoveRight(times * (-1));
+    }
+
+    public void MoveUp(double times){
+        if(times == 0)
+        {
+            return;
+        }
+        Position = Position.add(Up.scale(MoveSize * times));
+    }
+
+    public void MoveDown(double times){
+        MoveUp(times * (-1));
+    }
+
+    public void LookRight(double degree){
+
+    }
 
     public Vector getTo() {
         return To;

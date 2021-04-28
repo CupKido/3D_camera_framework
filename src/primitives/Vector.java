@@ -115,4 +115,10 @@ public class Vector {
     public Vector normalized(){
         return (new Vector(head)).normalize();
     }
+
+    public Vector getByDegree(double degree)
+    {
+        degree = degree % 360;
+        return null;
+    }
 }
