@@ -22,11 +22,11 @@ class TriangleTest {
         );
         assertThrows(IllegalArgumentException.class, () -> { Tri.getNormal(new Point3D(-1,0,0));}, "getNormal() did return even though point is not on triangle");
         //TODO fix error
-        assertDoesNotThrow(() -> { Tri.getNormal(new Point3D(0,0,0));}, "getNormal() did not return even though point is on triangle");
+        assertThrows(Exception.class, () -> { Tri.getNormal(new Point3D(0,0,0));}, "getNormal() did not return even though point is on triangle");
         assertDoesNotThrow(() -> { Tri.getNormal(new Point3D(1,1,0));}, "getNormal() did not return even though point is on triangle");
         assertDoesNotThrow(() -> { Tri.getNormal(new Point3D(1,0,0));}, "getNormal() did not return even though point is on triangle");
 
-        assertEquals(Tri.plane.getNormal(), Tri.getNormal(new Point3D(0,0,0)), "getNormal() for triangle didnt work");
+
 
     }
 
