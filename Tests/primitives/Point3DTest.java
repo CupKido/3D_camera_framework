@@ -30,7 +30,9 @@ class Point3DTest {
 
     @Test
     void distance() {
-
+        Point3D p1 = new Point3D(0,0,0);
+        Point3D p2 = new Point3D(0,0,9);
+        assertEquals(9, p1.distance(p2), "ERROR: distance() for points doesnt work well.");
     }
 
     @Test

@@ -68,6 +68,7 @@ public class Plane implements Geometry {
 
     @Override
     public LinkedList<Point3D> findIntersections(Ray ray) {
+
         LinkedList<Point3D> L = new LinkedList<Point3D>();
         L.clear();
 

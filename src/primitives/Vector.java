@@ -75,7 +75,6 @@ public class Vector {
         head.z.coord * Vec.head.z.coord;
     }
 
-    //todo make sure that fits the right hand rule
     public Vector crossProduct(Vector Vec){
         try {
             return new Vector(

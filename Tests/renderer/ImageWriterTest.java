@@ -17,7 +17,7 @@ class ImageWriterTest {
         double reshetY = Image.getNy()/10;
         for(int j = 0; j < 500 ; j++) {
             for(int i = 0; i < 800 ; i++){
-                if((i % reshetX == 0 && i != 0)|| (j % reshetY == 0 && j != 0)){
+                if((i % reshetX == 0)|| (j % reshetY == 0)){
                     Image.writePixel(i, j, white);
                 }
                 else{

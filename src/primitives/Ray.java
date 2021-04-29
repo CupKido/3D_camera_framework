@@ -1,6 +1,8 @@
 package primitives;
 
 
+import java.util.LinkedList;
+
 public class Ray {
 
 
@@ -32,5 +34,26 @@ public class Ray {
         {
             throw e;
         }
+    }
+
+    public Point3D findClosestPoint(LinkedList<Point3D> intersections){
+        if(intersections == null)
+        {
+            return null;
+        }
+
+        Point3D ClosestPoint = intersections.getFirst();
+        double shortestD = p0.distanceSquared(ClosestPoint);
+        double currentD;
+
+        for (Point3D point: intersections) {
+            currentD = p0.distanceSquared(point);
+            if(currentD < shortestD)
+            {
+                shortestD = currentD;
+                ClosestPoint = point;
+            }
+        }
+        return ClosestPoint;
     }
 }
