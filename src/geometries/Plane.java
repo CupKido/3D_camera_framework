@@ -67,28 +67,6 @@ public class Plane extends Geometry {
     }
 
     @Override
-    public LinkedList<Point3D> findIntersections(Ray ray) {
-
-        LinkedList<Point3D> L = new LinkedList<Point3D>();
-        L.clear();
-
-        if(Util.isZero(normal.dotProduct(ray.getDir()))){
-            return null;
-        }
-        try{
-            double t = q0.subtract(ray.getP0()).dotProduct(normal);
-            t = t / normal.dotProduct(ray.getDir());
-            if(Util.isZero(t)){
-                return null;
-            }
-            L.add(ray.getPoint(t));
-        }catch (Exception e){
-            return null;
-        }
-        return L;
-    }
-
-    @Override
     public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
         LinkedList<GeoPoint> L = new LinkedList<GeoPoint>();
         L.clear();

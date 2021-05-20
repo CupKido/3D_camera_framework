@@ -5,9 +5,17 @@ import primitives.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public interface Intersectable {
-    LinkedList<Point3D> findIntersections(Ray ray); //Finds intersections between a ray and a body
+    
+    default List<Point3D> findIntersections(Ray ray) {
+        var geoList = findGeoIntersections(ray);
+        return geoList == null ? null
+                : geoList.stream().map(gp -> gp.point).collect(Collectors.toList());
+    }
+
+    //Finds intersections between a ray and a body
     LinkedList<GeoPoint> findGeoIntersections(Ray ray);
 
     public static class GeoPoint {

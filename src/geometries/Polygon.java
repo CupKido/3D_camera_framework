@@ -89,11 +89,11 @@ public class Polygon extends Geometry {
 	public Vector getNormal() {
 		return plane.getNormal();
 	}
-
+/*
 	@Override
 	public LinkedList<Point3D> findIntersections(Ray ray) {
 		LinkedList<Point3D> L = new LinkedList<Point3D>();
-		L = plane.findIntersections(ray);
+		L = plane.findGeoIntersections(ray);
 		if(L == null)
 		{
 			return null;
@@ -139,7 +139,7 @@ public class Polygon extends Geometry {
 		}
 		return null;
 	}
-
+*/
 	@Override
 	public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
 		return null;

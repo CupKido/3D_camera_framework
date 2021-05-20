@@ -121,10 +121,10 @@ class IntegrationTests {
         int res = 0;
         int nX = nx;
         int nY = ny;
-        LinkedList<Point3D> temp = new LinkedList<Point3D>();
+        LinkedList<Intersectable.GeoPoint> temp = new LinkedList<Intersectable.GeoPoint>();
         for (int i = 0; i < nX; ++i)
             for (int j = 0; j < nY; ++j) {
-                temp = G.findIntersections(C.constructRayThroughPixel(nX, nY, i -1, j -1));
+                temp = G.findGeoIntersections(C.constructRayThroughPixel(nX, nY, i -1, j -1));
                 if (temp != null)
                     res += temp.size();
             }

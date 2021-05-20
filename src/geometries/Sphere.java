@@ -44,31 +44,6 @@ public class Sphere extends Geometry
         return null;
     }
 
-    @Override
-    public LinkedList<Point3D> findIntersections(Ray ray) {
-        LinkedList<Point3D> L = new LinkedList<Point3D>();
-        Vector u = q0.subtract(ray.getP0());
-        double Tm = ray.getDir().dotProduct(u);
-        double d = Math.sqrt(u.length() * u.length() - (Tm * Tm));
-        if(d >= radius){
-            return null;
-        }
-        double Th = Math.sqrt(radius * radius - (d * d));
-        double T1 = Util.alignZero(Tm - Th);
-        double T2 = Util.alignZero(Tm + Th);
-        if(T1 > 0)
-        {
-            L.add(ray.getPoint(T1));
-        }
-        if(T2 > 0)
-        {
-            L.add(ray.getPoint(T2));
-        }
-        if(L.isEmpty()){
-            return null;
-        }
-        return L;
-    }
 
     @Override
     public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {

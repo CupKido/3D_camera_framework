@@ -20,20 +20,6 @@ public class Geometries implements Intersectable{
     public void add(Intersectable... geometries){
         L.addAll(Arrays.asList(geometries));
     }
-    @Override
-    public LinkedList<Point3D> findIntersections(Ray ray)
-    {
-        LinkedList<Point3D> res = new LinkedList<Point3D>();
-        LinkedList<Point3D> intersects;
-        for (Intersectable G : L) {
-            intersects = G.findIntersections(ray);
-            if(intersects != null){
-            res.addAll(intersects);
-            }
-        }
-        if(res.isEmpty()) return null;
-        return res;
-    }
 
     @Override
     public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
