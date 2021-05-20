@@ -5,7 +5,7 @@ import primitives.Util;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Plane implements Geometry {
+public class Plane extends Geometry {
 
 
     private Point3D q0;
@@ -82,6 +82,27 @@ public class Plane implements Geometry {
                 return null;
             }
             L.add(ray.getPoint(t));
+        }catch (Exception e){
+            return null;
+        }
+        return L;
+    }
+
+    @Override
+    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
+        LinkedList<GeoPoint> L = new LinkedList<GeoPoint>();
+        L.clear();
+
+        if(Util.isZero(normal.dotProduct(ray.getDir()))){
+            return null;
+        }
+        try{
+            double t = q0.subtract(ray.getP0()).dotProduct(normal);
+            t = t / normal.dotProduct(ray.getDir());
+            if(Util.isZero(t)){
+                return null;
+            }
+            L.add(new GeoPoint(this, ray.getPoint(t)));
         }catch (Exception e){
             return null;
         }

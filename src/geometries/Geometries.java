@@ -34,4 +34,18 @@ public class Geometries implements Intersectable{
         if(res.isEmpty()) return null;
         return res;
     }
+
+    @Override
+    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
+        LinkedList<GeoPoint> res = new LinkedList<GeoPoint>();
+        LinkedList<GeoPoint> intersects;
+        for (Intersectable G : L) {
+            intersects = G.findGeoIntersections(ray);
+            if(intersects != null){
+                res.addAll(intersects);
+            }
+        }
+        if(res.isEmpty()) return null;
+        return res;
+    }
 }

@@ -11,7 +11,7 @@ import static primitives.Util.*;
  *
  * @author Dan
  */
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
 	/**
 	 * List of polygon's vertices
 	 */
@@ -137,6 +137,11 @@ public class Polygon implements Geometry {
 		{
 			return L;
 		}
+		return null;
+	}
+
+	@Override
+	public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
 		return null;
 	}
 }

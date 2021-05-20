@@ -9,7 +9,6 @@ import java.util.MissingResourceException;
 
 public class Render {
     ImageWriter imageWriter;
-    Scene scene;
     public Camera camera;
     RayTracerBasic rayTracerBasic;
 
@@ -18,17 +17,12 @@ public class Render {
         return this;
     }
 
-    public Render setScene(Scene scene) {
-        this.scene = scene;
-        return this;
-    }
-
     public Render setCamera(Camera camera) {
         this.camera = camera;
         return this;
     }
 
-    public Render setRayTracerBasic(RayTracerBasic rayTracerBasic) {
+    public Render setRayTracer(RayTracerBasic rayTracerBasic) {
         this.rayTracerBasic = rayTracerBasic;
         return this;
     }
@@ -36,9 +30,6 @@ public class Render {
     public void renderImage() {
         if (imageWriter == null) {
             throw new MissingResourceException("ERROR: imageWriter resource is missing in renderer.", "ImageWriter", "");
-        }
-        if (scene == null) {
-            throw new MissingResourceException("ERROR: scene resource is missing in renderer.", "Scene", "");
         }
         if (camera == null) {
             throw new MissingResourceException("ERROR: camera resource is missing in renderer.", "Camera", "");

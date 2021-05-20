@@ -5,7 +5,7 @@ import primitives.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Tube implements Geometry
+public class Tube extends Geometry
 {
     private Ray axisRay;
     private double radius;
@@ -49,6 +49,11 @@ public class Tube implements Geometry
 
     @Override
     public LinkedList<Point3D> findIntersections(Ray ray) {
+        return null;
+    }
+
+    @Override
+    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
         return null;
     }
 }

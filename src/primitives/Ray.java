@@ -1,6 +1,9 @@
 package primitives;
 
 
+import geometries.Intersectable.GeoPoint;
+
+import java.awt.geom.GeneralPath;
 import java.util.LinkedList;
 
 public class Ray {
@@ -48,6 +51,27 @@ public class Ray {
 
         for (Point3D point: intersections) {
             currentD = p0.distanceSquared(point);
+            if(currentD < shortestD)
+            {
+                shortestD = currentD;
+                ClosestPoint = point;
+            }
+        }
+        return ClosestPoint;
+    }
+
+    public GeoPoint findClosestGeoPoint(LinkedList<GeoPoint> intersections){
+        if(intersections == null || intersections.isEmpty())
+        {
+            return null;
+        }
+
+        GeoPoint ClosestPoint = intersections.getFirst();
+        double shortestD = p0.distanceSquared(ClosestPoint.point);
+        double currentD;
+
+        for (GeoPoint point: intersections) {
+            currentD = p0.distanceSquared(point.point);
             if(currentD < shortestD)
             {
                 shortestD = currentD;
