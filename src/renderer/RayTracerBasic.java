@@ -1,6 +1,8 @@
 package renderer;
 
+import elements.LightSource;
 import primitives.Color;
+import primitives.Material;
 import primitives.Point3D;
 import primitives.Ray;
 import scene.Scene;
@@ -20,11 +22,26 @@ public class RayTracerBasic extends RayTracerBase{
             return scene.background;
         }
         GeoPoint closest = R.findClosestGeoPoint(L);
-        return calcColor(closest);
+        return calcColor(closest, R);
     }
 
-    public Color calcColor(GeoPoint P)
+    public Color calcColor(GeoPoint P, Ray ray)
     {
-        return P.geometry.getEmission().add(scene.ambientlight.getIntensity());
+        Color res = P.geometry.getEmission().add(scene.ambientlight.getIntensity());
+
+
+
+
+        return res;
+    }
+
+    private Color calcLocalEffects(GeoPoint P, Ray ray){
+        Color res = Color.BLACK;
+        Material mat = P.geometry.getMaterial();
+        for (LightSource light:
+                scene.lights) {
+            res += mat.getkD() * Math.abs(light.getL(P.point).dotProduct(P.geometry.getNormal(P.point))) +
+                   mat.getkS() * Math.max(0, ray.getDir().scale(-1).dotProduct())
+        }
     }
 }
