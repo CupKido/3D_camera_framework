@@ -10,7 +10,7 @@ public class DirectionalLight extends Light implements LightSource{
 
     public DirectionalLight(Color _intensity, Vector _direction){
         super(_intensity);
-        direction = _direction;
+        direction = _direction.normalized();
     }
 
     @Override
