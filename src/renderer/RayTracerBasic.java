@@ -22,14 +22,8 @@ public class RayTracerBasic extends RayTracerBase{
         return calcColor(closest, R);
     }
 
-    public Color calcColor(GeoPoint P, Ray ray)
-    {
-       return P.geometry.getEmission().add(scene.ambientlight.getIntensity()).add(calcLocalEffects(P, ray));
-
-
-
-
-
+    public Color calcColor(GeoPoint P, Ray ray) {
+        return P.geometry.getEmission().add(scene.ambientlight.getIntensity(), calcLocalEffects(P, ray));
     }
 
     private Color calcLocalEffects(GeoPoint P, Ray ray){
@@ -38,22 +32,33 @@ public class RayTracerBasic extends RayTracerBase{
         double nv = Util.alignZero(n.dotProduct(v));
         if(nv == 0) return Color.BLACK;
         Material mat = P.geometry.getMaterial();
-        int Shininess = mat.getnShininess();
-        double kd = mat.getkD(), ks = mat.getkS();
-
+        double nl = 0;
+        Vector r;
+        Vector l;
         Color color = Color.BLACK;
+        Vector n2 = n.scale(2);
         for (LightSource light:
                 scene.lights) {
-            Vector l = light.getL(P.point).normalized();
-            Vector r = l.subtract(n.scale(n.dotProduct(l)).scale(2)).normalized();
-            double nl = Util.alignZero(n.dotProduct(l));
+            l = light.getL(P.point).normalized();
+            nl = Util.alignZero(n.dotProduct(l));
+            r = l.subtract(n2.scale(nl)).normalized();
             if(nv * nl > 0){
                 Color lightIntensity = light.getIntensity(P.point);
-                Color D = lightIntensity.scale(kd * Math.abs(nl));
-                Color S = lightIntensity.scale(ks * Math.pow(v.scale(-1).dotProduct(r), Shininess));
-                color = color.add(D).add(S);
+                Color D = lightIntensity.scale(mat.getkD() * Math.abs(nl));
+                Color S = lightIntensity.scale(mat.getkS() * pow(v.scale(-1).dotProduct(r), mat.getnShininess()));
+                color = color.add(D, S);
             }
         }
         return color;
     }
+
+    private double pow(double x, int y){
+        double sum = 1;
+        while(y > 0){
+            sum = sum * x;
+            y--;
+        }
+        return sum;
+    }
+
 }
