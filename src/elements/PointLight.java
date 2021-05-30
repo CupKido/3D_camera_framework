@@ -5,6 +5,10 @@ import primitives.Point3D;
 import primitives.Vector;
 
 public class PointLight extends Light implements LightSource{
+    public PointLight(Color _intensity, Point3D _position){
+        super(_intensity);
+        position = _position;
+    }
 
     public PointLight(Color _intensity, Point3D _position, double _kC, double _kL, double _kQ){
         super(_intensity);
@@ -13,20 +17,22 @@ public class PointLight extends Light implements LightSource{
         kL = _kL;
         kQ = _kQ;
     }
-
+    public double getDistance(Point3D p){
+        return p.distance(position);
+    }
     private Point3D position;
 
-    public PointLight setkC(double kC) {
+    public PointLight setKc(double kC) {
         this.kC = kC;
         return this;
     }
 
-    public PointLight setkL(double kL) {
+    public PointLight setKl(double kL) {
         this.kL = kL;
         return this;
     }
 
-    public PointLight setkQ(double kQ) {
+    public PointLight setKq(double kQ) {
         this.kQ = kQ;
         return this;
     }

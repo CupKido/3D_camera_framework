@@ -27,10 +27,14 @@ class PlaneTest {
         assertThrows(IllegalArgumentException.class, () -> { P1.getNormal(new Point3D(1,1,1));}, "getNormal() did return even though point is not in plane");
         assertDoesNotThrow(() -> { P1.getNormal(new Point3D(1,1,0));}, "getNormal() did not return even though point is in plane");
         assertEquals(new Vector(0,0,-1), P1.getNormal(new Point3D(1, 1, 0)));
+
+
     }
 
     @Test
     void testGetNormal() {
+        Vector v = P1.getNormal();
+        assertEquals(1.0,v.length(), 0.0001, "Error: length != 1");
     }
 
     @Test
@@ -60,5 +64,7 @@ class PlaneTest {
         //ray q0 = plane q0
         L.clear();
         assertEquals(null, P2.findIntersections(new Ray(new Point3D(5,5,5), new Vector(0,1,1))), "ERROR: findIntersections() Does not work well.");
+
+        //getNormal
     }
 }
