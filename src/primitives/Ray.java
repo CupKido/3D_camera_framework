@@ -8,6 +8,7 @@ import java.util.LinkedList;
 
 public class Ray {
 
+    private static final double DELTA = 0.1;
 
     Point3D p0;
     Vector dir;
@@ -22,6 +23,13 @@ public class Ray {
 
     public Ray(Point3D point3D, Vector Vec){
         p0 = point3D;
+        dir = Vec.normalized();
+    }
+
+    public Ray(Point3D point3D, Vector Vec, Vector n){
+        Vector Delta = n.scale(n.dotProduct(Vec) > 0 ? DELTA : - DELTA);
+        Point3D point = point3D.add(Delta);
+        p0 = point;
         dir = Vec.normalized();
     }
 
