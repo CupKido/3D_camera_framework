@@ -21,7 +21,7 @@ public class Camera {
         Position = position;
         To = to.normalized();
         Up = up.normalized();
-        if(To.dotProduct(Up) != 0){
+        if(!Util.isZero(To.dotProduct(Up))){
             throw new IllegalArgumentException("ERROR: angle between vectors is not 90 degrees");
         }
         Right = To.crossProduct(Up).normalized();

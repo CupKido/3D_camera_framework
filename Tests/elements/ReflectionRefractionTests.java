@@ -3,6 +3,7 @@
  */
 package elements;
 
+import geometries.Square;
 import org.junit.Test;
 
 import elements.*;
@@ -116,6 +117,26 @@ public class ReflectionRefractionTests {
 				.setCamera(camera) //
 				.setRayTracer(new RayTracerBasic(scene));
 
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	@Test
+	public void PoolTable(){
+		Scene scene = new Scene("Test scene");
+		Camera camera = new Camera(new Point3D(10,4,3), new Vector(-10,-2,-2), new Vector(-1,0,5));
+		scene.geometries.add( //
+				new Square(new Point3D(3,-1.5,0), new Point3D(3, 1.5, 0), new Point3D(-3, -1.5, 0),new Point3D(-3, 1.5, 0))
+						.setEmission(new Color(40,200,30)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30))
+		);
+
+		scene.lights.add( //
+				new PointLight(new Color(255, 240,240),new Point3D(0,0,3)));
+
+		Render render = new Render(). //
+				setImageWriter(new ImageWriter("PoolTable", 400, 400)) //
+				.setCamera(camera) //
+				.setRayTracer(new RayTracerBasic(scene));
 		render.renderImage();
 		render.writeToImage();
 	}
