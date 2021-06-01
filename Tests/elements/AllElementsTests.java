@@ -7,7 +7,7 @@ import geometries.Cube;
 import geometries.Plane;
 import geometries.Sphere;
 import geometries.Square;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import java.awt.Color.*;
 import java.util.Random;
 

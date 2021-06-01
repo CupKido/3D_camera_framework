@@ -6,6 +6,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,6 +17,9 @@ class TubeTest {
     Ray R1 = new Ray(new Point3D(0,0,0), new Vector(0, 1, 0));
     Tube T0 = new Tube(R1, 3);
     Tube T1 = new Tube(new Ray(new Point3D(0,0,0), new Vector(0,0,1)), 5);
+
+    //LinkedList<Point3D> res = new LinkedList<>();
+    //res.add(new Point3D(0, 5, 5));
 
     @Test
     void getNormal() {
@@ -41,6 +45,8 @@ class TubeTest {
         // point out of the tube touches it
         assertEquals(null, T1.findIntersections(new Ray(new Point3D(-6, 5,5), new Vector(1,0,0))), "ERROR: findIntersections() is not work as it should.");
         // point out of the tube and gos inside it
-        assertEquals(Arrays.asList(new Point3D(-5, 1, 5), new Point3D(5, 1,5)), T1.findIntersections(new Ray(new Point3D(-6, 1,5), new Vector(1,0,0))), "ERROR: findIntersections() is not work as it should.");
+        assertEquals(Arrays.asList(new Point3D(0, 5, 2.8), new Point3D(0, -5,2.8)), T1.findIntersections(new Ray(new Point3D(0, 20, 2.8), new Vector(0, -1, 0))), "ERROR: findIntersections() is not work as it should.");
     }
+
+
 }
