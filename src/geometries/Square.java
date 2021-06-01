@@ -61,15 +61,12 @@ public class Square extends Polygon {
             return null;
         }
         L.getFirst().geometry = this;
-        if(inorout(L.getFirst().point, vertices.get(0),vertices.get(1),vertices.get(2))){
-            return L;
-        }
-        if(inorout(L.getFirst().point, vertices.get(0),vertices.get(1),vertices.get(3))){
+        if(inorout(L.getFirst().point, vertices.get(0),vertices.get(1),vertices.get(2), vertices.get(3))){
             return L;
         }
         return null;
     }
-    boolean inorout(Point3D p, Point3D p0, Point3D p1, Point3D p2)
+    boolean inoroutForTri(Point3D p, Point3D p0, Point3D p1, Point3D p2)
     {
         //tri 1 - 0,1,2
         //tri 1 - 0,1,3
@@ -86,6 +83,93 @@ public class Square extends Polygon {
         double invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
         double u = (dot11 * dot02 - dot01 * dot12) * invDenom;
         double v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+// Check if point is in triangle
+        if((u >= 0) && (v >= 0) && (u + v < 1))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean inorout(Point3D p, Point3D p0, Point3D p1, Point3D p2, Point3D p22)
+    {
+        //tri 1 - 0,1,2
+        //tri 1 - 0,1,3
+
+        Vector v0 = p1.subtract(p0);
+        Vector v1 = p2.subtract(p0);
+        Vector v2 = p.subtract(p0);
+        double dot00 = v0.dotProduct(v0);
+        double dot01 = v0.dotProduct(v1);
+        double dot02 = v0.dotProduct(v2);
+        double dot11 = v1.dotProduct(v1);
+        double dot12 = v1.dotProduct(v2);
+
+        double invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
+        double u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+        double v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+// Check if point is in triangle
+        if((u >= 0) && (v >= 0) && (u + v < 1))
+        {
+            return true;
+        }
+
+         v0 = p1.subtract(p0);
+         v1 = p22.subtract(p0);
+         v2 = p.subtract(p0);
+         dot00 = v0.dotProduct(v0);
+         dot01 = v0.dotProduct(v1);
+         dot02 = v0.dotProduct(v2);
+         dot11 = v1.dotProduct(v1);
+         dot12 = v1.dotProduct(v2);
+
+         invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
+         u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+         v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+// Check if point is in triangle
+        if((u >= 0) && (v >= 0) && (u + v < 1))
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean inoroutNoExtra(Point3D p)
+    {
+        //tri 1 - 0,1,2
+        //tri 1 - 0,1,3
+
+        Vector v0 = vertices.get(1).subtract(vertices.get(0));
+        Vector v1 = vertices.get(2).subtract(vertices.get(0));
+        Vector v2 = p.subtract(vertices.get(0));
+        double dot00 = v0.dotProduct(v0);
+        double dot01 = v0.dotProduct(v1);
+        double dot02 = v0.dotProduct(v2);
+        double dot11 = v1.dotProduct(v1);
+        double dot12 = v1.dotProduct(v2);
+
+        double invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
+        double u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+        double v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+// Check if point is in triangle
+        if((u >= 0) && (v >= 0) && (u + v < 1))
+        {
+            return true;
+        }
+
+        v0 = vertices.get(1).subtract(vertices.get(0));
+        v1 = vertices.get(3).subtract(vertices.get(0));
+        v2 = p.subtract(vertices.get(0));
+        dot00 = v0.dotProduct(v0);
+        dot01 = v0.dotProduct(v1);
+        dot02 = v0.dotProduct(v2);
+        dot11 = v1.dotProduct(v1);
+        dot12 = v1.dotProduct(v2);
+
+        invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
+        u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+        v = (dot00 * dot12 - dot01 * dot02) * invDenom;
 // Check if point is in triangle
         if((u >= 0) && (v >= 0) && (u + v < 1))
         {

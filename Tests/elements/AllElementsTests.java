@@ -3,6 +3,7 @@
  */
 package elements;
 
+import geometries.Cube;
 import geometries.Plane;
 import geometries.Sphere;
 import geometries.Square;
@@ -36,7 +37,7 @@ public class AllElementsTests {
         Scene scene = new Scene("Test scene").setAmbientLight(new AmbientLight(new Color(5,5,5), 0.15));
         Camera camera = new Camera(new Point3D(10,4,3), new Vector(-10,-2,-1), new Vector(-0.5,0,5))
                 .setViewPlaneSize(32, 18).setDistance(18);
-        Camera camera2 = new Camera(new Point3D(0,0,4), new Vector(0,0,-1), new Vector(0,1,0))
+        Camera camera2 = new Camera(new Point3D(0,10,1.5), new Vector(0,-1,0), new Vector(0,0,1))
                 .setViewPlaneSize(16, 9).setDistance(5);
         scene.geometries.add( //
                 //floor
@@ -48,7 +49,7 @@ public class AllElementsTests {
                         .setEmission(new Color(20, 20, 20)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.95)),
                 //Green mat
                 new Square(new Point3D(3,-1.5,0), new Point3D(3, 1.5, 0), new Point3D(-3, -1.5, 0),new Point3D(-3, 1.5, 0))
-                .setEmission(Matt).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)),
+                .setEmission(Matt).setMaterial(new Material().setKd(0.3).setKs(0.2).setShininess(30)),
                 //Wood front
                 new Square(new Point3D(3.2,-1.7,0.2), new Point3D(3.2, 1.7, 0.2),new Point3D(3.2,-1.7,-1.25), new Point3D(3.2, 1.7, -1.25))
                         .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
@@ -117,7 +118,10 @@ public class AllElementsTests {
                 new Sphere(new Point3D(-1.5, 0, 0.1), 0.1)
                         .setEmission(new Color(190,190,190)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(70)),
 
-
+                //balls holder
+                new Square(new Point3D(0.2,0,0), new Point3D(1.3,0.65,0),new Point3D(0.2,0,0.14), new Point3D(1.3,0.65,0.14)),
+                new Square(new Point3D(0.2,0,0), new Point3D(1.3,-0.65,0),new Point3D(0.2,0,0.14), new Point3D(1.3,-0.65,0.14)),
+                new Square(new Point3D(1.3,-0.65,0), new Point3D(1.3,0.65,0),new Point3D(1.3,-0.65,0.14), new Point3D(1.3,0.65,0.14)),
 
                 //Lamp1:
                 new Square(new Point3D(1.75, 0.25, 1),new Point3D(1.75, -0.25, 1),new Point3D(1.75, 0.25, 1.5),new Point3D(1.75, -0.25, 1.5))
@@ -157,7 +161,10 @@ public class AllElementsTests {
                 new Sphere(new Point3D(0,1.5,0),0.15)
                         .setEmission(Color.BLACK).setMaterial(new Material().setKd(0).setKs(0).setShininess(0)),
                 new Sphere(new Point3D(0,-1.5,0),0.15)
-                        .setEmission(Color.BLACK).setMaterial(new Material().setKd(0).setKs(0).setShininess(0))
+                        .setEmission(Color.BLACK).setMaterial(new Material().setKd(0).setKs(0).setShininess(0)),
+
+                new Cube(new Point3D(-1, 3, 3), new Point3D(0, 3, 3), new Point3D(-1, 2, 3), new Point3D(0, 2, 3), new Point3D(-1, 3, 1), new Point3D(0, 3, 1), new Point3D(-1, 2, 1), new Point3D(0, 2, 1))
+                        .setEmission(RandColor()).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(70))
                 );
 
         scene.lights.add( //
@@ -176,16 +183,12 @@ public class AllElementsTests {
         render1.renderImage();
         render1.writeToImage();
 
-//        camera.MoveLeft(6);
-//        camera.MoveUp(1);
-//        camera.LookRight(80);
-//        camera.LookDown(10);
-//        Render render2 = new Render(). //
-//                setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
-//                .setCamera(camera) //
-//                .setRayTracer(new RayTracerBasic(scene));
-//        render2.renderImage();
-//        render2.writeToImage();
+        Render render2 = new Render(). //
+                setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
+                .setCamera(camera2) //
+                .setRayTracer(new RayTracerBasic(scene));
+        render2.renderImage();
+        render2.writeToImage();
     }
 
     private Color RandColor(){
