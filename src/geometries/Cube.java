@@ -24,15 +24,15 @@ public class Cube extends Geometry{
         if(up.inoroutNoExtra(point))
             return up.getNormal();
         if(right.inoroutNoExtra(point))
-            return up.getNormal();
+            return right.getNormal();
         if(left.inoroutNoExtra(point))
-            return up.getNormal();
+            return left.getNormal();
         if(down.inoroutNoExtra(point))
-            return up.getNormal();
+            return down.getNormal();
         if(forward.inoroutNoExtra(point))
-            return up.getNormal();
+            return forward.getNormal();
         if(backward.inoroutNoExtra(point))
-            return up.getNormal();
+            return backward.getNormal();
         return null;
     }
 
