@@ -10,13 +10,23 @@ public class Cube extends Geometry{
 
     Square up, down, left, right, forward, backward;
 
-    public Cube(Point3D URF, Point3D URB, Point3D ULF, Point3D ULB, Point3D DRF, Point3D DRB, Point3D DLF, Point3D DLB){
-        up = new Square(ULB, ULF, URB, URF);
-        down = new Square(DLB, DRB, DLF, DRF);
-        left = new Square(ULF, ULB, DLF, DLB);
-        right = new Square(URF, URB, DRF, DRB);
-        forward = new Square(URF, DRF, ULF, DLF);
-        backward = new Square(URB, ULB, DRB, DLB);
+    public Cube(Point3D URF, Point3D URB, Point3D ULF, Point3D ULB, Point3D DRF, Point3D DRB, Point3D DLF, Point3D DLB)
+    {
+        build(URF, URB, ULF, ULB, DRF, DRB, DLF, DLB);
+    }
+
+    public Cube(Point3D center, double height, double width, double depth)
+    {
+        if(height <= 0 || width <= 0 || depth <= 0)
+            throw new IllegalArgumentException("ERROR: Size must by bigger then zero!");
+        Vector up = new Vector(0,0,height/2);
+        Vector down = new Vector(0,0,-height/2);
+        Vector right = new Vector(width/2,0,0);
+        Vector left = new Vector(-width/2,0,0);
+        Vector back = new Vector(0,depth/2,0);
+        Vector front = new Vector(0,-depth/2,0);
+
+        build(center.add(up).add(right).add(front), center.add(up).add(right).add(back), center.add(up).add(left).add(front), center.add(up).add(left).add(back), center.add(down).add(right).add(front), center.add(down).add(right).add(back), center.add(down).add(left).add(front), center.add(down).add(left).add(back));
     }
 
     @Override
@@ -78,5 +88,14 @@ public class Cube extends Geometry{
             return null;
         }
         return L;
+    }
+
+    void build(Point3D URF, Point3D URB, Point3D ULF, Point3D ULB, Point3D DRF, Point3D DRB, Point3D DLF, Point3D DLB){
+        up = new Square(ULB, ULF, URB, URF);
+        down = new Square(DLB, DRB, DLF, DRF);
+        left = new Square(ULF, ULB, DLF, DLB);
+        right = new Square(URF, URB, DRF, DRB);
+        forward = new Square(URF, DRF, ULF, DLF);
+        backward = new Square(URB, ULB, DRB, DLB);
     }
 }

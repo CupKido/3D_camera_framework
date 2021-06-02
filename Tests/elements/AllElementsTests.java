@@ -156,7 +156,7 @@ public class AllElementsTests {
                 new Square(new Point3D(-3.2,-1.5,0.2), new Point3D(-3, -1.5, 0.2),new Point3D(-3.2,-1.5,-1.5), new Point3D(-3, -1.5, -1.5))
                         .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
 
-                //wood bottom
+                //bottom green mat
                 new Square(new Point3D(3,-1.5,-0.17), new Point3D(3, 1.5, -0.17), new Point3D(-3, -1.5, -0.17),new Point3D(-3, 1.5, -0.17))
                         .setEmission(Matt).setMaterial(new Material().setKd(0.3).setKs(0.2).setShininess(30)),
 
@@ -217,7 +217,7 @@ public class AllElementsTests {
                         .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
                 new Square(new Point3D(1.75, 0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.25, -0.25, 1.1),new Point3D(1.25, 0.25, 1.1))
                         .setEmission(Color.BLACK).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(4).setKt(0.9)),
-//
+
                 //Lamp2:
                 new Square(new Point3D(-1.75, 0.25, 1.1),new Point3D(-1.75, -0.25, 1.1),new Point3D(-1.75, 0.25, 1.6),new Point3D(-1.75, -0.25, 1.6))
                         .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
@@ -244,8 +244,10 @@ public class AllElementsTests {
                 new Sphere(new Point3D(0,-1.5,0),0.15)
                         .setEmission(Color.BLACK).setMaterial(new Material().setKd(0).setKs(0).setShininess(0)),
 
-                new Cube(new Point3D(-1, 3, 3), new Point3D(0, 3, 3), new Point3D(-1, 2, 3), new Point3D(0, 2, 3), new Point3D(-1, 3, 1), new Point3D(0, 3, 1), new Point3D(-1, 2, 1), new Point3D(0, 2, 1))
-                        .setEmission(RandColor()).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(70).setKt(0.5))
+                //new Cube(new Point3D(2,3,1), 2, 3, 3)
+                //        .setEmission(RandColor()).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.5)),
+                new Cube(new Point3D(-1, 3, 3), new Point3D(-1, 2, 3), new Point3D(0, 3, 3), new Point3D(0, 2, 3), new Point3D(-1, 3, 1), new Point3D(-1, 2, 1), new Point3D(0, 3, 1), new Point3D(0, 2, 1))
+                        .setEmission(RandColor()).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(70).setKt(0))
                 );
 
         scene.lights.add( //
