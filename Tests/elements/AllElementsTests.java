@@ -246,7 +246,10 @@ public class AllElementsTests {
 
                 //new Cube(new Point3D(2,3,1), 2, 3, 3)
                 //        .setEmission(RandColor()).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.5)),
-                new Cube(new Point3D(-1, 3, 3), new Point3D(-1, 2, 3), new Point3D(0, 3, 3), new Point3D(0, 2, 3), new Point3D(-1, 3, 1), new Point3D(-1, 2, 1), new Point3D(0, 3, 1), new Point3D(0, 2, 1))
+                new Cube(new Point3D(2,2,2), 1,1,1, new Vector(1,1,1), new Vector(1,-1,0))
+                        .setEmission(RandColor()).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(70).setKt(0)),
+                //new Cube(new Point3D(-1, 3, 3), new Point3D(-1, 2, 3), new Point3D(0, 3, 3), new Point3D(0, 2, 3), new Point3D(-1, 3, 1), new Point3D(-1, 2, 1), new Point3D(0, 3, 1), new Point3D(0, 2, 1))
+                new Cube(new Point3D(-0.5,2.5,2), 2, 1, 1)
                         .setEmission(RandColor()).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(70).setKt(0))
                 );
 

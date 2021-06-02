@@ -29,6 +29,23 @@ public class Cube extends Geometry{
         build(center.add(up).add(right).add(front), center.add(up).add(right).add(back), center.add(up).add(left).add(front), center.add(up).add(left).add(back), center.add(down).add(right).add(front), center.add(down).add(right).add(back), center.add(down).add(left).add(front), center.add(down).add(left).add(back));
     }
 
+    public Cube(Point3D center, double height, double width, double depth, Vector up, Vector right)
+    {
+        if(height <= 0 || width <= 0 || depth <= 0)
+            throw new IllegalArgumentException("ERROR: Size must by bigger then zero!");
+        if(up.dotProduct(right) != 0)
+            throw new IllegalArgumentException("ERROR: Up and right are not vertical");
+
+        up = up.normalized().scale(height/2);
+        Vector down = up.scale(-1);
+        right = right.normalized().scale(width/2);
+        Vector left = right.scale(-1);
+        Vector back = up.crossProduct(right).normalized().scale(depth/2);
+        Vector front = back.scale(-1);
+
+        build(center.add(up).add(right).add(front), center.add(up).add(right).add(back), center.add(up).add(left).add(front), center.add(up).add(left).add(back), center.add(down).add(right).add(front), center.add(down).add(right).add(back), center.add(down).add(left).add(front), center.add(down).add(left).add(back));
+    }
+
     @Override
     public Vector getNormal(Point3D point) {
         if(up.inoroutNoExtra(point))
