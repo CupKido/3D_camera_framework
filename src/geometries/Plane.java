@@ -60,6 +60,22 @@ public class Plane extends Geometry {
 
     }
 
+    public boolean inPlane(Point3D point){
+        if(point == null)
+        {
+            return false;
+        }
+        if (point.equals(q0)){
+            return true;
+        }
+        Vector inPlane = q0.subtract(point);
+        if(Util.isZero(inPlane.dotProduct(normal)))
+        {
+            return true;
+        }
+        return false;
+    }
+
     //returns normal
     public Vector getNormal()
     {

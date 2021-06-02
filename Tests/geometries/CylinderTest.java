@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CylinderTest {
     Ray R1 = new Ray(new Point3D(0,0,0), new Vector(0, 1, 0));
-    Cylinder C0 = new Cylinder(R1, 3, 8);
+    Cylinder C0 = new Cylinder( R1,3, 8);
 
     @Test
     void getNormal() {

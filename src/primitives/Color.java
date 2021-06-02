@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.Random;
+
 /**
  * Wrapper class for java.jwt.Color The constructors operate with any
  * non-negative RGB values. The colors are maintained without upper limit of
@@ -43,7 +45,7 @@ public class Color {
 
 	/**
 	 * Copy constructor for Color
-	 * 
+	 *
 	 * @param other the source color
 	 */
 	public Color(Color other) {
@@ -54,7 +56,7 @@ public class Color {
 
 	/**
 	 * Constructor on base of java.awt.Color object
-	 * 
+	 *
 	 * @param other java.awt.Color's source object
 	 */
 	public Color(java.awt.Color other) {
@@ -65,7 +67,7 @@ public class Color {
 
 	/**
 	 * Color setter to reset the color to BLACK
-	 * 
+	 *
 	 * @return the Color object itself for chaining calls
 	 */
 	public Color setColor() {
@@ -78,7 +80,7 @@ public class Color {
 	/**
 	 * Color setter to generate a color according to RGB components Each component
 	 * in range 0..255 (for printed white color) or more [for lights]
-	 * 
+	 *
 	 * @param r Red component
 	 * @param g Green component
 	 * @param b Blue component
@@ -164,7 +166,7 @@ public class Color {
 
 	/**
 	 * Scale the color by (1 / reduction factor)
-	 * 
+	 *
 	 * @param k reduction factor
 	 * @return new Color object which is the result of the operation
 	 */
@@ -174,4 +176,24 @@ public class Color {
 		return new Color(r / k, g / k, b / k);
 	}
 
+	public static Color RandColor() {
+		Random a = new Random();
+
+		switch (a.nextInt(5)) {
+			case 1:
+				return new Color(255, 26, 198);
+
+			case 2:
+				return new Color(0, 102, 255);
+
+			case 3:
+				return new Color(java.awt.Color.GREEN);
+
+			case 4:
+				return new Color(255, 153, 0);
+
+			default:
+				return Color.BLACK;
+		}
+	}
 }
