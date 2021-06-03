@@ -47,15 +47,6 @@ public class Plane extends Geometry {
     public Vector getNormal(Point3D point)
     {
 
-        if(point == null || point.equals(q0))
-        {
-            return normal;
-        }
-        Vector inPlane = q0.subtract(point);
-        if(!Util.isZero(inPlane.dotProduct(normal)))
-        {
-            throw new IllegalArgumentException("ERROR - Point is not in Plane");
-        }
         return normal;
 
     }
