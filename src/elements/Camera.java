@@ -112,7 +112,7 @@ public class Camera {
         return this;
     }
 
-    public Ray constructRayThroughPixel(int nX, int nY, int j, int i){
+    public Ray constructRayThroughPixel(int nX, int nY, double j, double i){
         Point3D Pc = Position.add(To.scale(PDistance));
         double Ry = VPHeight/nY;
         double Rx = VPWidth/nX;

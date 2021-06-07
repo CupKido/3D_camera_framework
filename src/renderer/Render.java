@@ -6,8 +6,10 @@ import primitives.Ray;
 import scene.Scene;
 
 import java.util.MissingResourceException;
+import java.util.Random;
 
 public class Render {
+    private static final int RAYS = 50;
     ImageWriter imageWriter;
     public Camera camera;
     RayTracerBasic rayTracerBasic;
@@ -38,10 +40,18 @@ public class Render {
             throw new MissingResourceException("ERROR: rayTracerBasic resource is missing in renderer.", "RayTracerBasic", "");
         }
         Ray current = null;
+        Random rand = new Random();
+
         for(int i = 0; i < imageWriter.getNx() ; i++){
             for(int j = 0; j < imageWriter.getNy(); j++){
-                current = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), i - imageWriter.getNx()/2, j - imageWriter.getNy()/2);
-                imageWriter.writePixel(i, j, rayTracerBasic.traceRay(current));
+                Color sum = Color.BLACK;
+                for(int x = 0; x < RAYS; x++) {
+                        current = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), (i - imageWriter.getNx()  / 2) + (Math.random()), (j - imageWriter.getNy()   / 2) + (Math.random()));
+                        sum = sum.add(rayTracerBasic.traceRay(current));
+
+                }
+                sum = sum.reduce(RAYS);
+                imageWriter.writePixel(i, j, sum);
             }
         }
     }

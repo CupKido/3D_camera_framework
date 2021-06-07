@@ -38,12 +38,12 @@ public class AllElementsTests {
         scene.geometries.add( //
 
                 //floor
-                new Plane(new Point3D(0,0,-1.5), new Point3D(0,1,-1.5), new Point3D(1,0,-1.5))
-                        .setEmission(new Color(150, 150, 150)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.25)),
-
-                //Mirror
-                new Square(new Point3D(-4,-4,-1.5), new Point3D(-4,-4,2), new Point3D(4,-4,-1.5), new Point3D(4,-4,2))
-                        .setEmission(new Color(20, 20, 20)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.95)),
+//                new Plane(new Point3D(0,0,-1.5), new Point3D(0,1,-1.5), new Point3D(1,0,-1.5))
+//                        .setEmission(new Color(150, 150, 150)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0)),
+//
+//                //Mirror
+//                new Square(new Point3D(-4,-4,-1.5), new Point3D(-4,-4,2), new Point3D(4,-4,-1.5), new Point3D(4,-4,2))
+//                        .setEmission(new Color(20, 20, 20)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.95)),
 
                 //Green mat
                 new Square(new Point3D(3,-1.5,0), new Point3D(3, 1.5, 0), new Point3D(-3, -1.5, 0),new Point3D(-3, 1.5, 0))
@@ -176,11 +176,11 @@ public class AllElementsTests {
                 new BallsHolder(new Point3D(1.2,0,0)),
 
                 //pool sticks
-                new PoolStick(new Point3D(-5,0,-1.5), new Vector(0,0,1)),
-                new PoolStick(new Point3D(-5,0.75,-1.5), new Vector(0,0,1)),
-                new PoolStick(new Point3D(-5,1.5,-1.5), new Vector(0,0,1)),
-                new PoolStick(new Point3D(-5,-0.75,-1.5), new Vector(0,0,1)),
-                new PoolStick(new Point3D(-5,-1.5,-1.5), new Vector(0,0,1)),
+//                new PoolStick(new Point3D(-5,0,-1.5), new Vector(0,0,1)),
+//                new PoolStick(new Point3D(-5,0.75,-1.5), new Vector(0,0,1)),
+//                new PoolStick(new Point3D(-5,1.5,-1.5), new Vector(0,0,1)),
+//                new PoolStick(new Point3D(-5,-0.75,-1.5), new Vector(0,0,1)),
+//                new PoolStick(new Point3D(-5,-1.5,-1.5), new Vector(0,0,1)),
 
                 //Lamp1:
                 new Square(new Point3D(1.75, 0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.75, 0.25, 1.6),new Point3D(1.75, -0.25, 1.6))
@@ -249,7 +249,7 @@ public class AllElementsTests {
         );
 
         Render render1 = new Render(). //
-                setImageWriter(new ImageWriter("PoolTableC1", 1280, 720)) //
+                setImageWriter(new ImageWriter("PoolTableC12", 1280, 720 )) //
                 .setCamera(camera) //
                 .setRayTracer(new RayTracerBasic(scene));
         render1.renderImage();
