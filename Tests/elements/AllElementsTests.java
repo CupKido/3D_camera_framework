@@ -44,8 +44,8 @@ public class AllElementsTests {
                         .setEmission(new Color(150, 150, 150)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0)),
 
                 //Mirror
-//                new Square(new Point3D(-4,-4,-1.5), new Point3D(-4,-4,2), new Point3D(4,-4,-1.5), new Point3D(4,-4,2))
-//                        .setEmission(new Color(20, 20, 20)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.95)),
+                new Square(new Point3D(-4,-4,-1.5), new Point3D(-4,-4,2), new Point3D(4,-4,-1.5), new Point3D(4,-4,2))
+                        .setEmission(new Color(20, 20, 20)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.95)),
 
                 //Green mat
                 new Square(new Point3D(3,-1.5,0), new Point3D(3, 1.5, 0), new Point3D(-3, -1.5, 0),new Point3D(-3, 1.5, 0))
@@ -250,12 +250,12 @@ public class AllElementsTests {
 //                new PointLight(new Color(java.awt.Color.WHITE),new Point3D(20,10,35),1, 0.0005, 0.001)
 //        );
 
-//        Render render1 = new Render(). //
-//                setImageWriter(new ImageWriter("PoolTableC12", 1280, 720 )) //
-//                .setCamera(camera) //
-//                .setRayTracer(new RayTracerBasic(scene));
-//        render1.renderImage();
-//        render1.writeToImage();
+        Render render1 = new Render(). //
+                setImageWriter(new ImageWriter("PoolTableC12", 560, 315 )) //
+                .setCamera(camera) //
+                .setRayTracer(new RayTracerBasic(scene));
+        render1.renderImage();
+        render1.writeToImage();
 
 //        Render render2 = new Render(). //
 //                setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
@@ -264,12 +264,19 @@ public class AllElementsTests {
 //        render2.renderImage();
 //        render2.writeToImage();
 
-        Render render22 = new Render(). //
-                setImageWriter(new ImageWriter("PoolTableC24", 500, 500 )) //
-                .setCamera(camera22) //
-                .setRayTracer(new RayTracerBasic(scene));
-        render22.renderImage();
-        render22.writeToImage();
+//        Render render22 = new Render(). //
+//                setImageWriter(new ImageWriter("PoolTableC24", 500, 500 )) //
+//                .setCamera(camera22) //
+//                .setRayTracer(new RayTracerBasic(scene));
+//        render22.renderImage();
+//        render22.writeToImage();
+    }
+
+    @Test
+    public void LikePresentation(){
+
+
+
     }
 
 }

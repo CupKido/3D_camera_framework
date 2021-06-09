@@ -179,21 +179,7 @@ public class RayTracerBasic extends RayTracerBase{
             }
         }
     }
-//        double sum = 0;
-//        Point3D newP;
-//        int grid2 = (GridSize - 1) / 2;
-//        for(int x = -grid2; x < grid2 + 1; x++){
-//            for(int y = -grid2; y < grid2 + 1; y++) {
-//                newP = geopoint.point;
-//                if(x != 0){
-//                    newP = newP.add(someD.scale(x).scale(DIS));
-//                }
-//                if(y != 0){
-//                    newP = newP.add(someDOther.scale(y).scale(DIS));
-//                }
-//                sum += otherForSS(light, light.getL(newP), n, newP);
-//            }
-//        }
+
         double sum = 0;
         Vector nV;
         for (int i = -2; i < 3; i++) {

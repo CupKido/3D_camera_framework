@@ -10,7 +10,7 @@ import java.util.MissingResourceException;
 import java.util.Random;
 
 public class Render {
-    private static final int RAYS = 1;
+    private static final int RAYS = 50;
     ImageWriter imageWriter;
     public Camera camera;
     RayTracerBasic rayTracerBasic;
