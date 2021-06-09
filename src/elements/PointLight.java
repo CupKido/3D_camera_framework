@@ -20,6 +20,7 @@ public class PointLight extends Light implements LightSource{
     public double getDistance(Point3D p){
         return p.distance(position);
     }
+
     private Point3D position;
 
     public PointLight setKc(double kC) {

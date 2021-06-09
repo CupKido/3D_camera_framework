@@ -2,9 +2,14 @@ package elements;
 
 
 import primitives.*;
+
+import java.util.LinkedList;
+import java.util.Random;
+
 import static primitives.Util.*;
 
 public class Camera {
+    private static final int RAYS = 16;
     Point3D Position;
     Vector To;
     Vector Up;
@@ -117,8 +122,9 @@ public class Camera {
         double Ry = VPHeight/nY;
         double Rx = VPWidth/nX;
 
-        double Yi = -(i - (Ry - 1)/2) * Ry;
-        double Xj = (j - (Rx - 1) / 2) * Rx;
+        double Xj = (j - (double)(nX-1)/2) * Rx;
+        double Yi = -(i - (double)(nY-1)/2) * Ry;
+
         Point3D Pij = Pc;
 
         if(!isZero(Yi)) Pij = Pij.add(Up.scale(Yi));
@@ -226,5 +232,36 @@ public class Camera {
         }
         To = (To.scale(Math.cos(deg)).crossProduct(Right.scale(Math.sin(deg)))).normalized();
         Right = To.crossProduct(Up).normalized();
+    }
+
+    public LinkedList<Ray> constructRaysThroughPixel(int nX, int nY, int col, int row) {
+        LinkedList<Ray> L = new LinkedList<>();
+
+// pIJ = pCenter
+        Point3D pIJ = Position.add(To.scale(PDistance));
+        // Ratio
+        double rX = VPWidth/nX;
+        double rY = VPHeight/nY;
+        // Xj, Yi
+        double xJ = (col - (double)(nX-1)/2) * rX;
+        double yI = -(row - (double)(nY-1)/2) * rY;
+        // adding to pCenter
+        if(!isZero(xJ)) pIJ = pIJ.add(Right.scale(xJ));
+        if(!isZero(yI)) pIJ = pIJ.add(Up.scale(yI));
+
+        // Bottom Left of pixel
+        Point3D bottomLeft = pIJ.add(Right.scale(-rX/2)).add(Up.scale(-rY/2));
+
+        int nXY = (int)Math.sqrt(RAYS);
+        double rXin = rX/nXY;
+        double rYin = rY/nXY;
+        Random offset = new Random(java.time.LocalDateTime.now().getSecond());
+        for (int w = 0; w < nXY; w++) {
+            for (int h = 0; h < nXY; h++) {
+                L.add(new Ray(Position ,bottomLeft.add(Right.scale((w + offset.nextDouble())*rXin))
+                        .add(Up.scale((h + offset.nextDouble())*rYin)).subtract(Position)));
+            }
+        }
+        return L;
     }
 }
