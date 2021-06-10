@@ -9,7 +9,7 @@ import java.util.Random;
 import static primitives.Util.*;
 
 public class Camera {
-    private static final int RAYS = 16;
+    private static final int RAYS = 1;
     Point3D Position;
     Vector To;
     Vector Up;
@@ -236,8 +236,14 @@ public class Camera {
 
     public LinkedList<Ray> constructRaysThroughPixel(int nX, int nY, int col, int row) {
         LinkedList<Ray> L = new LinkedList<>();
+        if(RAYS == 1){
+            L.add(constructRayThroughPixel(nX, nY, col, row));
+            return L;
+        }
 
-// pIJ = pCenter
+
+
+        // pIJ = pCenter
         Point3D pIJ = Position.add(To.scale(PDistance));
         // Ratio
         double rX = VPWidth/nX;

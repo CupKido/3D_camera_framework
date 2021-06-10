@@ -14,6 +14,7 @@ public class RayTracerBasic extends RayTracerBase{
     private static final double MIN_CALC_COLOR_K = 0.001;
     private static final double INITIAL_K = 1.0;
     private static final double DIS = 0.005;
+    private static final int SHADOWRAYS = 1;
 
 
     public RayTracerBasic(Scene _scene){
@@ -85,12 +86,7 @@ public class RayTracerBasic extends RayTracerBase{
             nl = Util.alignZero(n.dotProduct(l));
             r = l.subtract(n2.scale(nl)).normalized();
             if(nv * nl > 0){
-                double ktr;
-                try {
-                    ktr = softShadowsTransparency(light, l, n, P, 5);
-                }catch (Exception e){
-                    ktr = 0.0;
-                }
+                double ktr = softShadowsTransparency(light, l, n, P, SHADOWRAYS);
 
                 if (ktr * k > MIN_CALC_COLOR_K) {
 
@@ -157,9 +153,10 @@ public class RayTracerBasic extends RayTracerBase{
         return res.reduce(rays.size());
     }
 
-    private double softShadowsTransparency(LightSource light, Vector l, Vector n, GeoPoint geopoint, int GridSize) throws Exception {
-         // from point to light source
-
+    private double softShadowsTransparency(LightSource light, Vector l, Vector n, GeoPoint geopoint, int GridSize) {
+        if(SHADOWRAYS == 1){
+            return transparency(light, l , n, geopoint);
+        }
     //    creating way to move on light plane
         Vector someD;
         Vector someDOther;

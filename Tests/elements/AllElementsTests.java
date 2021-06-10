@@ -253,21 +253,24 @@ public class AllElementsTests {
         Render render1 = new Render(). //
                 setImageWriter(new ImageWriter("PoolTableC12", 560, 315 )) //
                 .setCamera(camera) //
-                .setRayTracer(new RayTracerBasic(scene));
+                .setRayTracer(new RayTracerBasic(scene))
+                .setMultithreading(3).setDebugPrint();
         render1.renderImage();
         render1.writeToImage();
 
 //        Render render2 = new Render(). //
 //                setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
 //                .setCamera(camera2) //
-//                .setRayTracer(new RayTracerBasic(scene));
+//                .setRayTracer(new RayTracerBasic(scene))
+//                .setMultithreading(3).setDebugPrint();
 //        render2.renderImage();
 //        render2.writeToImage();
 
 //        Render render22 = new Render(). //
 //                setImageWriter(new ImageWriter("PoolTableC24", 500, 500 )) //
 //                .setCamera(camera22) //
-//                .setRayTracer(new RayTracerBasic(scene));
+//                .setRayTracer(new RayTracerBasic(scene))
+//                .setMultithreading(3).setDebugPrint();
 //        render22.renderImage();
 //        render22.writeToImage();
     }
@@ -280,6 +283,9 @@ public class AllElementsTests {
     }
 
 }
+
+
+
 
     /**
      * Produce a picture of a sphere lighted by a spot light
