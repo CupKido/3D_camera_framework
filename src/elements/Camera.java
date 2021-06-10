@@ -79,20 +79,28 @@ public class Camera {
         MoveUp(times * (-1));
     }
 
-    public void LookRight(double degree){
-
+    public void LookRight(double deg){
+        RTwist(deg);
     }
 
-    public void LookLeft(double degree){
-
+    public void LookLeft(double deg){
+        RTwist(-deg);
     }
 
-    public void LookUp(double degree){
-
+    public void LookUp(double deg){
+        UTwist(deg);
     }
 
-    public void LookDown(double degree){
+    public void LookDown(double deg){
+        UTwist(-deg);
+    }
 
+    public void TwistClockWise(double deg){
+        Twist(deg);
+    }
+
+    public void TwistCounterClockWise(double deg){
+        Twist(-deg);
     }
 
     public Vector getTo() {
@@ -141,7 +149,7 @@ public class Camera {
 
     }
 
-    void RTwist(int deg)
+    void RTwist(double deg)
     {
         deg = deg % 360;
         if(deg < 0) deg = 360 - deg;
@@ -172,7 +180,7 @@ public class Camera {
         Right = To.crossProduct(Up).normalized();
     }
 
-    void UTwist(int deg)
+    void UTwist(double deg)
     {
         deg = -(deg % 360);
         if(deg < 0) deg = 360 - deg;
@@ -203,7 +211,7 @@ public class Camera {
         To = Up.crossProduct(Right).normalized();
     }
 
-    void Twist(int deg)
+    void Twist(double deg)
     {
         deg = deg % 360;
         if(deg < 0) deg = 360 - deg;
