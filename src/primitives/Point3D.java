@@ -3,6 +3,18 @@ package primitives;
 import java.util.Objects;
 
 public class Point3D {
+    public Coordinate getX() {
+        return x;
+    }
+
+    public Coordinate getY() {
+        return y;
+    }
+
+    public Coordinate getZ() {
+        return z;
+    }
+
     Coordinate x;
     Coordinate y;
     Coordinate z;

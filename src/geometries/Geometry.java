@@ -3,6 +3,15 @@ import primitives.*;
 
 public abstract class Geometry implements Intersectable {
 
+    BoundingBox Box = null;
+
+    public BoundingBox getBox() {
+        if(Box == null){
+            Box = CreateBox();
+        }
+        return Box;
+    }
+
     public Color getEmission() {
         return emission;
     }

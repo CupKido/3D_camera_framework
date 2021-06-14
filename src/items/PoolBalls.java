@@ -1,5 +1,6 @@
 package items;
 
+import geometries.BoundingBox;
 import geometries.Geometry;
 import primitives.Color;
 import primitives.Point3D;
@@ -8,7 +9,7 @@ import primitives.Vector;
 
 import java.util.LinkedList;
 
-public class PoolBalls extends Geometry {
+public class PoolBalls extends Item {
 
     PoolBall pb51;
     PoolBall pb52;
@@ -61,6 +62,9 @@ public class PoolBalls extends Geometry {
 
     @Override
     public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
+        if(CreateBox().findGeoIntersections(ray) == null){
+            return null;
+        }
         LinkedList<GeoPoint> L = new LinkedList<GeoPoint>();
         LinkedList<GeoPoint> temp = new LinkedList<GeoPoint>();
 
@@ -134,4 +138,29 @@ public class PoolBalls extends Geometry {
         }
         return L;
     }
+
+    @Override
+    public BoundingBox CreateBox(){
+        if(Box != null)
+        {
+            return Box;
+        }
+        Box = pb11.CreateBox().
+                add(pb21.CreateBox())
+                .add(pb22.CreateBox())
+                .add(pb31.CreateBox())
+                .add(pb32.CreateBox())
+                .add(pb33.CreateBox())
+                .add(pb41.CreateBox())
+                .add(pb42.CreateBox())
+                .add(pb43.CreateBox())
+                .add(pb44.CreateBox())
+                .add(pb51.CreateBox())
+                .add(pb52.CreateBox())
+                .add(pb53.CreateBox())
+                .add(pb54.CreateBox())
+                .add(pb55.CreateBox());
+        return Box;
+    }
+
 }

@@ -10,6 +10,9 @@ public class Cube extends Geometry{
 
     Square up, down, left, right, forward, backward;
 
+    Point3D Min;
+    Point3D Max;
+
     public Cube(Point3D URF, Point3D URB, Point3D ULF, Point3D ULB, Point3D DRF, Point3D DRB, Point3D DLF, Point3D DLB)
     {
         build(URF, URB, ULF, ULB, DRF, DRB, DLF, DLB);
@@ -46,6 +49,23 @@ public class Cube extends Geometry{
         build(center.add(up).add(right).add(front), center.add(up).add(right).add(back), center.add(up).add(left).add(front), center.add(up).add(left).add(back), center.add(down).add(right).add(front), center.add(down).add(right).add(back), center.add(down).add(left).add(front), center.add(down).add(left).add(back));
     }
 
+
+    public Cube(Point3D min, Point3D max){
+        build(max,
+              new Point3D(max.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+              new Point3D(min.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+              new Point3D(min.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+
+              new Point3D(max.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord()),
+              new Point3D(max.getX().getCoord(), min.getY().getCoord(), min.getZ().getCoord()),
+              new Point3D(min.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord()),
+              min
+        );
+
+        Min = min;
+        Max = max;
+
+    }
     @Override
     public Vector getNormal(Point3D point) {
         if(up.inoroutNoExtra(point))
@@ -106,6 +126,21 @@ public class Cube extends Geometry{
         }
         return L;
     }
+
+    @Override
+    public BoundingBox CreateBox()
+    {
+        Box = new BoundingBox(Min, Max);
+        return Box;
+    }
+
+//    public Point3D getMin(){
+//
+//    }
+//
+//    public Point3D getMax(){
+//
+//    }
 
     void build(Point3D URF, Point3D URB, Point3D ULF, Point3D ULB, Point3D DRF, Point3D DRB, Point3D DLF, Point3D DLB){
         up = new Square(ULB, ULF, URB, URF);

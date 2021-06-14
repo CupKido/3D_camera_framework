@@ -92,4 +92,11 @@ public class Plane extends Geometry {
         }
         return L;
     }
+
+    @Override
+    public BoundingBox CreateBox(){
+        Box = new BoundingBox(new Point3D(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY),
+                new Point3D(Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY));
+        return Box;
+    }
 }

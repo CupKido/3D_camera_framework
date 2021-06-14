@@ -7,7 +7,7 @@ import primitives.*;
 
 import java.util.LinkedList;
 
-public class Beer extends Geometry {
+public class Beer extends Item {
 
     Geometry bottom;
     Geometry top;

@@ -11,9 +11,21 @@ import java.util.Random;
 
 public class Render {
 
+
+    private int RAYS = 1;
     ImageWriter imageWriter;
     public Camera camera;
     RayTracerBasic rayTracerBasic;
+
+
+    private boolean reject = true;
+
+    public Render setReject(boolean reject) {
+        this.reject = reject;
+        return this;
+    }
+
+
 
     public Render setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
@@ -27,6 +39,11 @@ public class Render {
 
     public Render setRayTracer(RayTracerBasic rayTracerBasic) {
         this.rayTracerBasic = rayTracerBasic;
+        return this;
+    }
+
+    public Render setRAYS(int RAYS) {
+        this.RAYS = RAYS;
         return this;
     }
 
@@ -89,7 +106,7 @@ public class Render {
             _maxCols = maxCols;
             _pixels = maxRows * maxCols;
             _nextCounter = _pixels / 100;
-            if (Render.this._print) System.out.printf("\r %02d%%", _percents);
+            if (Render.this._print) System.out.println(_percents + "%");
         }
 
         /**
@@ -143,7 +160,7 @@ public class Render {
         public boolean nextPixel(Pixel target) {
             int percents = nextP(target);
             if (percents > 0)
-                if (Render.this._print) System.out.printf("\r %02d%%", percents);
+                if (Render.this._print) System.out.println(percents + "%");
             if (percents >= 0)
                 return true;
             if (Render.this._print) System.out.printf("\r %02d%%", 100);
@@ -165,7 +182,9 @@ public class Render {
         if (rayTracerBasic == null) {
             throw new MissingResourceException("ERROR: rayTracerBasic resource is missing in renderer.", "RayTracerBasic", "");
         }
-
+        if(reject){
+            rayTracerBasic.CreateBVH();
+        }
         final int nX = imageWriter.getNx();
         final int nY = imageWriter.getNy();
 
@@ -177,7 +196,7 @@ public class Render {
             threads[i] = new Thread(() -> {
                 Pixel pixel = new Pixel();
                 while (thePixel.nextPixel(pixel)) {
-                    LinkedList<Ray> rays = camera.constructRaysThroughPixel(nX, nY, pixel.col, pixel.row);
+                    LinkedList<Ray> rays = camera.constructRaysThroughPixel(nX, nY, pixel.col, pixel.row, RAYS);
                     imageWriter.writePixel(pixel.col, pixel.row, rayTracerBasic.traceRays(rays));
                 }
             });

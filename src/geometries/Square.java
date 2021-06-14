@@ -177,4 +177,38 @@ public class Square extends Polygon {
         }
         return false;
     }
+
+    @Override
+    public BoundingBox CreateBox(){
+        Box = new BoundingBox(
+                new Point3D(Math.min(
+                                Math.min(vertices.get(0).getX().getCoord(), vertices.get(1).getX().getCoord()),
+                                Math.min(vertices.get(2).getX().getCoord(), vertices.get(3).getX().getCoord())
+                        ),
+                        Math.min(
+                                Math.min(vertices.get(2).getY().getCoord(), vertices.get(3).getY().getCoord()),
+                                Math.min(vertices.get(0).getY().getCoord(), vertices.get(1).getY().getCoord())
+                        ),
+                        Math.min(
+                                Math.min(vertices.get(0).getZ().getCoord(), vertices.get(1).getZ().getCoord()),
+                                Math.min(vertices.get(2).getZ().getCoord(), vertices.get(3).getZ().getCoord())
+                        )
+                ),
+
+                new Point3D(Math.max(
+                        Math.max(vertices.get(0).getX().getCoord(), vertices.get(1).getX().getCoord()),
+                        Math.max(vertices.get(2).getX().getCoord(), vertices.get(3).getX().getCoord())
+                ),
+                        Math.max(
+                                Math.max(vertices.get(2).getY().getCoord(), vertices.get(3).getY().getCoord()),
+                                Math.max(vertices.get(0).getY().getCoord(), vertices.get(1).getY().getCoord())
+                        ),
+                        Math.max(
+                                Math.max(vertices.get(0).getZ().getCoord(), vertices.get(1).getZ().getCoord()),
+                                Math.max(vertices.get(2).getZ().getCoord(), vertices.get(3).getZ().getCoord())
+                        )
+                )
+        );
+        return Box;
+    }
 }

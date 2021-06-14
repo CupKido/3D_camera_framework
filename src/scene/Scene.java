@@ -13,6 +13,7 @@ public class Scene {
     public AmbientLight ambientlight = new AmbientLight(Color.BLACK, 0);
     public Geometries geometries;
 
+
     public Scene setLights(LinkedList<LightSource> lights) {
         this.lights = lights;
         return this;

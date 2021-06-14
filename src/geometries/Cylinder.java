@@ -113,4 +113,40 @@ public class Cylinder extends Tube {
     public String toString() {
         return super.toString() + "\nheight = " + _height;
     }
+
+    @Override
+    public BoundingBox CreateBox(){
+        Point3D up = axisRay.getP0().add(axisRay.getDir().scale(_height));
+        Point3D down = axisRay.getP0();
+        Box = new BoundingBox(
+                new Point3D(Math.min(
+                        Math.min(up.getX().getCoord() + radius, up.getX().getCoord() - radius),
+                        Math.min(down.getX().getCoord() + radius, down.getX().getCoord() - radius)
+                ),
+                        Math.min(
+                                Math.min(up.getY().getCoord() + radius, up.getY().getCoord() - radius),
+                                Math.min(down.getY().getCoord() + radius, down.getY().getCoord() - radius)
+                        ),
+                        Math.min(
+                                Math.min(up.getZ().getCoord() + radius, up.getZ().getCoord() - radius),
+                                Math.min(down.getZ().getCoord() + radius, down.getZ().getCoord() - radius)
+                        )
+                ),
+
+                new Point3D(Math.max(
+                        Math.max(up.getX().getCoord() + radius, up.getX().getCoord() - radius),
+                        Math.max(down.getX().getCoord() + radius, down.getX().getCoord() - radius)
+                ),
+                        Math.max(
+                                Math.max(up.getY().getCoord() + radius, up.getY().getCoord() - radius),
+                                Math.max(down.getY().getCoord() + radius, down.getY().getCoord() - radius)
+                        ),
+                        Math.max(
+                                Math.max(up.getZ().getCoord() + radius, up.getZ().getCoord() - radius),
+                                Math.max(down.getZ().getCoord() + radius, down.getZ().getCoord() - radius)
+                        )
+                )
+        );
+        return Box;
+    }
 }

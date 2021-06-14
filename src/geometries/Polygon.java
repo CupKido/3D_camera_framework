@@ -144,4 +144,5 @@ public class Polygon extends Geometry {
 	public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
 		return null;
 	}
+
 }

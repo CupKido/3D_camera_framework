@@ -1,6 +1,6 @@
 package elements;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import geometries.*;
 import primitives.*;
@@ -1560,6 +1560,8 @@ public class TeapotTest {
                 .setCamera(camera) //
                 .setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene)) //
+                .setRAYS(1)
+                .setReject(true)
                 .setMultithreading(3).setDebugPrint();
         render.renderImage();
         render.printGrid(50, new Color(java.awt.Color.YELLOW));

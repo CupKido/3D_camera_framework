@@ -1,12 +1,13 @@
 package items;
 
+import geometries.BoundingBox;
 import geometries.Geometry;
 import geometries.Sphere;
 import primitives.*;
 
 import java.util.LinkedList;
 
-public class PoolBall extends Geometry {
+public class PoolBall extends Item {
     public Geometry ball;
 
     public PoolBall(Point3D p){
@@ -35,4 +36,11 @@ public class PoolBall extends Geometry {
     public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
         return ball.findGeoIntersections(ray);
     }
+
+    @Override
+    public BoundingBox CreateBox(){
+        Box = ball.CreateBox();
+        return Box;
+    }
+
 }

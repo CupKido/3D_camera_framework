@@ -8,8 +8,8 @@ import static primitives.Util.*;
 
 public class Tube extends Geometry
 {
-    private Ray axisRay;
-    private double radius;
+    protected Ray axisRay;
+    protected double radius;
 
     public Tube(Ray AR, double R)
     {

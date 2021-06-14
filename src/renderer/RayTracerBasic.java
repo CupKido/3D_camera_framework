@@ -13,8 +13,11 @@ public class RayTracerBasic extends RayTracerBase{
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     private static final double MIN_CALC_COLOR_K = 0.001;
     private static final double INITIAL_K = 1.0;
-    private static final double DIS = 0.005;
-    private static final int SHADOWRAYS = 1;
+    private static final double DIS = 0.01;
+    private static final int SHADOWRAYS = 7;
+
+
+
 
 
     public RayTracerBasic(Scene _scene){
@@ -92,8 +95,8 @@ public class RayTracerBasic extends RayTracerBase{
 
                     Color lightIntensity = light.getIntensity(P.point).scale(ktr);
                     Color D = lightIntensity.scale(mat.getkD() * Math.abs(nl));
-                Color S = lightIntensity.scale(mat.getkS() * pow(v.scale(-1).dotProduct(r), mat.getnShininess()));
-                color = color.add(D, S);
+                    Color S = lightIntensity.scale(mat.getkS() * pow(v.scale(-1).dotProduct(r), mat.getnShininess()));
+                    color = color.add(D, S);
                 }
             }
         }
@@ -147,7 +150,7 @@ public class RayTracerBasic extends RayTracerBase{
     public Color traceRays(LinkedList<Ray> rays) {
         Color res = Color.BLACK;
         for (Ray ray:
-             rays) {
+                rays) {
             res = res.add(traceRay(ray));
         }
         return res.reduce(rays.size());
@@ -157,30 +160,31 @@ public class RayTracerBasic extends RayTracerBase{
         if(SHADOWRAYS == 1){
             return transparency(light, l , n, geopoint);
         }
-    //    creating way to move on light plane
+        //    creating way to move on light plane
         Vector someD;
         Vector someDOther;
-    try {
-        someD = new Vector(l.getDotEquals0X(1, 1), 1, 1).normalized();
-        someDOther = l.crossProduct(someD).normalized();
-    }catch (Exception e){
         try {
-            someD = new Vector(1, l.getDotEquals0Y(1, 1), 1).normalized();
+            someD = new Vector(l.getDotEquals0X(1, 1), 1, 1).normalized();
             someDOther = l.crossProduct(someD).normalized();
-        }catch (Exception r){
+        }catch (Exception e){
             try {
-                someD = new Vector(1, 1, l.getDotEquals0Z(1, 1)).normalized();
+                someD = new Vector(1, l.getDotEquals0Y(1, 1), 1).normalized();
                 someDOther = l.crossProduct(someD).normalized();
-            }catch (Exception t){
-                return 0.0;
+            }catch (Exception r){
+                try {
+                    someD = new Vector(1, 1, l.getDotEquals0Z(1, 1)).normalized();
+                    someDOther = l.crossProduct(someD).normalized();
+                }catch (Exception t){
+                    return 0.0;
+                }
             }
         }
-    }
 
+        int grid2 = (SHADOWRAYS - 1) / 2;
         double sum = 0;
         Vector nV;
-        for (int i = -2; i < 3; i++) {
-            for (int j = -2; j < 3; j++) {
+        for (int i = -grid2; i <= grid2; i++) {
+            for (int j = -grid2; j <= grid2; j++) {
                 nV = l;
                 if(i != 0){
                     nV = nV.add(someD.scale(i * DIS));
@@ -209,5 +213,9 @@ public class RayTracerBasic extends RayTracerBase{
             }
         }
         return ktr;
+    }
+
+    public void CreateBVH(){
+        scene.geometries.CreateBVH();
     }
 }

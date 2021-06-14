@@ -67,4 +67,24 @@ public class Triangle extends Polygon{
         }
         return null;
     }
+
+    @Override
+    public BoundingBox CreateBox() {
+
+        Box =
+                new BoundingBox(new Point3D(
+                        Math.min(Math.min(vertices.get(0).getX().getCoord(),vertices.get(1).getX().getCoord() ), vertices.get(2).getX().getCoord()),
+                        Math.min(Math.min(vertices.get(0).getY().getCoord(), vertices.get(1).getY().getCoord()), vertices.get(2).getY().getCoord()),
+                        Math.min(Math.min(vertices.get(0).getZ().getCoord(), vertices.get(1).getZ().getCoord()), vertices.get(2).getZ().getCoord())
+                ),
+
+                new Point3D(
+                      Math.max(Math.max(vertices.get(0).getX().getCoord(),vertices.get(1).getX().getCoord() ), vertices.get(2).getX().getCoord()),
+                      Math.max(Math.max(vertices.get(0).getY().getCoord(), vertices.get(1).getY().getCoord()), vertices.get(2).getY().getCoord()),
+                      Math.max(Math.max(vertices.get(0).getZ().getCoord(), vertices.get(1).getZ().getCoord()), vertices.get(2).getZ().getCoord())
+
+                )
+        );
+        return Box;
+    }
 }

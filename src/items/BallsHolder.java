@@ -1,5 +1,6 @@
 package items;
 
+import geometries.BoundingBox;
 import geometries.Geometry;
 import geometries.Square;
 import primitives.Point3D;
@@ -8,7 +9,7 @@ import primitives.Vector;
 
 import java.util.LinkedList;
 
-public class BallsHolder extends Geometry {
+public class BallsHolder extends Item {
 
     Square Right;
     Square Left;
@@ -52,5 +53,13 @@ public class BallsHolder extends Geometry {
             return null;
         }
         return L;
+    }
+
+    @Override
+    public BoundingBox CreateBox(){
+        Box = Right.CreateBox();
+        Box.add(Left.CreateBox());
+        Box.add(Back.CreateBox());
+        return Box;
     }
 }

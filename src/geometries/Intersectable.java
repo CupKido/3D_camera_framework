@@ -17,6 +17,9 @@ public interface Intersectable {
 
     //Finds intersections between a ray and a body
     LinkedList<GeoPoint> findGeoIntersections(Ray ray);
+    default BoundingBox CreateBox(){
+        return null;
+    }
 
     public static class GeoPoint {
         public Geometry geometry;

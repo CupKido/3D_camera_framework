@@ -48,6 +48,11 @@ public class Sphere extends Geometry
     @Override
     public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
         LinkedList<GeoPoint> L = new LinkedList<GeoPoint>();
+        if(q0.equals(ray.getP0())){
+            GeoPoint P = new GeoPoint(this, ray.getP0().add(ray.getDir().scale(radius)));
+            L.add(P);
+            return L;
+        }
         Vector u = q0.subtract(ray.getP0());
         double Tm = ray.getDir().dotProduct(u);
         double d = Math.sqrt(u.length() * u.length() - (Tm * Tm));
@@ -69,5 +74,14 @@ public class Sphere extends Geometry
             return null;
         }
         return L;
+    }
+
+    @Override
+    public BoundingBox CreateBox() {
+        Box = new BoundingBox(
+                new Point3D(q0.getX().getCoord() - radius, q0.getY().getCoord() - radius,q0.getZ().getCoord() - radius),
+                new Point3D(q0.getX().getCoord() + radius, q0.getY().getCoord() + radius,q0.getZ().getCoord() + radius)
+        );
+        return Box;
     }
 }
