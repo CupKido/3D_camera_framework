@@ -23,10 +23,15 @@ public class Geometries implements Intersectable{
         L.addAll(Arrays.asList(geometries));
     }
 
+    /**
+     * creates a box from all the objects in L and returns it
+     * @return
+     */
     public BoundingBox getBox(){
+        BoundingBox inner;
             for (Intersectable Inter:
                     L) {
-                BoundingBox inner = Inter.CreateBox();
+                inner = Inter.CreateBox();
                 if (inner != null) {
                     if (Box == null) {
                         Box = new BoundingBox(inner.min, inner.max);
@@ -40,36 +45,28 @@ public class Geometries implements Intersectable{
 
     BoundingBox Box = null;
 
-    @Override
-    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
-
-         LinkedList<GeoPoint> res = new LinkedList<GeoPoint>();
-        LinkedList<GeoPoint> intersects;
-        getBox();
-        for (Intersectable G : L) {
-            if(G.CreateBox() == null){
-                intersects = G.findGeoIntersections(ray);
-                if (intersects != null) {
-                    res.addAll(intersects);
-                }
-            }else if(G.CreateBox().findGeoIntersections(ray) != null) {
-                intersects = G.findGeoIntersections(ray);
-                if (intersects != null) {
-                    res.addAll(intersects);
-                }
-            }
-        }
-        if(res.isEmpty()) return null;
-        return res;
-    }
-
-//    private LinkedList<GeoPoint> EarlyRejectOff(Ray ray){
-//        LinkedList<GeoPoint> res = new LinkedList<GeoPoint>();
-//        LinkedList<GeoPoint> intersects;
+    /**
+     * returns all the intersections in the intersectable list
+     * @param ray
+     * @return
+     */
+//    @Override
+//    public List<GeoPoint> findGeoIntersections(Ray ray) {
+//
+//        List<GeoPoint> res = new LinkedList<GeoPoint>();
+//        List<GeoPoint> intersects;
+//        CreateBox();
 //        for (Intersectable G : L) {
-//            intersects = G.findGeoIntersections(ray);
-//            if(intersects != null){
-//                res.addAll(intersects);
+//            if(G.CreateBox() == null){
+//                intersects = G.findGeoIntersections(ray);
+//                if (intersects != null) {
+//                    res.addAll(intersects);
+//                }
+//            }else if(G.CreateBox().findGeoIntersections(ray)) {
+//                intersects = G.findGeoIntersections(ray);
+//                if (intersects != null) {
+//                    res.addAll(intersects);
+//                }
 //            }
 //        }
 //        if(res.isEmpty()) return null;
@@ -77,20 +74,44 @@ public class Geometries implements Intersectable{
 //    }
 
 
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> listPoints = null;
+        for (Intersectable geometry : this.L) {
+            if (geometry.CreateBox().findGeoIntersections(ray)) {
+                List<GeoPoint> points = geometry.findGeoIntersections(ray);
+                if (points != null) {
+                    if (listPoints == null)
+                        listPoints = new LinkedList<>();
+                    listPoints.addAll(points);
+                }
+            }
+        }
+        return listPoints;
+    }
+
+    /**
+     * if theres a box, it returns it,
+     *    if not, it creates it with getBox()
+     * @return
+     */
     @Override
     public BoundingBox CreateBox() {
         if(Box == null){
-        return getBox();
+            return getBox();
         }
         else return Box;
     }
 
+
+    /**
+     * puts the geometries in the right boxes and creates a fitting tree
+     */
     public void CreateBVH(){
-        if(L.size() <= 2){
+        if(L.size() <= 4){
             return;
         }
 
-        getBox();
+        CreateBox();
         char axis = 'x';
         double x = Box.max.getX().getCoord() - Box.min.getY().getCoord();
         double y = Box.max.getY().getCoord() - Box.min.getY().getCoord();
@@ -103,7 +124,16 @@ public class Geometries implements Intersectable{
             axis = 'z';
         }
 
-        bubbleSort(L, axis);
+
+        char finalAxis = axis;
+        L.sort((Intersectable a, Intersectable b) -> {
+            if(sizeRelToAxis(a, finalAxis) > sizeRelToAxis(b, finalAxis)){
+                return 1;
+            }else if(sizeRelToAxis(a, finalAxis) < sizeRelToAxis(b, finalAxis)){
+                return -1;
+            }
+            return 0;
+        });
 
         Geometries left = new Geometries();
         Geometries right = new Geometries();
@@ -113,14 +143,20 @@ public class Geometries implements Intersectable{
         for(int i = L.size()/2; i < L.size() ; i++){
             right.add(L.get(i));
         }
+        L.clear();
         right.CreateBVH();
         left.CreateBVH();
 
-        L.clear();
+
         L.add(left);
         L.add(right);
     }
 
+    /**
+     * sorts the list of intersectables with bubble sort
+     * @param L
+     * @param axis
+     */
     private void bubbleSort(LinkedList<Intersectable> L, char axis)
     {
         int n = L.size();
@@ -135,20 +171,26 @@ public class Geometries implements Intersectable{
             }
     }
 
+    /**
+     *  returns the middle of the box relatively to the selected axis
+     * @param inter
+     * @param axis
+     * @return
+     */
     private double sizeRelToAxis(Intersectable inter, char axis){
         BoundingBox temp = inter.CreateBox();
         double sum = 0;
         switch (axis) {
             case 'x':
-                sum = temp.max.getX().getCoord() - temp.min.getX().getCoord();
+                sum = temp.max.getX().getCoord() + temp.min.getX().getCoord();
                 break;
             case 'y':
-                sum = temp.max.getY().getCoord() - temp.min.getY().getCoord();
+                sum = temp.max.getY().getCoord() + temp.min.getY().getCoord();
                 break;
             case 'z':
-                sum = temp.max.getZ().getCoord() - temp.min.getZ().getCoord();
+                sum = temp.max.getZ().getCoord() + temp.min.getZ().getCoord();
                 break;
         }
-        return sum;
+        return sum/2;
     }
 }

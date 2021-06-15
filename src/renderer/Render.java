@@ -12,7 +12,7 @@ import java.util.Random;
 public class Render {
 
 
-    private int RAYS = 1;
+    private int RAYS = 6;
     ImageWriter imageWriter;
     public Camera camera;
     RayTracerBasic rayTracerBasic;
@@ -20,11 +20,27 @@ public class Render {
 
     private boolean reject = true;
 
+    /**
+     * set if Bounding volume is working or not
+     * @param reject
+     * @return
+     */
     public Render setReject(boolean reject) {
         this.reject = reject;
         return this;
     }
 
+    /**
+     * set the amount of shadow rays
+     * the more there is, the more precise it is
+     * the number must be odd!
+     * @param SHADOWRAYS
+     * @return
+     */
+    public Render setSHADOWRAYS(int SHADOWRAYS) {
+        rayTracerBasic.setSHADOWRAYS(SHADOWRAYS);
+        return this;
+    }
 
 
     public Render setImageWriter(ImageWriter imageWriter) {
@@ -42,8 +58,22 @@ public class Render {
         return this;
     }
 
+    /**
+     * set amout of anti alaising rays
+     * the more, the more precise
+     * number must be even!
+     * @param RAYS
+     * @return
+     */
     public Render setRAYS(int RAYS) {
-        this.RAYS = RAYS;
+        if (RAYS <= 0){
+            this.RAYS = 1;
+        }
+        else if(RAYS % 2 == 1 && RAYS > 1){
+            this.RAYS = RAYS - 1;
+            return this;
+        }
+        else this.RAYS = RAYS;
         return this;
     }
 

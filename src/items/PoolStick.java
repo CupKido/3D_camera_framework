@@ -5,6 +5,7 @@ import geometries.Geometry;
 import primitives.*;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class PoolStick extends Geometry {
 
@@ -24,9 +25,9 @@ public class PoolStick extends Geometry {
     }
 
     @Override
-    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
-        LinkedList<GeoPoint> L = new LinkedList<>();
-        LinkedList<GeoPoint> temp = new LinkedList<>();
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> L = new LinkedList<>();
+        List<GeoPoint> temp = new LinkedList<>();
         temp = wood.findGeoIntersections(ray);
         if(temp != null){
             L.addAll(temp);

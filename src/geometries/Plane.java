@@ -74,8 +74,8 @@ public class Plane extends Geometry {
     }
 
     @Override
-    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
-        LinkedList<GeoPoint> L = new LinkedList<GeoPoint>();
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> L = new LinkedList<GeoPoint>();
 
         if(Util.isZero(normal.dotProduct(ray.getDir()))){
             return null;
@@ -95,8 +95,25 @@ public class Plane extends Geometry {
 
     @Override
     public BoundingBox CreateBox(){
-        Box = new BoundingBox(new Point3D(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY),
-                new Point3D(Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY));
+        if(Box != null){
+            return Box;
+        }
+//        if (normal.getHead().equals(new Point3D(0,0,1 )) || normal.getHead().equals(new Point3D(0,0,-1 ))){
+//            Box = new BoundingBox(new Point3D(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, q0.getZ().getCoord()),
+//                    new Point3D(Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,q0.getZ().getCoord()));
+//        }
+//        if (normal.getHead().equals(new Point3D(0,1,0 )) || normal.getHead().equals(new Point3D(0,-1,0 ))){
+//            Box = new BoundingBox(new Point3D(Double.NEGATIVE_INFINITY, q0.getY().getCoord(), Double.NEGATIVE_INFINITY),
+//                    new Point3D(Double.POSITIVE_INFINITY,q0.getY().getCoord(),Double.POSITIVE_INFINITY));
+//        }
+//        if (normal.getHead().equals(new Point3D(1,0,0 )) || normal.getHead().equals(new Point3D(-1,0,0 ))){
+//            Box = new BoundingBox(new Point3D(q0.getX().getCoord(), Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY),
+//                    new Point3D(q0.getX().getCoord(),Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY));
+//        }
+//        else {
+            Box = new BoundingBox(new Point3D(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY),
+                    new Point3D(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+//        }
         return Box;
     }
 }

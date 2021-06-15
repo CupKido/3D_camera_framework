@@ -179,4 +179,14 @@ public class Tube extends Geometry
             return null;
         return res;
     }
+
+    @Override
+    public BoundingBox CreateBox(){
+        if(Box != null){
+            return Box;
+        }
+        Box = new BoundingBox(new Point3D(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY),
+                new Point3D(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        return Box;
+    }
 }

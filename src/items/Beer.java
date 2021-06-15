@@ -6,6 +6,7 @@ import geometries.Sphere;
 import primitives.*;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Beer extends Item {
 
@@ -32,9 +33,9 @@ public class Beer extends Item {
     }
 
     @Override
-    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
-        LinkedList<GeoPoint> L = new LinkedList<GeoPoint>();
-        LinkedList<GeoPoint> temp = new LinkedList<GeoPoint>();
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> L = new LinkedList<GeoPoint>();
+        List<GeoPoint> temp = new LinkedList<GeoPoint>();
 
         temp = bottom.findGeoIntersections(ray);
         if(temp != null){

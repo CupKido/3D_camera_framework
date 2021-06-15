@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,8 +47,8 @@ public class Sphere extends Geometry
 
 
     @Override
-    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
-        LinkedList<GeoPoint> L = new LinkedList<GeoPoint>();
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> L = new LinkedList<>();
         if(q0.equals(ray.getP0())){
             GeoPoint P = new GeoPoint(this, ray.getP0().add(ray.getDir().scale(radius)));
             L.add(P);
@@ -78,6 +79,9 @@ public class Sphere extends Geometry
 
     @Override
     public BoundingBox CreateBox() {
+        if(Box != null){
+            return Box;
+        }
         Box = new BoundingBox(
                 new Point3D(q0.getX().getCoord() - radius, q0.getY().getCoord() - radius,q0.getZ().getCoord() - radius),
                 new Point3D(q0.getX().getCoord() + radius, q0.getY().getCoord() + radius,q0.getZ().getCoord() + radius)

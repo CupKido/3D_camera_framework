@@ -8,6 +8,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class BallsHolder extends Item {
 
@@ -23,9 +24,9 @@ public class BallsHolder extends Item {
     private static Vector RD = new Vector(0.9, -0.65, 0);//right down
 
     public BallsHolder(Point3D blackBall){
-        Right = new Square(blackBall.add(FU),blackBall.add(FD),blackBall.add(RU),blackBall.add(RD));
-        Left = new Square(blackBall.add(FU),blackBall.add(FD),blackBall.add(LU),blackBall.add(LD));
-        Back = new Square(blackBall.add(LU),blackBall.add(LD),blackBall.add(RU),blackBall.add(RD));
+        Right = new Square(blackBall.add(FU),blackBall.add(FD),blackBall.add(RD),blackBall.add(RU));
+        Left = new Square(blackBall.add(FU),blackBall.add(FD),blackBall.add(LD),blackBall.add(LU));
+        Back = new Square(blackBall.add(LU),blackBall.add(LD),blackBall.add(RD),blackBall.add(RU));
     }
 
     @Override
@@ -34,9 +35,9 @@ public class BallsHolder extends Item {
     }
 
     @Override
-    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
-        LinkedList<GeoPoint> L = new LinkedList<>();
-        LinkedList<GeoPoint> temp = new LinkedList<>();
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> L = new LinkedList<>();
+        List<GeoPoint> temp = new LinkedList<>();
         temp = Right.findGeoIntersections(ray);
         if(temp != null){
             L.addAll(temp);
@@ -57,6 +58,9 @@ public class BallsHolder extends Item {
 
     @Override
     public BoundingBox CreateBox(){
+        if(Box != null){
+            return Box;
+        }
         Box = Right.CreateBox();
         Box.add(Left.CreateBox());
         Box.add(Back.CreateBox());

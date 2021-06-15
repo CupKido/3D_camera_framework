@@ -18,6 +18,7 @@ public class Camera {
     double VPWidth = 0; //View Plane width
     double PDistance = 0; //Plane Distance
     double MoveSize = 1;
+
     public Camera(Point3D position, Vector to, Vector up) {
         if(position == null || to == null || up == null)
         {
@@ -111,12 +112,25 @@ public class Camera {
         return Up;
     }
 
+    /**
+     * sets size of the view plane
+     * on a physical camera its the size of the sensor
+     * @param width
+     * @param height
+     * @return
+     */
     public Camera setViewPlaneSize(double width, double height){
         VPHeight = height;
         VPWidth = width;
         return this;
     }
 
+    /**
+     * set distance from camera to view plane
+     * in a physical camera its mm
+     * @param distance
+     * @return
+     */
     public Camera setDistance(double distance){
         if(distance <= 0){
             throw new IllegalArgumentException("ERROR: Distance from Camera to View Plane has to be more than 0!");
@@ -125,6 +139,14 @@ public class Camera {
         return this;
     }
 
+    /**
+     * creates a ray from the camera to (j, i) on the view plane's grid
+     * @param nX
+     * @param nY
+     * @param j
+     * @param i
+     * @return
+     */
     public Ray constructRayThroughPixel(int nX, int nY, double j, double i){
         Point3D Pc = Position.add(To.scale(PDistance));
         double Ry = VPHeight/nY;
@@ -242,6 +264,15 @@ public class Camera {
         Right = To.crossProduct(Up).normalized();
     }
 
+    /**
+     * creates RAYS^2 rays from the camera to random points on the pixel's grid on (col, row) of the grid
+     * @param nX
+     * @param nY
+     * @param col
+     * @param row
+     * @param RAYS
+     * @return
+     */
     public LinkedList<Ray> constructRaysThroughPixel(int nX, int nY, int col, int row, int RAYS) {
         LinkedList<Ray> L = new LinkedList<>();
 
@@ -265,12 +296,11 @@ public class Camera {
         // Bottom Left of pixel
         Point3D bottomLeft = pIJ.add(Right.scale(-rX/2)).add(Up.scale(-rY/2));
 
-        int nXY = (int)Math.sqrt(RAYS);
-        double rXin = rX/nXY;
-        double rYin = rY/nXY;
+        double rXin = rX/RAYS;
+        double rYin = rY/RAYS;
         Random offset = new Random(java.time.LocalDateTime.now().getSecond());
-        for (int w = 0; w < nXY; w++) {
-            for (int h = 0; h < nXY; h++) {
+        for (int w = 0; w < RAYS; w++) {
+            for (int h = 0; h < RAYS; h++) {
                 L.add(new Ray(Position ,bottomLeft.add(Right.scale((w + offset.nextDouble())*rXin))
                         .add(Up.scale((h + offset.nextDouble())*rYin)).subtract(Position)));
             }

@@ -1,5 +1,6 @@
 package geometries;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import primitives.*;
@@ -89,60 +90,38 @@ public class Polygon extends Geometry {
 	public Vector getNormal() {
 		return plane.getNormal();
 	}
-/*
+
 	@Override
-	public LinkedList<Point3D> findIntersections(Ray ray) {
-		LinkedList<Point3D> L = new LinkedList<Point3D>();
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		List<GeoPoint> L = new LinkedList<>();
 		L = plane.findGeoIntersections(ray);
 		if(L == null)
 		{
 			return null;
 		}
-		boolean inside = true;
-		Vector firstVn = null;
-		Vector firstN = null;
-		Vector LastVn = null;
-		double lastVN = 0;
-		double current = 0;
 
-		for (Point3D P:
-			 vertices) {
-			Vector Vn = P.subtract(ray.getP0());
-			if(firstVn != null && firstN == null)
-			{
-				firstN = firstVn.crossProduct(Vn).normalized();
-			}
-			if(firstVn == null)
-			{
-				firstVn = Vn;
-			}
-			if (LastVn != null){
-				Vector N = LastVn.crossProduct(Vn).normalized();
-				if(lastVN == 0)
-				{
-					lastVN = ray.getDir().dotProduct(N);
-				}
-				current = ray.getDir().dotProduct(N);
-				if(lastVN == 0 || lastVN > 0 && current < 0 || lastVN < 0 && current > 0)
-				{
-					inside = false;
-					break;
-				}
+		LinkedList<Vector> vectors = new LinkedList<Vector>();
+           for (Point3D point : vertices) {
+                vectors.add(point.subtract(ray.getP0()));
+           }
+		Vector vec = vectors.get(vectors.size() - 1).crossProduct(vectors.get(0));
+            double sign = alignZero(ray.getDir().dotProduct(vec));
+            if (sign == 0)
+                return null;
+            for (int i = 0; i < vertices.size() - 1; i += 1) {
+                vec = vectors.get(i).crossProduct(vectors.get(i + 1));
+                double sign2 = alignZero(ray.getDir().dotProduct(vec));
+                if (sign2 * sign <= 0) //check if the sign different or 0
+                    return null;
+            }
 
-			}
-			LastVn = Vn;
-
-		}
-		if(inside == true)
-		{
-			return L;
-		}
-		return null;
+//		for (GeoPoint p:
+//			 L) {
+//			p.geometry = this;
+//		}
+		return L;
 	}
-*/
-	@Override
-	public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
-		return null;
-	}
+
+
 
 }

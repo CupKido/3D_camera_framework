@@ -5,6 +5,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Cube extends Geometry{
 
@@ -12,25 +13,6 @@ public class Cube extends Geometry{
 
     Point3D Min;
     Point3D Max;
-
-    public Cube(Point3D URF, Point3D URB, Point3D ULF, Point3D ULB, Point3D DRF, Point3D DRB, Point3D DLF, Point3D DLB)
-    {
-        build(URF, URB, ULF, ULB, DRF, DRB, DLF, DLB);
-    }
-
-    public Cube(Point3D center, double width, double depth, double height)
-    {
-        if(height <= 0 || width <= 0 || depth <= 0)
-            throw new IllegalArgumentException("ERROR: Size must by bigger then zero!");
-        Vector up = new Vector(0,0,height/2);
-        Vector down = new Vector(0,0,-height/2);
-        Vector right = new Vector(width/2,0,0);
-        Vector left = new Vector(-width/2,0,0);
-        Vector back = new Vector(0,depth/2,0);
-        Vector front = new Vector(0,-depth/2,0);
-
-        build(center.add(up).add(right).add(front), center.add(up).add(right).add(back), center.add(up).add(left).add(front), center.add(up).add(left).add(back), center.add(down).add(right).add(front), center.add(down).add(right).add(back), center.add(down).add(left).add(front), center.add(down).add(left).add(back));
-    }
 
     public Cube(Point3D center, double width, double depth, double height, Vector up, Vector right)
     {
@@ -51,16 +33,53 @@ public class Cube extends Geometry{
 
 
     public Cube(Point3D min, Point3D max){
-        build(max,
-              new Point3D(max.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
-              new Point3D(min.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
-              new Point3D(min.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
-
-              new Point3D(max.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord()),
-              new Point3D(max.getX().getCoord(), min.getY().getCoord(), min.getZ().getCoord()),
-              new Point3D(min.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord()),
-              min
+        up = new Square(
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(),min.getY().getCoord(),max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord())
         );
+        down = new Square(
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), min.getY().getCoord(), min.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(),min.getY().getCoord(),min.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord())
+        );
+        forward = new Square(
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(),max.getY().getCoord(),min.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord())
+        );
+        backward = new Square(
+                new Point3D(max.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), min.getY().getCoord(), min.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(),min.getY().getCoord(),min.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord())
+        );
+        left = new Square(
+                new Point3D(min.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(),min.getY().getCoord(),min.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord())
+        );
+        right = new Square(
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(),min.getY().getCoord(),min.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord())
+        );
+
+//        build(max,
+//              new Point3D(max.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+//              new Point3D(min.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+//              new Point3D(min.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+//
+//              new Point3D(max.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord()),
+//              new Point3D(max.getX().getCoord(), min.getY().getCoord(), min.getZ().getCoord()),
+//              new Point3D(min.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord()),
+//              min
+//        );
 
         Min = min;
         Max = max;
@@ -84,9 +103,12 @@ public class Cube extends Geometry{
     }
 
     @Override
-    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
-        LinkedList<GeoPoint> L = new LinkedList<GeoPoint>();
-        LinkedList<GeoPoint> temp = new LinkedList<GeoPoint>();
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+
+
+
+        List<GeoPoint> L = new LinkedList<GeoPoint>();
+        List<GeoPoint> temp = new LinkedList<GeoPoint>();
         temp = up.findGeoIntersections(ray);
         if (temp != null)
         {
@@ -124,12 +146,16 @@ public class Cube extends Geometry{
         if(L.isEmpty()){
             return null;
         }
+
         return L;
     }
 
     @Override
     public BoundingBox CreateBox()
     {
+        if(Box != null){
+            return Box;
+        }
         Box = new BoundingBox(Min, Max);
         return Box;
     }
@@ -142,12 +168,13 @@ public class Cube extends Geometry{
 //
 //    }
 
+
     void build(Point3D URF, Point3D URB, Point3D ULF, Point3D ULB, Point3D DRF, Point3D DRB, Point3D DLF, Point3D DLB){
-        up = new Square(ULB, ULF, URB, URF);
-        down = new Square(DLB, DRB, DLF, DRF);
-        left = new Square(ULF, ULB, DLF, DLB);
-        right = new Square(URF, URB, DRF, DRB);
-        forward = new Square(URF, DRF, ULF, DLF);
-        backward = new Square(URB, ULB, DRB, DLB);
+        up = new Square(ULB, ULF,  URF, URB);
+        down = new Square(DLB, DRB, DRF, DLF);
+        left = new Square(ULF, ULB, DLB, DLF);
+        right = new Square(URF, URB, DRB, DRF);
+        forward = new Square(URF, DRF, DLF, ULF);
+        backward = new Square(URB, ULB, DLB, DRB);
     }
 }

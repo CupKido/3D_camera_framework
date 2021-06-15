@@ -6,7 +6,7 @@ import primitives.Vector;
 
 import java.util.LinkedList;
 
-public class BoundingBox extends Geometry {
+public class BoundingBox {
 
     public Point3D getMin() {
         return min;
@@ -23,13 +23,13 @@ public class BoundingBox extends Geometry {
         max = _max;
     }
 
-    @Override
-    public Vector getNormal(Point3D point) {
-        return null;
-    }
+    /**
+     * finds if ray intersects with the box, if yes than returns empty list, if not returns null
+     * @param ray
+     * @return
+     */
 
-    @Override
-    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
+    public Boolean findGeoIntersections(Ray ray) {
         Point3D tempMin = min.add(new Point3D(0,0,0).subtract(ray.getP0()));
         Point3D tempMax = max.add(new Point3D(0,0,0).subtract(ray.getP0()));
 
@@ -43,9 +43,9 @@ public class BoundingBox extends Geometry {
         double Tz1 = tempMax.getZ().getCoord() / ray.getDir().getHead().getZ().getCoord();
 
         if(!checkIfInter(Tx0, Tx1, Ty0, Ty1) || !checkIfInter(Tx0, Tx1, Tz0, Tz1) || !checkIfInter(Ty0, Ty1, Tz0, Tz1)){
-            return null;
+            return false;
         }
-        return new LinkedList<GeoPoint>();
+        return true;
     }
 
     public boolean checkIfInter(double x0, double x1, double y0, double y1){
@@ -57,11 +57,6 @@ public class BoundingBox extends Geometry {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public BoundingBox CreateBox() {
-        return this;
     }
 
     public BoundingBox add(BoundingBox a){

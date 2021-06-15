@@ -5,6 +5,7 @@ import geometries.Intersectable.GeoPoint;
 
 import java.awt.geom.GeneralPath;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Ray {
 
@@ -47,13 +48,13 @@ public class Ray {
         }
     }
 
-    public Point3D findClosestPoint(LinkedList<Point3D> intersections){
+    public Point3D findClosestPoint(List<Point3D> intersections){
         if(intersections == null)
         {
             return null;
         }
 
-        Point3D ClosestPoint = intersections.getFirst();
+        Point3D ClosestPoint = intersections.get(0);
         double shortestD = p0.distanceSquared(ClosestPoint);
         double currentD;
 
@@ -68,13 +69,13 @@ public class Ray {
         return ClosestPoint;
     }
 
-    public GeoPoint findClosestGeoPoint(LinkedList<GeoPoint> intersections){
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections){
         if(intersections == null || intersections.isEmpty())
         {
             return null;
         }
 
-        GeoPoint ClosestPoint = intersections.getFirst();
+        GeoPoint ClosestPoint = intersections.get(0);
         double shortestD = p0.distanceSquared(ClosestPoint.point);
         double currentD;
 

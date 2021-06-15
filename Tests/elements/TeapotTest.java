@@ -1561,6 +1561,7 @@ public class TeapotTest {
                 .setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene)) //
                 .setRAYS(1)
+                .setSHADOWRAYS(1)
                 .setReject(true)
                 .setMultithreading(3).setDebugPrint();
         render.renderImage();

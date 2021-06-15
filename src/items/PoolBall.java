@@ -6,6 +6,7 @@ import geometries.Sphere;
 import primitives.*;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class PoolBall extends Item {
     public Geometry ball;
@@ -33,12 +34,15 @@ public class PoolBall extends Item {
     }
 
     @Override
-    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         return ball.findGeoIntersections(ray);
     }
 
     @Override
     public BoundingBox CreateBox(){
+        if(Box != null){
+            return Box;
+        }
         Box = ball.CreateBox();
         return Box;
     }

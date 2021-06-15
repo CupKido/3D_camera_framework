@@ -6,6 +6,7 @@ import primitives.Point3D;
 import primitives.Vector;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -121,7 +122,7 @@ class IntegrationTests {
         int res = 0;
         int nX = nx;
         int nY = ny;
-        LinkedList<Intersectable.GeoPoint> temp = new LinkedList<Intersectable.GeoPoint>();
+        List<Intersectable.GeoPoint> temp = new LinkedList<Intersectable.GeoPoint>();
         for (int i = 0; i < nX; ++i)
             for (int j = 0; j < nY; ++j) {
                 temp = G.findGeoIntersections(C.constructRayThroughPixel(nX, nY, i -1, j -1));

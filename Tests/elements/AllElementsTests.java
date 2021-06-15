@@ -46,7 +46,7 @@ public class AllElementsTests {
                         .setEmission(new Color(150, 150, 150)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0)),
 
                 //Mirror
-                new Square(new Point3D(-4,-4,-1.5), new Point3D(-4,-4,2), new Point3D(4,-4,-1.5), new Point3D(4,-4,2))
+                new Square(new Point3D(-4,-4,-1.5), new Point3D(-4,-4,2), new Point3D(4,-4,2), new Point3D(4,-4,-1.5))
                         .setEmission(new Color(20, 20, 20)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.95)),
 
 
@@ -55,60 +55,61 @@ public class AllElementsTests {
 
 
                 //Green mat
-                new Square(new Point3D(3,-1.5,0), new Point3D(3, 1.5, 0), new Point3D(-3, -1.5, 0),new Point3D(-3, 1.5, 0))
+                new Square(new Point3D(3,-1.5,0), new Point3D(3, 1.5, 0), new Point3D(-3, 1.5, 0), new Point3D(-3, -1.5, 0))
                         .setEmission(Matt).setMaterial(new Material().setKd(0.6).setKs(0.4).setShininess(30)),
 
                 //bottom green mat
-                new Square(new Point3D(3,-1.5,-0.17), new Point3D(3, 1.5, -0.17), new Point3D(-3, -1.5, -0.17),new Point3D(-3, 1.5, -0.17))
+                new Square(new Point3D(3,-1.5,-0.17), new Point3D(3, 1.5, -0.17), new Point3D(-3, 1.5, -0.17), new Point3D(-3, -1.5, -0.17))
                         .setEmission(Matt).setMaterial(new Material().setKd(0.3).setKs(0.2).setShininess(30)),
 
 
                 //Wood front
 
-                        new Square(new Point3D(3.2,-1.7,0.2), new Point3D(3.2, 1.7, 0.2),new Point3D(3.2,-1.7,-0.2), new Point3D(3.2, 1.7, -0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                        new Square(new Point3D(3,-1.5,0.2), new Point3D(3, 1.5, 0.2),new Point3D(3,-1.5,-0.2), new Point3D(3, 1.5, -0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                        new Square(new Point3D(3,-1.7,0.2), new Point3D(3, 1.7, 0.2),new Point3D(3.2,-1.7,0.2), new Point3D(3.2, 1.7, 0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                        new Square(new Point3D(3,-1.7,-0.2), new Point3D(3, 1.7, -0.2),new Point3D(3.2,-1.7,-0.2), new Point3D(3.2, 1.7, -0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+                newTable(new Point3D(3,-1.71, -0.2), new Point3D(3.21, 1.71, 0.21), Wood, new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(3.2,-1.7,0.2), new Point3D(3.2, 1.7, 0.2),new Point3D(3.2,-1.7,-0.2), new Point3D(3.2, 1.7, -0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(3,-1.5,0.2), new Point3D(3, 1.5, 0.2),new Point3D(3,-1.5,-0.2), new Point3D(3, 1.5, -0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(3,-1.7,0.2), new Point3D(3, 1.7, 0.2),new Point3D(3.2,-1.7,0.2), new Point3D(3.2, 1.7, 0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(3,-1.7,-0.2), new Point3D(3, 1.7, -0.2),new Point3D(3.2,-1.7,-0.2), new Point3D(3.2, 1.7, -0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
 
 
                 //wood back
-
-                        new Square(new Point3D(-3.2,-1.7,0.2), new Point3D(-3.2, 1.7, 0.2),new Point3D(-3.2,-1.7,-0.2), new Point3D(-3.2, 1.7, -0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                        new Square(new Point3D(-3,-1.5,0.2), new Point3D(-3, 1.5, 0.2),new Point3D(-3,-1.5,-0.2), new Point3D(-3, 1.5, -0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                        new Square(new Point3D(-3,-1.7,0.2), new Point3D(-3, 1.7, 0.2),new Point3D(-3.2,-1.7,0.2), new Point3D(-3.2, 1.7, 0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                        new Square(new Point3D(-3,-1.7,-0.2), new Point3D(-3, 1.7, -0.2),new Point3D(-3.2,-1.7,-0.2), new Point3D(-3.2, 1.7, -0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+                    newTable(new Point3D(-3.21, -1.71, -0.2), new Point3D(-3, 1.71, 0.21), Wood, new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(-3.2,-1.7,0.2), new Point3D(-3.2, 1.7, 0.2),new Point3D(-3.2,-1.7,-0.2), new Point3D(-3.2, 1.7, -0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(-3,-1.5,0.2), new Point3D(-3, 1.5, 0.2),new Point3D(-3,-1.5,-0.2), new Point3D(-3, 1.5, -0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(-3,-1.7,0.2), new Point3D(-3, 1.7, 0.2),new Point3D(-3.2,-1.7,0.2), new Point3D(-3.2, 1.7, 0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(-3,-1.7,-0.2), new Point3D(-3, 1.7, -0.2),new Point3D(-3.2,-1.7,-0.2), new Point3D(-3.2, 1.7, -0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
 
 
                 //Wood left
-
-                        new Square(new Point3D(-3,-1.5,0.2), new Point3D(3, -1.5, 0.2),new Point3D(-3,-1.5,-0.2), new Point3D(3, -1.5, -0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                        new Square(new Point3D(-3.2,-1.7,0.2), new Point3D(3.2, -1.7, 0.2),new Point3D(-3.2,-1.7,-0.2), new Point3D(3.2, -1.7, -0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                        new Square(new Point3D(-3.2,-1.7,0.2), new Point3D(3.2, -1.7, 0.2),new Point3D(-3.2,-1.5,0.2), new Point3D(3.2, -1.5, 0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                        new Square(new Point3D(-3.2,-1.7,-0.2), new Point3D(3.2, -1.7, -0.2),new Point3D(-3.2,-1.5,-0.2), new Point3D(3.2, -1.5, -0.2))
-                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+                newTable(new Point3D(-3.21, -1.71, -0.2), new Point3D(3.21, -1.5, 0.21), Wood, new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(-3,-1.5,0.2), new Point3D(3, -1.5, 0.2),new Point3D(-3,-1.5,-0.2), new Point3D(3, -1.5, -0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(-3.2,-1.7,0.2), new Point3D(3.2, -1.7, 0.2),new Point3D(-3.2,-1.7,-0.2), new Point3D(3.2, -1.7, -0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(-3.2,-1.7,0.2), new Point3D(3.2, -1.7, 0.2),new Point3D(-3.2,-1.5,0.2), new Point3D(3.2, -1.5, 0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                        new Square(new Point3D(-3.2,-1.7,-0.2), new Point3D(3.2, -1.7, -0.2),new Point3D(-3.2,-1.5,-0.2), new Point3D(3.2, -1.5, -0.2))
+//                                .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
 
 
                 //Wood right
-
-                new Square(new Point3D(-3,1.5,0.2), new Point3D(3, 1.5, 0.2),new Point3D(-3,1.5,-0.2), new Point3D(3, 1.5, -0.2))
-                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                new Square(new Point3D(-3.2,1.7,0.2), new Point3D(3.2, 1.7, 0.2),new Point3D(-3.2,1.7,-0.2), new Point3D(3.2, 1.7, -0.2))
-                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                new Square(new Point3D(-3.2,1.7,0.2), new Point3D(3.2, 1.7, 0.2),new Point3D(-3.2,1.5,0.2), new Point3D(3.2, 1.5, 0.2))
-                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
-                new Square(new Point3D(-3.2,1.7,-0.2), new Point3D(3.2, 1.7, -0.2),new Point3D(-3.2,1.5,-0.2), new Point3D(3.2, 1.5, -0.2))
-                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+                newTable(new Point3D(-3.21, 1.5, -0.2), new Point3D(3.21, 1.71, 0.21), Wood, new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                new Square(new Point3D(-3,1.5,0.2), new Point3D(3, 1.5, 0.2),new Point3D(-3,1.5,-0.2), new Point3D(3, 1.5, -0.2))
+//                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                new Square(new Point3D(-3.2,1.7,0.2), new Point3D(3.2, 1.7, 0.2),new Point3D(-3.2,1.7,-0.2), new Point3D(3.2, 1.7, -0.2))
+//                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                new Square(new Point3D(-3.2,1.7,0.2), new Point3D(3.2, 1.7, 0.2),new Point3D(-3.2,1.5,0.2), new Point3D(3.2, 1.5, 0.2))
+//                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+//                new Square(new Point3D(-3.2,1.7,-0.2), new Point3D(3.2, 1.7, -0.2),new Point3D(-3.2,1.5,-0.2), new Point3D(3.2, 1.5, -0.2))
+//                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
 
 
                 //holes
@@ -134,7 +135,7 @@ public class AllElementsTests {
 
                 new PoolBalls(new Point3D(1.2, 0, 0)),
 
-                //balls holder
+//                //balls holder
                 new BallsHolder(new Point3D(1.2,0,0)),
 
 
@@ -144,28 +145,24 @@ public class AllElementsTests {
 
 
                 //leg front right
-                new Cube(new Point3D(3, 1.5, -1.5), new Point3D(3.2, 1.7, 0.2))
-                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+                newTable(new Point3D(3, 1.5, -1.5), new Point3D(3.2, 1.7, 0.2), Wood, new Material().setKd(0.5).setKs(0.5).setShininess(10)),
 
                 //leg front left
-                new Cube(new Point3D(3, -1.7, -1.5), new Point3D(3.2, -1.5, 0.2))
-                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+                newTable(new Point3D(3, -1.7, -1.5), new Point3D(3.2, -1.5, 0.2), Wood, new Material().setKd(0.5).setKs(0.5).setShininess(10)),
 
                 //leg middle right
-                new Cube(new Point3D(-0.1, 1.5, -1.5), new Point3D(0.1, 1.7, 0.2))
-                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+                newTable(new Point3D(-0.1, 1.5, -1.5), new Point3D(0.1, 1.7, 0.2), Wood, new Material().setKd(0.5).setKs(0.5).setShininess(10)),
 
                 //leg middle left
-                new Cube(new Point3D(-0.1, -1.7, -1.5), new Point3D(0.1, -1.5, 0.2))
-                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+                newTable(new Point3D(-0.1, -1.7, -1.5), new Point3D(0.1, -1.5, 0.2), Wood, new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+
 
                 //leg back right
-                new Cube(new Point3D(-3.2, 1.7, -1.5), new Point3D(-3, 1.5, 0.2))
-                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+                newTable(new Point3D(-3.2, 1.5, -1.5), new Point3D(-3, 1.7, 0.2), Wood, new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+
 
                 //leg back left
-                new Cube(new Point3D(-3.2, -1.7, -1.5), new Point3D(-3, -1.5, 0.2))
-                        .setEmission(Wood).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10)),
+                newTable(new Point3D(-3.2, -1.7, -1.5), new Point3D(-3, -1.5, 0.2), Wood, new Material().setKd(0.5).setKs(0.5).setShininess(10)),
 
 
 
@@ -181,32 +178,32 @@ public class AllElementsTests {
 //                new PoolStick(new Point3D(-5,-1.5,-1.5), new Vector(0,0,1)),
 
                 //Lamp1:
-                new Square(new Point3D(1.75, 0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.75, 0.25, 1.6),new Point3D(1.75, -0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
-                new Square(new Point3D(1.25, 0.25, 1.1),new Point3D(1.75, 0.25, 1.1),new Point3D(1.25, 0.25, 1.6),new Point3D(1.75, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
-                new Square(new Point3D(1.25, -0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.25, -0.25, 1.6),new Point3D(1.75, -0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
-                new Square(new Point3D(1.25, 0.25, 1.1),new Point3D(1.25, -0.25, 1.1),new Point3D(1.25, 0.25, 1.6),new Point3D(1.25, -0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
+                new Square(new Point3D(1.75, 0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.75, -0.25, 1.6),new Point3D(1.75, 0.25, 1.6))
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                new Square(new Point3D(1.25, 0.25, 1.1),new Point3D(1.75, 0.25, 1.1), new Point3D(1.75, 0.25, 1.6),new Point3D(1.25, 0.25, 1.6))
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                new Square(new Point3D(1.25, -0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.75, -0.25, 1.6), new Point3D(1.25, -0.25, 1.6))
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                new Square(new Point3D(1.25, 0.25, 1.1),new Point3D(1.25, -0.25, 1.1),new Point3D(1.25, -0.25, 1.6),new Point3D(1.25, 0.25, 1.6))
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
                 new Square(new Point3D(1.75, 0.25, 1.6),new Point3D(1.75, -0.25, 1.6),new Point3D(1.25, -0.25, 1.6),new Point3D(1.25, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
-                new Square(new Point3D(1.75, 0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.25, -0.25, 1.1),new Point3D(1.25, 0.25, 1.1))
-                        .setEmission(Color.BLACK).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(4).setKt(0.9)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+//                new Square(new Point3D(1.75, 0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.25, -0.25, 1.1),new Point3D(1.25, 0.25, 1.1))
+//                        .setEmission(Color.BLACK).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(4).setKt(0.9)),
 
+//
+//                //Lamp2:
 
-                //Lamp2:
-
-                new Square(new Point3D(-1.75, 0.25, 1.1),new Point3D(-1.75, -0.25, 1.1),new Point3D(-1.75, 0.25, 1.6),new Point3D(-1.75, -0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
-                new Square(new Point3D(-1.25, 0.25, 1.1),new Point3D(-1.75, 0.25, 1.1),new Point3D(-1.25, 0.25, 1.6),new Point3D(-1.75, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
-                new Square(new Point3D(-1.25, -0.25, 1.1),new Point3D(-1.75, -0.25, 1.1),new Point3D(-1.25, -0.25, 1.6),new Point3D(-1.75, -0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
-                new Square(new Point3D(-1.25, 0.25, 1.1),new Point3D(-1.25, -0.25, 1.1),new Point3D(-1.25, 0.25, 1.6),new Point3D(-1.25, -0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
+                new Square(new Point3D(-1.75, 0.25, 1.1),new Point3D(-1.75, -0.25, 1.1),new Point3D(-1.75, -0.25, 1.6),new Point3D(-1.75, 0.25, 1.6))
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                new Square(new Point3D(-1.25, 0.25, 1.1),new Point3D(-1.75, 0.25, 1.1),new Point3D(-1.75, 0.25, 1.6),new Point3D(-1.25, 0.25, 1.6))
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                new Square(new Point3D(-1.25, -0.25, 1.1),new Point3D(-1.75, -0.25, 1.1),new Point3D(-1.75, -0.25, 1.6),new Point3D(-1.25, -0.25, 1.6))
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                new Square(new Point3D(-1.25, 0.25, 1.1),new Point3D(-1.25, -0.25, 1.1),new Point3D(-1.25, -0.25, 1.6),new Point3D(-1.25, 0.25, 1.6))
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
                 new Square(new Point3D(-1.75, 0.25, 1.6),new Point3D(-1.75, -0.25, 1.6),new Point3D(-1.25, -0.25, 1.6),new Point3D(-1.25, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
 
 
 
@@ -236,21 +233,22 @@ public class AllElementsTests {
                 );
 
         scene.lights.add( //
-                new SpotLight(new Color(java.awt.Color.WHITE),new Point3D(1.5,0,1.25), new Vector(0,0, -1),2.5, 0.00001, 0.0005)
+                new SpotLight(new Color(255,117,24).add(new Color(java.awt.Color.WHITE).scale(0.5)),new Point3D(1.5,0,1.22), new Vector(0,0, -1),2.5, 0.00001, 0.0005)
         );
         scene.lights.add( //
-                new SpotLight(new Color(java.awt.Color.WHITE),new Point3D(-1.5,0,1.25),new Vector(0,0, -1),2.5, 0.00001, 0.0005)
+                new SpotLight(new Color(255,117,24).add(new Color(java.awt.Color.WHITE).scale(0.5)),new Point3D(-1.5,0,1.22),new Vector(0,0, -1),2.5, 0.00001, 0.0005)
         );
         scene.lights.add( //
-                new PointLight(new Color(java.awt.Color.WHITE),new Point3D(20,10,35),0.8, 0.005, 0.005)
+                new PointLight(new Color(java.awt.Color.WHITE),new Point3D(40,15,7),4, 0.0005, 0.0005)
         );
 
         Render render1 = new Render(). //
-                setImageWriter(new ImageWriter("PoolTableC12", 1280, 720 )) //
+                setImageWriter(new ImageWriter("PoolTableR500", 1280, 720 )) //
                 .setCamera(camera) //
                 .setRayTracer(new RayTracerBasic(scene))
                 .setReject(true)
-                .setRAYS(49)
+                .setRAYS(1)
+                .setSHADOWRAYS(1)
                 .setMultithreading(3).setDebugPrint();
         render1.renderImage();
         render1.writeToImage();
@@ -259,6 +257,9 @@ public class AllElementsTests {
 //                setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
 //                .setCamera(camera2) //
 //                .setRayTracer(new RayTracerBasic(scene))
+//                .setReject(true)
+//                .setRAYS(1)
+//                .setSHADOWRAYS(1)
 //                .setMultithreading(3).setDebugPrint();
 //        render2.renderImage();
 //        render2.writeToImage();
@@ -279,6 +280,45 @@ public class AllElementsTests {
 
     }
 
+    public Geometries newTable(Point3D min,Point3D max, Color emission, Material mat){
+        return new Geometries(
+                new Square(
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(),min.getY().getCoord(),max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord())
+        ).setEmission(emission).setMaterial(mat),
+        new Square(
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), min.getY().getCoord(), min.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(),min.getY().getCoord(),min.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord())
+        ).setEmission(emission).setMaterial(mat),
+         new Square(
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(),max.getY().getCoord(),min.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord())
+        ).setEmission(emission).setMaterial(mat),
+        new Square(
+                new Point3D(max.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), min.getY().getCoord(), min.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(),min.getY().getCoord(),min.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord())
+        ).setEmission(emission).setMaterial(mat),
+        new Square(
+                new Point3D(min.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(),min.getY().getCoord(),min.getZ().getCoord()),
+                new Point3D(min.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord())
+        ).setEmission(emission).setMaterial(mat),
+        new Square(
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), min.getY().getCoord(), max.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(),min.getY().getCoord(),min.getZ().getCoord()),
+                new Point3D(max.getX().getCoord(), max.getY().getCoord(), min.getZ().getCoord())
+        ).setEmission(emission).setMaterial(mat));
+    }
 }
 
 

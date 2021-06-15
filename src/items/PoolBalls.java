@@ -8,6 +8,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class PoolBalls extends Item {
 
@@ -61,12 +62,12 @@ public class PoolBalls extends Item {
     }
 
     @Override
-    public LinkedList<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         if(CreateBox().findGeoIntersections(ray) == null){
             return null;
         }
-        LinkedList<GeoPoint> L = new LinkedList<GeoPoint>();
-        LinkedList<GeoPoint> temp = new LinkedList<GeoPoint>();
+        List<GeoPoint> L = new LinkedList<GeoPoint>();
+        List<GeoPoint> temp = new LinkedList<GeoPoint>();
 
         temp = pb51.findGeoIntersections(ray);
         if(temp != null){

@@ -49,7 +49,7 @@ public class Cylinder extends Tube {
             }
         }
 
-        LinkedList<GeoPoint> planeIntersection = new Plane(p0, dir).findGeoIntersections(ray);
+        List<GeoPoint> planeIntersection = new Plane(p0, dir).findGeoIntersections(ray);
         if (planeIntersection != null) {
             GeoPoint point = planeIntersection.get(0);
             if (point.point.equals(p0) || alignZero(point.point.subtract(p0).lengthSquared() - getRadius() * getRadius()) < 0) {
@@ -116,6 +116,9 @@ public class Cylinder extends Tube {
 
     @Override
     public BoundingBox CreateBox(){
+        if(Box != null){
+            return Box;
+        }
         Point3D up = axisRay.getP0().add(axisRay.getDir().scale(_height));
         Point3D down = axisRay.getP0();
         Box = new BoundingBox(
