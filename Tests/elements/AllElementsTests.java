@@ -32,9 +32,10 @@ public class AllElementsTests {
 
         Scene scene = new Scene("Test scene").setAmbientLight(new AmbientLight(new Color(5,5,5), 0.15));
         Camera camera = new Camera(new Point3D(20,3.5,2.5), new Vector(-10,-2,-1), new Vector(-0.5,0,5))
-                .setViewPlaneSize(16, 9).setDistance(35);
-        Camera camera2 = new Camera(new Point3D(0,25,1.5), new Vector(0,-1,0), new Vector(0,0,1))
-                .setViewPlaneSize(16, 9).setDistance(20);
+                .setViewPlaneSize(16, 9).setDistance(30);
+
+        Camera camera2 = new Camera(new Point3D(0,8,2), new Vector(0,-1,0), new Vector(0,0,1))
+                .setViewPlaneSize(16, 9).setDistance(10);
         Camera camera22 = new Camera(new Point3D( -2.5, 0, 0.1), new Vector(-1,0,0), new Vector(0,0,1))
                 .setViewPlaneSize(2,2).setDistance(20);
         scene.geometries.add( //
@@ -242,27 +243,30 @@ public class AllElementsTests {
                 new PointLight(new Color(java.awt.Color.WHITE),new Point3D(40,15,7),4, 0.0005, 0.0005)
         );
 
-        Render render1 = new Render(). //
-                setImageWriter(new ImageWriter("PoolTableR500", 1280, 720 )) //
-                .setCamera(camera) //
-                .setRayTracer(new RayTracerBasic(scene))
-                .setReject(true)
-                .setRAYS(1)
-                .setSHADOWRAYS(1)
-                .setMultithreading(3).setDebugPrint();
-        render1.renderImage();
-        render1.writeToImage();
-
-//        Render render2 = new Render(). //
-//                setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
-//                .setCamera(camera2) //
+//        Render render1 = new Render(). //
+//                setImageWriter(new ImageWriter("PoolTableR500", 1280, 720 )) //
+//                .setCamera(camera) //
 //                .setRayTracer(new RayTracerBasic(scene))
 //                .setReject(true)
 //                .setRAYS(1)
 //                .setSHADOWRAYS(1)
 //                .setMultithreading(3).setDebugPrint();
-//        render2.renderImage();
-//        render2.writeToImage();
+//        render1.renderImage();
+//        render1.writeToImage();
+//
+        camera.MoveRight(2);
+
+
+        Render render2 = new Render(). //
+                setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
+                .setCamera(camera2) //
+                .setRayTracer(new RayTracerBasic(scene))
+                .setReject(true)
+                .setRAYS(1)
+                .setSHADOWRAYS(3)
+                .setMultithreading(3).setDebugPrint();
+        render2.renderImage();
+        render2.writeToImage();
 
 //        Render render22 = new Render(). //
 //                setImageWriter(new ImageWriter("PoolTableC24", 1, 1 )) //

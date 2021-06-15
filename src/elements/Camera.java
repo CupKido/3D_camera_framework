@@ -197,8 +197,8 @@ public class Camera {
                 To = temp;
             }
             return;
-        }
-        To = (To.scale(Math.cos(deg)).crossProduct(Right.scale(Math.sin(deg)))).normalized();
+        }else
+        Up = (Up.scale(Math.cos(deg)).crossProduct(Right.scale(Math.sin(deg)))).normalized();
         Right = To.crossProduct(Up).normalized();
     }
 
