@@ -80,28 +80,115 @@ public class Camera {
         MoveUp(times * (-1));
     }
 
-    public void LookRight(double deg){
-        RTwist(deg);
+    public void LookRight(double deg)
+    {
+        deg = deg % 360;
+        if(deg < 0) deg = 360 + deg;
+        if(deg % 90 == 0)
+        {
+            if(deg == 0)
+                return;
+            if(deg == 90)
+            {
+                Vector temp = To.scale(-1);
+                To = Right;
+                Right = temp;
+            }
+            else if(deg == 180)
+            {
+                To = To.scale(-1);
+                Right = Right.scale(-1);
+            }
+            else //deg = 270
+            {
+                Vector temp = Right.scale(-1);
+                Right = To;
+                To = temp;
+            }
+            return;
+        }
+        deg = Math.toRadians(deg);
+        To = (To.scale(Math.cos(deg)).add(Right.scale(Math.sin(deg)))).normalized();
+        Right = To.crossProduct(Up).normalized();
     }
 
-    public void LookLeft(double deg){
-        RTwist(-deg);
+    public void LookLeft(double deg)
+    {
+        LookRight(-deg);
     }
 
-    public void LookUp(double deg){
-        UTwist(deg);
+    public void LookUp(double deg)
+    {
+        deg = -(deg % 360);
+        if(deg < 0) deg = 360 + deg;
+        if(deg % 90 == 0)
+        {
+            if(deg == 0)
+                return;
+            if(deg == 90)
+            {
+                Vector temp = Up.scale(-1);
+                Up = To;
+                To = temp;
+            }
+            else if(deg == 180)
+            {
+                Up = Up.scale(-1);
+                To = To.scale(-1);
+            }
+            else //deg = 270
+            {
+                Vector temp = To.scale(-1);
+                To = Up;
+                Up = temp;
+            }
+            return;
+        }
+        deg = Math.toRadians(deg);
+        Up = (Up.scale(Math.cos(deg)).add(To.scale(Math.sin(deg)))).normalized();
+        To = Up.crossProduct(Right).normalized();
     }
 
-    public void LookDown(double deg){
-        UTwist(-deg);
+    public void LookDown(double deg)
+    {
+        LookUp(-deg);
     }
 
-    public void TwistClockWise(double deg){
-        Twist(deg);
+    public void TwistClockWise(double deg)
+    {
+        deg = deg % 360;
+        if(deg < 0) deg = 360 + deg;
+        if(deg % 90 == 0)
+        {
+            if(deg == 0)
+                return;
+            if(deg == 90)
+            {
+                Vector temp = Up.scale(-1);
+                Up = Right;
+                Right = temp;
+            }
+            else if(deg == 180)
+            {
+                Up = Up.scale(-1);
+                Right = Right.scale(-1);
+            }
+            else //deg = 270
+            {
+                Vector temp = Right.scale(-1);
+                Right = Up;
+                Up = temp;
+            }
+            return;
+        }
+        deg = Math.toRadians(deg);
+        Up = (Up.scale(Math.cos(deg)).add(Right.scale(Math.sin(deg)))).normalized();
+        Right = To.crossProduct(Up).normalized();
     }
 
-    public void TwistCounterClockWise(double deg){
-        Twist(-deg);
+    public void TwistCounterClockWise(double deg)
+    {
+        TwistClockWise(-deg);
     }
 
     public Vector getTo() {
@@ -169,99 +256,6 @@ public class Camera {
 
 
 
-    }
-
-    void RTwist(double deg)
-    {
-        deg = deg % 360;
-        if(deg < 0) deg = 360 - deg;
-        if(deg % 90 == 0)
-        {
-            if(deg == 0)
-                return;
-            if(deg == 90)
-            {
-                Vector temp = To.scale(-1);
-                To = Right;
-                Right = temp;
-            }
-            else if(deg == 180)
-            {
-                To = To.scale(-1);
-                Right = Right.scale(-1);
-            }
-            else //deg = 270
-            {
-                Vector temp = Right.scale(-1);
-                Right = To;
-                To = temp;
-            }
-            return;
-        }else
-        Up = (Up.scale(Math.cos(deg)).crossProduct(Right.scale(Math.sin(deg)))).normalized();
-        Right = To.crossProduct(Up).normalized();
-    }
-
-    void UTwist(double deg)
-    {
-        deg = -(deg % 360);
-        if(deg < 0) deg = 360 - deg;
-        if(deg % 90 == 0)
-        {
-            if(deg == 0)
-                return;
-            if(deg == 90)
-            {
-                Vector temp = Up.scale(-1);
-                Up = To;
-                To = temp;
-            }
-            else if(deg == 180)
-            {
-                Up = Up.scale(-1);
-                To = To.scale(-1);
-            }
-            else //deg = 270
-            {
-                Vector temp = To.scale(-1);
-                To = Up;
-                Up = temp;
-            }
-            return;
-        }
-        Up = (Up.scale(Math.cos(deg)).crossProduct(To.scale(Math.sin(deg)))).normalized();
-        To = Up.crossProduct(Right).normalized();
-    }
-
-    void Twist(double deg)
-    {
-        deg = deg % 360;
-        if(deg < 0) deg = 360 - deg;
-        if(deg % 90 == 0)
-        {
-            if(deg == 0)
-                return;
-            if(deg == 90)
-            {
-                Vector temp = Up.scale(-1);
-                Up = Right;
-                Right = temp;
-            }
-            else if(deg == 180)
-            {
-                Up = Up.scale(-1);
-                Right = Right.scale(-1);
-            }
-            else //deg = 270
-            {
-                Vector temp = Right.scale(-1);
-                Right = Up;
-                Up = temp;
-            }
-            return;
-        }
-        To = (To.scale(Math.cos(deg)).crossProduct(Right.scale(Math.sin(deg)))).normalized();
-        Right = To.crossProduct(Up).normalized();
     }
 
     /**

@@ -256,7 +256,7 @@ public class AllElementsTests {
 //
         camera.MoveRight(2);
 
-
+        camera2.TwistClockWise(10);
         Render render2 = new Render(). //
                 setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
                 .setCamera(camera2) //
