@@ -11,7 +11,12 @@ public class Plane extends Geometry {
     private Point3D q0;
     private Vector normal;
 
-    //creates the normal vector and inserts one of the points in q0
+    /**
+     * creates the normal vector and inserts one of the points in q0
+     * @param p1
+     * @param p2
+     * @param p3
+     */
     public Plane(Point3D p1, Point3D p2, Point3D p3)
     {
         q0 = p1;
@@ -39,18 +44,39 @@ public class Plane extends Geometry {
         normal = v.normalized();
     }
 
+    /**
+     * returns the plane's point
+     * @return
+     */
     public Point3D getQ0() {
         return q0;
     }
 
-    //checks if point is in-plane, then returns the normal vector
+    /**
+     * returns the plane's normal
+     * @return
+     */
     public Vector getNormal(Point3D point)
     {
-
         return normal;
-
     }
 
+    /**
+     * returns the plane's normal
+     * @return
+     */
+    public Vector getNormal()
+    {
+        return normal;
+    }
+
+
+
+    /**
+     * check if the point is in the plane or not
+     * @param point
+     * @return
+     */
     public boolean inPlane(Point3D point){
         if(point == null)
         {
@@ -67,12 +93,14 @@ public class Plane extends Geometry {
         return false;
     }
 
-    //returns normal
-    public Vector getNormal()
-    {
-        return getNormal(null);
-    }
 
+
+
+    /**
+     * find intersections between plane and ray
+     * @param ray
+     * @return
+     */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
         List<GeoPoint> L = new LinkedList<GeoPoint>();

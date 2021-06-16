@@ -54,11 +54,20 @@ public class Vector {
         return new Vector(this.head.add(Vec));
     }
 
+    /**
+     * subtracts a vector from this vector.
+     * @param Vec
+     * @return
+     */
     public Vector subtract(Vector Vec) {
         return head.subtract(Vec.head);
     }
 
-    //return current Vector * given double
+    /**
+     * return current Vector * given double
+     * @param ScaleBy
+     * @return
+     */
     public Vector scale(double ScaleBy) {
         if (ScaleBy == 0) {
             throw new IllegalArgumentException("Cannot Scale by 0");
@@ -66,12 +75,22 @@ public class Vector {
         return new Vector(head.x.coord * ScaleBy, head.y.coord * ScaleBy, head.z.coord * ScaleBy);
     }
 
+    /**
+     * classic vectors dot product
+     * @param Vec
+     * @return
+     */
     public double dotProduct(Vector Vec) {
         return head.x.coord * Vec.head.x.coord +
                 head.y.coord * Vec.head.y.coord +
                 head.z.coord * Vec.head.z.coord;
     }
 
+    /**
+     * classic vectors cross product
+     * @param Vec
+     * @return
+     */
     public Vector crossProduct(Vector Vec) {
         try {
             return new Vector(

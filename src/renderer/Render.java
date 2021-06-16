@@ -18,7 +18,15 @@ public class Render {
     RayTracerBasic rayTracerBasic;
 
 
+
+    private boolean partialAdaptive = true;
     private boolean reject = true;
+
+
+    public Render setPartialAdaptive(boolean partialAdaptive) {
+        this.partialAdaptive = partialAdaptive;
+        return this;
+    }
 
     /**
      * set if Bounding volume is working or not
@@ -29,6 +37,7 @@ public class Render {
         this.reject = reject;
         return this;
     }
+
 
     /**
      * set the amount of shadow rays
@@ -215,6 +224,8 @@ public class Render {
         if(reject){
             rayTracerBasic.CreateBVH();
         }
+        rayTracerBasic.setPartialAdaptive(partialAdaptive);
+
         final int nX = imageWriter.getNx();
         final int nY = imageWriter.getNy();
 

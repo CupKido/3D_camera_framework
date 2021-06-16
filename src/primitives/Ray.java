@@ -22,11 +22,23 @@ public class Ray {
         return dir;
     }
 
+    /**
+     * classic ray constructor
+     * @param point3D
+     * @param Vec
+     */
     public Ray(Point3D point3D, Vector Vec){
         p0 = point3D;
         dir = Vec.normalized();
     }
 
+    /**
+     * special Ray calculation for shadows calculation
+     *
+     * @param point3D
+     * @param Vec
+     * @param n
+     */
     public Ray(Point3D point3D, Vector Vec, Vector n){
         Vector Delta = n.scale(n.dotProduct(Vec) > 0 ? DELTA : - DELTA);
         Point3D point = point3D.add(Delta);
@@ -48,6 +60,11 @@ public class Ray {
         }
     }
 
+    /**
+     * receives a list of points and needs to return the closest point from the list
+     * @param intersections
+     * @return
+     */
     public Point3D findClosestPoint(List<Point3D> intersections){
         if(intersections == null)
         {
@@ -69,6 +86,12 @@ public class Ray {
         return ClosestPoint;
     }
 
+    /**
+     * receives a list of points and their geometry's info
+     * needs to return the closest point (and its geometry's info) from the list
+     * @param intersections
+     * @return
+     */
     public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections){
         if(intersections == null || intersections.isEmpty())
         {

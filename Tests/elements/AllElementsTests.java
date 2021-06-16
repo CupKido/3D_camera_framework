@@ -28,16 +28,23 @@ public class AllElementsTests {
         //Color Wood = new Color(153, 102, 51);
         Color Wood = new Color(110, 80, 15);
         Color Matt = new Color(6,97,6);
-        Color Lamp = new Color(179, 179, 204);
+//        Color Lamp = new Color(179, 179, 204);
+        Color Lamp = new Color(255,117,24).add(new Color(java.awt.Color.WHITE).scale(0.3));
 
         Scene scene = new Scene("Test scene").setAmbientLight(new AmbientLight(new Color(5,5,5), 0.15));
-        Camera camera = new Camera(new Point3D(20,3.5,2.5), new Vector(-10,-2,-1), new Vector(-0.5,0,5))
-                .setViewPlaneSize(16, 9).setDistance(30);
-
+//        Camera camera = new Camera(new Point3D(20,3.5,2.5), new Vector(-10,-2,-1), new Vector(-0.5,0,5))
+//                .setViewPlaneSize(16, 9).setDistance(30);
+        Camera camera = new Camera(new Point3D(20,3.5,2.5), new Vector(-1,0,0), new Vector(0,0,1))
+                .setViewPlaneSize(16, 9).setDistance(5);
+        camera.LookLeft(15);
+        camera.LookDown(4);
         Camera camera2 = new Camera(new Point3D(0,8,2), new Vector(0,-1,0), new Vector(0,0,1))
                 .setViewPlaneSize(16, 9).setDistance(10);
-        Camera camera22 = new Camera(new Point3D( -2.5, 0, 0.1), new Vector(-1,0,0), new Vector(0,0,1))
-                .setViewPlaneSize(2,2).setDistance(20);
+        Camera camera3 = new Camera(new Point3D( 8.5, 8.5, 2), new Vector(-1,-1,0), new Vector(0,0,1))
+                .setViewPlaneSize(2,2).setDistance(2.5);
+        camera3.LookDown(9);
+        camera3.LookDown(2);
+
         scene.geometries.add( //
 
 
@@ -46,9 +53,38 @@ public class AllElementsTests {
                 new Plane(new Point3D(0,0,-1.5), new Point3D(0,1,-1.5), new Point3D(1,0,-1.5))
                         .setEmission(new Color(150, 150, 150)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0)),
 
+                //wall back
+                new Square(new Point3D(-9, -6, -1.5), new Point3D(-9, -6, 3), new Point3D(-9, 9, 3), new Point3D(-9, 9, -1.5))
+                .setEmission(new Color(100,70,10).reduce(1.5)).setMaterial(new Material().setKd(0.7).setKs(0.1).setShininess(10)),
+                //wall left
+                new Square(new Point3D(-9, -6, -1.5), new Point3D(-9, -6, 3), new Point3D(9, -6, 3), new Point3D(9, -6, -1.5))
+                .setEmission(new Color(100,70,10).reduce(1.5)).setMaterial(new Material().setKd(0.7).setKs(0.1).setShininess(10)),
+                //wall right
+                new Square(new Point3D(-9, 9, -1.5), new Point3D(-9, 9, 3), new Point3D(9, 9, 3), new Point3D(9, 9, -1.5))
+                .setEmission(new Color(100,70,10).reduce(1.5)).setMaterial(new Material().setKd(0.7).setKs(0.1).setShininess(10)),
+//                //wall front
+                new Square(new Point3D(9, -6, -1.5), new Point3D(9, -6, 3), new Point3D(9, 9, 3), new Point3D(9, 9, -1.5))
+                .setEmission(new Color(100,70,10).reduce(1.5)).setMaterial(new Material().setKd(0.7).setKs(0.1).setShininess(10)),
+
+                new Square(new Point3D(-9,9,3), new Point3D(9,9,3), new Point3D(9,-6,3), new Point3D(-9,-6,3))
+                        .setEmission(new Color(100,70,10).reduce(3)).setMaterial(new Material().setKd(0.7).setKs(0.1).setShininess(10)),
+
+
+//                new Triangle(new Point3D(-9, 9, 3), new Point3D(9, 9, 3), new Point3D(0,1.5,5))
+//                        .setEmission(new Color(100,70,10).reduce(3)).setMaterial(new Material().setKd(0.7).setKs(0.1).setShininess(10)),
+//
+//                new Triangle(new Point3D(-9, -6, 3), new Point3D(-9, 9, 3), new Point3D(0,1.5,5))
+//                        .setEmission(new Color(100,70,10).reduce(3)).setMaterial(new Material().setKd(0.7).setKs(0.1).setShininess(10)),
+//
+//                new Triangle(new Point3D(-9, -6, 3), new Point3D(9, -6, 3), new Point3D(0,1.5,5))
+//                        .setEmission(new Color(100,70,10).reduce(3)).setMaterial(new Material().setKd(0.7).setKs(0.1).setShininess(10)),
+
+
+
+
                 //Mirror
                 new Square(new Point3D(-4,-4,-1.5), new Point3D(-4,-4,2), new Point3D(4,-4,2), new Point3D(4,-4,-1.5))
-                        .setEmission(new Color(20, 20, 20)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.95)),
+                        .setEmission(new Color(20, 20, 20)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0.85)),
 
 
 
@@ -180,15 +216,15 @@ public class AllElementsTests {
 
                 //Lamp1:
                 new Square(new Point3D(1.75, 0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.75, -0.25, 1.6),new Point3D(1.75, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60).setKt(0.1)),
                 new Square(new Point3D(1.25, 0.25, 1.1),new Point3D(1.75, 0.25, 1.1), new Point3D(1.75, 0.25, 1.6),new Point3D(1.25, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60).setKt(0.1)),
                 new Square(new Point3D(1.25, -0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.75, -0.25, 1.6), new Point3D(1.25, -0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60).setKt(0.1)),
                 new Square(new Point3D(1.25, 0.25, 1.1),new Point3D(1.25, -0.25, 1.1),new Point3D(1.25, -0.25, 1.6),new Point3D(1.25, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60).setKt(0.1)),
                 new Square(new Point3D(1.75, 0.25, 1.6),new Point3D(1.75, -0.25, 1.6),new Point3D(1.25, -0.25, 1.6),new Point3D(1.25, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60).setKt(0.1)),
 //                new Square(new Point3D(1.75, 0.25, 1.1),new Point3D(1.75, -0.25, 1.1),new Point3D(1.25, -0.25, 1.1),new Point3D(1.25, 0.25, 1.1))
 //                        .setEmission(Color.BLACK).setMaterial(new Material().setKd(0.5).setKs(0.7).setShininess(4).setKt(0.9)),
 
@@ -196,15 +232,15 @@ public class AllElementsTests {
 //                //Lamp2:
 
                 new Square(new Point3D(-1.75, 0.25, 1.1),new Point3D(-1.75, -0.25, 1.1),new Point3D(-1.75, -0.25, 1.6),new Point3D(-1.75, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60).setKt(0.1)),
                 new Square(new Point3D(-1.25, 0.25, 1.1),new Point3D(-1.75, 0.25, 1.1),new Point3D(-1.75, 0.25, 1.6),new Point3D(-1.25, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60).setKt(0.1)),
                 new Square(new Point3D(-1.25, -0.25, 1.1),new Point3D(-1.75, -0.25, 1.1),new Point3D(-1.75, -0.25, 1.6),new Point3D(-1.25, -0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60).setKt(0.1)),
                 new Square(new Point3D(-1.25, 0.25, 1.1),new Point3D(-1.25, -0.25, 1.1),new Point3D(-1.25, -0.25, 1.6),new Point3D(-1.25, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60).setKt(0.1)),
                 new Square(new Point3D(-1.75, 0.25, 1.6),new Point3D(-1.75, -0.25, 1.6),new Point3D(-1.25, -0.25, 1.6),new Point3D(-1.25, 0.25, 1.6))
-                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60)),
+                        .setEmission(Lamp).setMaterial(new Material().setKd(0.6).setKs(0.8).setShininess(60).setKt(0.1)),
 
 
 
@@ -234,13 +270,13 @@ public class AllElementsTests {
                 );
 
         scene.lights.add( //
-                new SpotLight(new Color(255,117,24).add(new Color(java.awt.Color.WHITE).scale(0.5)),new Point3D(1.5,0,1.22), new Vector(0,0, -1),2.5, 0.00001, 0.0005)
+                new SpotLight(new Color(255,117,24).add(new Color(java.awt.Color.WHITE).scale(0.5)),new Point3D(1.5,0,1.22), new Vector(0,0, -1),2.8, 0.00001, 0.0005)
         );
         scene.lights.add( //
-                new SpotLight(new Color(255,117,24).add(new Color(java.awt.Color.WHITE).scale(0.5)),new Point3D(-1.5,0,1.22),new Vector(0,0, -1),2.5, 0.00001, 0.0005)
+                new SpotLight(new Color(255,117,24).add(new Color(java.awt.Color.WHITE).scale(0.5)),new Point3D(-1.5,0,1.22),new Vector(0,0, -1),2.8, 0.00001, 0.0005)
         );
         scene.lights.add( //
-                new PointLight(new Color(java.awt.Color.WHITE),new Point3D(40,15,7),4, 0.0005, 0.0005)
+                new PointLight(new Color(java.awt.Color.WHITE),new Point3D(8.9,-3,2.5),15, 0.0005, 0.0005)
         );
 
 //        Render render1 = new Render(). //
@@ -257,22 +293,27 @@ public class AllElementsTests {
 
         Render render2 = new Render(). //
                 setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
-                .setCamera(camera) //
+                .setCamera(camera2) //
                 .setRayTracer(new RayTracerBasic(scene))
-                .setReject(false)
+                .setReject(true)
                 .setRAYS(1)
-                .setSHADOWRAYS(5)
+                .setSHADOWRAYS(1)
+                .setPartialAdaptive(true)
                 .setMultithreading(3).setDebugPrint();
         render2.renderImage();
         render2.writeToImage();
 
-//        Render render22 = new Render(). //
-//                setImageWriter(new ImageWriter("PoolTableC24", 1, 1 )) //
-//                .setCamera(camera22) //
-//                .setRayTracer(new RayTracerBasic(scene))
-//                .setMultithreading(1).setDebugPrint();
-//        render22.renderImage();
-//        render22.writeToImage();
+        Render render3 = new Render(). //
+                setImageWriter(new ImageWriter("PoolTableC3", 1000, 1000 )) //
+                .setCamera(camera3) //
+                .setRayTracer(new RayTracerBasic(scene))
+                .setReject(true)
+                .setRAYS(1)
+                .setSHADOWRAYS(1)
+                .setPartialAdaptive(true)
+                .setMultithreading(3).setDebugPrint();
+        render3.renderImage();
+        render3.writeToImage();
     }
 
     @Test

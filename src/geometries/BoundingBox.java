@@ -18,6 +18,11 @@ public class BoundingBox {
 
     Point3D min, max;
 
+    /**
+     * saves the min and max points of the bounding box
+     * @param _min
+     * @param _max
+     */
     public BoundingBox(Point3D _min, Point3D _max){
         min = _min;
         max = _max;
@@ -48,6 +53,14 @@ public class BoundingBox {
         return true;
     }
 
+    /**
+     * check if the ranges x0 - x1 and y0 - y1 intersects
+     * @param x0
+     * @param x1
+     * @param y0
+     * @param y1
+     * @return
+     */
     public boolean checkIfInter(double x0, double x1, double y0, double y1){
 //        if(x1 == Double.POSITIVE_INFINITY && x0 == Double.NEGATIVE_INFINITY || y1 == Double.POSITIVE_INFINITY && y0 == Double.NEGATIVE_INFINITY){
 //            return true;
@@ -59,6 +72,11 @@ public class BoundingBox {
         return true;
     }
 
+    /**
+     * unites two bounding box by saving the max coords and min coords
+     * @param a
+     * @return
+     */
     public BoundingBox add(BoundingBox a){
         if(a == null){
             return this;

@@ -77,6 +77,10 @@ public class Sphere extends Geometry
         return L;
     }
 
+    /**
+     * builds a bounding box for sphere
+     * @return
+     */
     @Override
     public BoundingBox CreateBox() {
         if(Box != null){

@@ -25,6 +25,11 @@ public class DirectionalLight extends Light implements LightSource{
         return direction;
     }
 
+    /**
+     * returns infinty because the distance here is infinity and it doesnt matter where is p
+     * @param p
+     * @return
+     */
     @Override
     public double getDistance(Point3D p) {
         return Double.POSITIVE_INFINITY;

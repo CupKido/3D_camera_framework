@@ -5,6 +5,10 @@ public abstract class Geometry implements Intersectable {
 
     BoundingBox Box = null;
 
+    /**
+     * returns the geometry's bounding box if it exists, if not then creates it and then returns it
+     * @return
+     */
     public BoundingBox getBox() {
         if(Box == null){
             Box = CreateBox();

@@ -18,10 +18,14 @@ public class RayTracerBasic extends RayTracerBase{
 
 
 
+
+    private boolean partialAdaptive = true;
     private int SHADOWRAYS = 7;
 
 
-
+    public void setPartialAdaptive(boolean partialAdaptive) {
+        this.partialAdaptive = partialAdaptive;
+    }
 
     public void setSHADOWRAYS(int SHADOWRAYS) {
         this.SHADOWRAYS = SHADOWRAYS;
@@ -127,7 +131,6 @@ public class RayTracerBasic extends RayTracerBase{
      * @param n
      * @return
      */
-
     private Ray constructReflectedRay(Point3D point, Vector v, Vector n) {
         return new Ray(point, v.subtract(n.scale(n.dotProduct(v)).scale(2)), n);
 
@@ -155,16 +158,18 @@ public class RayTracerBasic extends RayTracerBase{
                 scene.lights) {
             l = light.getL(P.point);
             nl = Util.alignZero(n.dotProduct(l));
-            r = l.subtract(n2.scale(nl)).normalized();
-            if(nv * nl > 0){
-                double ktr = softShadowsTransparency(light, l, n, P, SHADOWRAYS);
+            if(nl != 0) {
+                r = l.subtract(n2.scale(nl)).normalized();
+                if (nv * nl > 0) {
+                    double ktr = softShadowsTransparency(light, l, n, P, SHADOWRAYS);
 
-                if (ktr * k > MIN_CALC_COLOR_K) {
+                    if (ktr * k > MIN_CALC_COLOR_K) {
 
-                    Color lightIntensity = light.getIntensity(P.point).scale(ktr);
-                    Color D = lightIntensity.scale(mat.getkD() * Math.abs(nl));
-                    Color S = lightIntensity.scale(mat.getkS() * pow(v.scale(-1).dotProduct(r), mat.getnShininess()));
-                    color = color.add(D, S);
+                        Color lightIntensity = light.getIntensity(P.point).scale(ktr);
+                        Color D = lightIntensity.scale(mat.getkD() * Math.abs(nl));
+                        Color S = lightIntensity.scale(mat.getkS() * pow(v.scale(-1).dotProduct(r), mat.getnShininess()));
+                        color = color.add(D, S);
+                    }
                 }
             }
         }
@@ -213,13 +218,48 @@ public class RayTracerBasic extends RayTracerBase{
         return L == null ? null : ray.findClosestGeoPoint(L);
     }
 
+    /**
+     * returns an average of the color of all the rays
+     * if partialAdaptive is true then itll check 4 corners and if they are all in the same color then it'll return that color
+     * @param rays
+     * @return
+     */
     public Color traceRays(LinkedList<Ray> rays) {
+        if(rays.size() == 1){
+            return traceRay(rays.getFirst());
+        }
         Color res = Color.BLACK;
+        int outOfRays = 0;
+
+        if(partialAdaptive) {
+
+            Color leftup = Color.BLACK;
+            Color rightup = Color.BLACK;
+            Color leftdown = Color.BLACK;
+            Color rightdown = Color.BLACK;
+
+            int gridsize = (int) Math.sqrt(rays.size());
+
+            leftup = traceRay(rays.get(0));
+            leftdown = traceRay(rays.get(gridsize - 1));
+            rightup = traceRay(rays.get(rays.size() - gridsize));
+            rightdown = traceRay(rays.get(rays.size() - 1));
+            if (leftup.equals(rightup) && rightup.equals(rightdown) && rightdown.equals(leftdown)) {
+                return rightup;
+            }
+
+            res.add(leftdown, leftup, rightdown, rightup);
+            rays.remove(rays.get(0));
+            rays.remove(rays.get(gridsize - 1));
+            rays.remove(rays.get(rays.size() - gridsize));
+            rays.remove(rays.get(rays.size() - 1));
+            outOfRays = 4;
+        }
         for (Ray ray:
                 rays) {
             res = res.add(traceRay(ray));
         }
-        return res.reduce(rays.size());
+        return res.reduce(rays.size() + outOfRays);
     }
 
     private double softShadowsTransparency(LightSource light, Vector l, Vector n, GeoPoint geopoint, int GridSize) {

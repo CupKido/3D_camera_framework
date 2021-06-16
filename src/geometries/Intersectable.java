@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 public interface Intersectable {
     
     default List<Point3D> findIntersections(Ray ray) {
+
+        /**
+         * finds intersections between an intersectable and a ray and returns the points without their geometry's info
+         */
         var geoList = findGeoIntersections(ray);
         return geoList == null ? null
                 : geoList.stream().map(gp -> gp.point).collect(Collectors.toList());
@@ -17,7 +21,18 @@ public interface Intersectable {
 
     //Finds intersections between a ray and a body
 //    LinkedList<GeoPoint> findGeoIntersections(Ray ray);
+
+    /**
+     * finds intersections between an intersectable and a ray and returns the points with their geometry's info
+     * @param ray
+     * @return
+     */
     List<GeoPoint> findGeoIntersections(Ray ray);
+
+    /**
+     * builds a bounding box for every intersection
+     * @return
+     */
     default BoundingBox CreateBox(){
         return null;
     }

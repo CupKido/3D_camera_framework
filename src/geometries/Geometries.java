@@ -24,7 +24,7 @@ public class Geometries implements Intersectable{
     }
 
     /**
-     * creates a box from all the objects in L and returns it
+     * creates a Bounding box from all the objects in L, saves it and returns it
      * @return
      */
     public BoundingBox getBox(){
@@ -46,34 +46,11 @@ public class Geometries implements Intersectable{
     BoundingBox Box = null;
 
     /**
-     * returns all the intersections in the intersectable list
+     * goes over all the geometries and returns a list of all of their intersections with ray
+     * if the BVH is active, works recursively
      * @param ray
      * @return
      */
-//    @Override
-//    public List<GeoPoint> findGeoIntersections(Ray ray) {
-//
-//        List<GeoPoint> res = new LinkedList<GeoPoint>();
-//        List<GeoPoint> intersects;
-//        CreateBox();
-//        for (Intersectable G : L) {
-//            if(G.CreateBox() == null){
-//                intersects = G.findGeoIntersections(ray);
-//                if (intersects != null) {
-//                    res.addAll(intersects);
-//                }
-//            }else if(G.CreateBox().findGeoIntersections(ray)) {
-//                intersects = G.findGeoIntersections(ray);
-//                if (intersects != null) {
-//                    res.addAll(intersects);
-//                }
-//            }
-//        }
-//        if(res.isEmpty()) return null;
-//        return res;
-//    }
-
-
     public List<GeoPoint> findGeoIntersections(Ray ray) {
         List<GeoPoint> listPoints = null;
         for (Intersectable geometry : L) {

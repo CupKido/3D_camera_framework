@@ -5,6 +5,7 @@ import primitives.Point3D;
 import primitives.Vector;
 
 public class PointLight extends Light implements LightSource{
+
     public PointLight(Color _intensity, Point3D _position){
         super(_intensity);
         position = _position;
@@ -17,6 +18,8 @@ public class PointLight extends Light implements LightSource{
         kL = _kL;
         kQ = _kQ;
     }
+
+
     public double getDistance(Point3D p){
         return p.distance(position);
     }
