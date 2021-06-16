@@ -76,7 +76,7 @@ public class Geometries implements Intersectable{
 
     public List<GeoPoint> findGeoIntersections(Ray ray) {
         List<GeoPoint> listPoints = null;
-        for (Intersectable geometry : this.L) {
+        for (Intersectable geometry : L) {
             if (geometry.CreateBox().findGeoIntersections(ray)) {
                 List<GeoPoint> points = geometry.findGeoIntersections(ray);
                 if (points != null) {
@@ -113,14 +113,14 @@ public class Geometries implements Intersectable{
 
         CreateBox();
         char axis = 'x';
-        double x = Box.max.getX().getCoord() - Box.min.getY().getCoord();
+        double x = Box.max.getX().getCoord() - Box.min.getX().getCoord();
         double y = Box.max.getY().getCoord() - Box.min.getY().getCoord();
         double z = Box.max.getZ().getCoord() - Box.min.getZ().getCoord();
 
         if(y > x && y >z){
             axis = 'y';
         }
-        if(z > x && z >y){
+        else if(z > x && z >y){
             axis = 'z';
         }
 

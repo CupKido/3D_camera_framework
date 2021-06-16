@@ -98,22 +98,8 @@ public class Plane extends Geometry {
         if(Box != null){
             return Box;
         }
-//        if (normal.getHead().equals(new Point3D(0,0,1 )) || normal.getHead().equals(new Point3D(0,0,-1 ))){
-//            Box = new BoundingBox(new Point3D(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, q0.getZ().getCoord()),
-//                    new Point3D(Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,q0.getZ().getCoord()));
-//        }
-//        if (normal.getHead().equals(new Point3D(0,1,0 )) || normal.getHead().equals(new Point3D(0,-1,0 ))){
-//            Box = new BoundingBox(new Point3D(Double.NEGATIVE_INFINITY, q0.getY().getCoord(), Double.NEGATIVE_INFINITY),
-//                    new Point3D(Double.POSITIVE_INFINITY,q0.getY().getCoord(),Double.POSITIVE_INFINITY));
-//        }
-//        if (normal.getHead().equals(new Point3D(1,0,0 )) || normal.getHead().equals(new Point3D(-1,0,0 ))){
-//            Box = new BoundingBox(new Point3D(q0.getX().getCoord(), Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY),
-//                    new Point3D(q0.getX().getCoord(),Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY));
-//        }
-//        else {
             Box = new BoundingBox(new Point3D(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY),
                     new Point3D(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-//        }
         return Box;
     }
 }

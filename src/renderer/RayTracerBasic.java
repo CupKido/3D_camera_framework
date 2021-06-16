@@ -172,6 +172,9 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     private double pow(double x, int y){
+        if(y < 0){
+            return 1/pow(x, -y);
+        }
         double sum = 1;
         while(y > 0){
             sum = sum * x;
@@ -220,7 +223,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     private double softShadowsTransparency(LightSource light, Vector l, Vector n, GeoPoint geopoint, int GridSize) {
-        if(SHADOWRAYS == 1){
+        if(GridSize == 1){
             return transparency(light, l , n, geopoint);
         }
         //    creating way to move on light plane
@@ -243,7 +246,7 @@ public class RayTracerBasic extends RayTracerBase{
             }
         }
 
-        int grid2 = (SHADOWRAYS - 1) / 2;
+        int grid2 = (GridSize - 1) / 2;
         double sum = 0;
         Vector nV;
         for (int i = -grid2; i <= grid2; i++) {

@@ -254,18 +254,14 @@ public class AllElementsTests {
 //        render1.renderImage();
 //        render1.writeToImage();
 //
-        camera.MoveRight(2);
 
-        camera2.TwistClockWise(10);
-        camera2.LookRight(5);
-        camera2.LookDown(5);
         Render render2 = new Render(). //
                 setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
-                .setCamera(camera2) //
+                .setCamera(camera) //
                 .setRayTracer(new RayTracerBasic(scene))
-                .setReject(true)
+                .setReject(false)
                 .setRAYS(1)
-                .setSHADOWRAYS(3)
+                .setSHADOWRAYS(5)
                 .setMultithreading(3).setDebugPrint();
         render2.renderImage();
         render2.writeToImage();
