@@ -13,6 +13,8 @@
 |teapot            |    normal   |     bounding | Partial Adaptive and bounding|
 |------------------|-------------|--------------|------------------------------|
 |1 soft & 1 super  |      2m 30s |     5s       |                5s            |
+
+
 ![final scene image taken from camera 3, 1000x1000, 25 soft shadow rays and 16 super sampling rays](https://cdn-144.anonfiles.com/7cebG21cu5/4501d1bb-1623922552/PoolTableC3.png)
 ![final scene image taken from camera 2, 1280x720, 1 soft shadow rays and 1 super sampling rays](https://cdn-116.anonfiles.com/P1e4G01eu6/96164d8b-1623922660/PoolTableC2.png)
 
@@ -31,5 +33,5 @@ Cylinder (get intersections etc)
 Tube (get intersections etc)
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNTE5ODM4ODZdfQ==
+eyJoaXN0b3J5IjpbMTk1ODcyOTU1MCwtMTE1MTk4Mzg4Nl19
 -->
