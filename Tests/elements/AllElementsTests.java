@@ -49,10 +49,12 @@ public class AllElementsTests {
 
 
 
+//                //floor
+//                new Plane(new Point3D(0,0,-1.5), new Point3D(0,1,-1.5), new Point3D(1,0,-1.5))
+//                        .setEmission(new Color(150, 150, 150)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0)),
                 //floor
-                new Plane(new Point3D(0,0,-1.5), new Point3D(0,1,-1.5), new Point3D(1,0,-1.5))
+                new Square(new Point3D(-9, -6, -1.5), new Point3D(9,-6, -1.5), new Point3D(9,9,-1.5), new Point3D(-9, 9, -1.5))
                         .setEmission(new Color(150, 150, 150)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(50).setKr(0)),
-
                 //wall back
                 new Square(new Point3D(-9, -6, -1.5), new Point3D(-9, -6, 3), new Point3D(-9, 9, 3), new Point3D(-9, 9, -1.5))
                 .setEmission(new Color(100,70,10).reduce(1.5)).setMaterial(new Material().setKd(0.7).setKs(0.1).setShininess(10)),
@@ -291,25 +293,25 @@ public class AllElementsTests {
 //        render1.writeToImage();
 //
 
-        Render render2 = new Render(). //
-                setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
-                .setCamera(camera2) //
-                .setRayTracer(new RayTracerBasic(scene))
-                .setReject(true)
-                .setRAYS(1)
-                .setSHADOWRAYS(1)
-                .setPartialAdaptive(true)
-                .setMultithreading(3).setDebugPrint();
-        render2.renderImage();
-        render2.writeToImage();
+//        Render render2 = new Render(). //
+//                setImageWriter(new ImageWriter("PoolTableC2", 1280, 720)) //
+//                .setCamera(camera2) //
+//                .setRayTracer(new RayTracerBasic(scene))
+//                .setReject(true)
+//                .setRAYS(1)
+//                .setSHADOWRAYS(1)
+//                .setPartialAdaptive(true)
+//                .setMultithreading(3).setDebugPrint();
+//        render2.renderImage();
+//        render2.writeToImage();
 
         Render render3 = new Render(). //
                 setImageWriter(new ImageWriter("PoolTableC3", 1000, 1000 )) //
                 .setCamera(camera3) //
                 .setRayTracer(new RayTracerBasic(scene))
                 .setReject(true)
-                .setRAYS(1)
-                .setSHADOWRAYS(1)
+                .setRAYS(8)
+                .setSHADOWRAYS(9)
                 .setPartialAdaptive(true)
                 .setMultithreading(3).setDebugPrint();
         render3.renderImage();
