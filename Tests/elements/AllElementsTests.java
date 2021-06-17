@@ -281,16 +281,16 @@ public class AllElementsTests {
                 new PointLight(new Color(java.awt.Color.WHITE),new Point3D(8.9,-3,2.5),15, 0.0005, 0.0005)
         );
 
-//        Render render1 = new Render(). //
-//                setImageWriter(new ImageWriter("PoolTableR500", 1280, 720 )) //
-//                .setCamera(camera) //
-//                .setRayTracer(new RayTracerBasic(scene))
-//                .setReject(true)
-//                .setRAYS(1)
-//                .setSHADOWRAYS(1)
-//                .setMultithreading(3).setDebugPrint();
-//        render1.renderImage();
-//        render1.writeToImage();
+        Render render1 = new Render(). //
+                setImageWriter(new ImageWriter("PoolTableR500", 1280, 720 )) //
+                .setCamera(camera) //
+                .setRayTracer(new RayTracerBasic(scene))
+                .setReject(true)
+                .setRAYS(8)
+                .setSHADOWRAYS(1)
+                .setMultithreading(3).setDebugPrint();
+        render1.renderImage();
+        render1.writeToImage();
 //
 
 //        Render render2 = new Render(). //
@@ -305,17 +305,18 @@ public class AllElementsTests {
 //        render2.renderImage();
 //        render2.writeToImage();
 
-        Render render3 = new Render(). //
-                setImageWriter(new ImageWriter("PoolTableC3", 1000, 1000 )) //
-                .setCamera(camera3) //
-                .setRayTracer(new RayTracerBasic(scene))
-                .setReject(true)
-                .setRAYS(8)
-                .setSHADOWRAYS(9)
-                .setPartialAdaptive(true)
-                .setMultithreading(3).setDebugPrint();
-        render3.renderImage();
-        render3.writeToImage();
+
+//        Render render3 = new Render(). //
+//                setImageWriter(new ImageWriter("PoolTableC3", 1000, 1000 )) //
+//                .setCamera(camera3) //
+//                .setRayTracer(new RayTracerBasic(scene))
+//                .setReject(true)
+//                .setRAYS(8)
+//                .setSHADOWRAYS(9)
+//                .setPartialAdaptive(true)
+//                .setMultithreading(3).setDebugPrint();
+//        render3.renderImage();
+//        render3.writeToImage();
     }
 
     @Test
